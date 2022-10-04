@@ -1,6 +1,6 @@
 # Summary
 
-- [Portswigger]
+- Portswigger
   - [Labs](/Portswigger/labs/README.md)
     - [Access Control](/Portswigger/labs/Access_control.md)
     - [Authentication](/Portswigger/labs/Authentication.md)
