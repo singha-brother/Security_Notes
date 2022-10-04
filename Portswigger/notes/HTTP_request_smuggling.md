@@ -97,3 +97,5 @@ X: X[\n]Transfer-Encoding: chunked
 Transfer-Encoding
 : chunked
 ```
+
+## How to identify HTTP request smuggling
