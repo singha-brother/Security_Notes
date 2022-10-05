@@ -1,39 +1,73 @@
 # Summary
 
 - Portswigger
-  - [Labs](/Portswigger/labs/README.md)
-    - [Access Control](/Portswigger/labs/Access_control.md)
-    - [Authentication](/Portswigger/labs/Authentication.md)
-    - [Command Injection](/Portswigger/labs/Command_injection.md)
-    - [CORS](/Portswigger/labs/CORS.md)
-    - [CSRF](/Portswigger/labs/CSRF.md)
-    - [Directory Traversal](/Portswigger/labs/Directory_traversal.md)
-    - [DOM based vulnerabilities](/Portswigger/labs/DOM_based_Vulns.md)
-    - [HTTP host header attacks](/Portswigger/labs/HTTP_host_header_attacks.md)
-    - [HTTP request smuggling](/Portswigger/labs/HTTP_request_smuggling.md)
-    - [Information disclosure](/Portswigger/labs/Information_disclosure.md)
-    - [SQL Injection](/Portswigger/labs/SQLI.md)
-    - [SSRF](/Portswigger/labs/SSRF.md)
-    - [Web cache poisoning](/Portswigger/labs/Web_cache_poisoning.md)
-    - [WebSockets](/Portswigger/labs/WebSockets.md)
-    - [XSS](/Portswigger/labs/XSS.md)
-    - [XXE injection](/Portswigger/labs/XXEI.md)
-  - [Notes](/Portswigger/notes/README.md)
-    - [Access Control](/Portswigger/notes/Access_control.md)
-    - [Authentication](/Portswigger/notes/Authentication.md)
-    - [Bussiness logic](/Portswigger/notes/Bussiness_logic.md)
-    - [Command Injection](/Portswigger/notes/Command_injection.md)
-    - [CORS](/Portswigger/notes/CORS.md)
-    - [CSRF](/Portswigger/notes/CSRF.md)
-    - [Directory Traversal](/Portswigger/notes/Directory_traversal.md)
-    - [DOM based vulnerabilities](/Portswigger/notes/DOM_based_Vulns.md)
-    - [File upload vulnerabilities](/Portswigger/notes/File_upload.md)
-    - [HTTP host header attacks](/Portswigger/notes/HTTP_host_header_attacks.md)
-    - [HTTP request smuggling](/Portswigger/notes/HTTP_request_smuggling.md)
-    - [Information disclosure](/Portswigger/notes/Information_disclosure.md)
-    - [SQL Injection](/Portswigger/notes/SQLI.md)
-    - [SSRF](/Portswigger/notes/SSRF.md)
-    - [Web cache poisoning](/Portswigger/notes/Web_cache_poisoning.md)
-    - [WebSockets](/Portswigger/notes/WebSockets.md)
-    - [XSS](/Portswigger/notes/XSS.md)
-    - [XXE injection](/Portswigger/notes/XXEI.md)
+  - Access Control
+    - [notes](/Portswigger/Access_Control/notes.md)
+    - [labs](/Portswigger/Access_Control/labs.md)
+  - Authentication
+    - [notes](/Portswigger/Authentication/notes.md)
+    - [labs](/Portswigger/Authentication/labs.md)
+  - Business Logic Vulnerabilities
+    - [notes](/Portswigger/Business_Logic_Vulnerabilities/notes.md)
+    - [labs](/Portswigger/Business_Logic_Vulnerabilities/labs.md)
+  - Clickjacking
+    - [notes](/Portswigger/Clickjacking/notes.md)
+    - [labs](/Portswigger/Clickjacking/labs.md)
+  - Command Injection
+    - [notes](/Portswigger/Command_Injection/notes.md)
+    - [labs](/Portswigger/Command_Injection/labs.md)
+  - CORS
+    - [notes](/Portswigger/CORS/notes.md)
+    - [labs](/Portswigger/CORS/labs.md)
+  - CSRF
+    - [notes](/Portswigger/CSRF/notes.md)
+    - [labs](/Portswigger/CSRF/labs.md)
+  - Directory Traversal
+    - [notes](/Portswigger/Directory_Traversal/notes.md)
+    - [labs](/Portswigger/Directory_Traversal/labs.md)
+  - DOM-based Vulnerabilities
+    - [notes](/Portswigger/DOM_based_Vulnerabilities/notes.md)
+    - [labs](/Portswigger/DOM_based_Vulnerabilities/labs.md)
+  - File upload Vulnerabilities
+    - [notes](/Portswigger/File_Upload_Vulnerabilities/notes.md)
+    - [labs](/Portswigger/File_Upload_Vulnerabilities/labs.md)
+  - HTTP Host Header Attacks
+    - [notes](/Portswigger/HTTP_Host_Header_Attacks/notes.md)
+    - [labs](/Portswigger/HTTP_Host_Header_Attacks/labs.md)
+  - HTTP Request Smuggling
+    - [notes](/Portswigger/HTTP_Request_Smuggling/notes.md)
+    - [labs](/Portswigger/HTTP_Request_Smuggling/labs.md)
+  - Information Disclosure
+    - [notes](/Portswigger/Information_Disclosure/notes.md)
+    - [labs](/Portswigger/Information_Disclosure/labs.md)
+  - Insecure Deserialization
+    - [notes](/Portswigger/Insecure_Deserialization/notes.md)
+    - [labs](/Portswigger/Insecure_Deserialization/labs.md)
+  - JWT Attacks
+    - [notes](/Portswigger/JWT_Attacks/notes.md)
+    - [labs](/Portswigger/JWT_Attacks/labs.md)
+  - OAuth Authentication
+    - [notes](/Portswigger/OAuth_Authentication/notes.md)
+    - [labs](/Portswigger/OAuth_Authentication/labs.md)
+  - Server Side Template Injection
+    - [notes](/Portswigger/Server_Side_Template_Injection/notes.md)
+    - [labs](/Portswigger/Server_Side_Template_Injection/labs.md)
+  - SQL injection
+    - [notes](/Portswigger/SQL_Injection/notes.md)
+    - [labs](/Portswigger/SQL_Injection/labs.md)
+    - [cheat sheet](/Portswigger/SQL_Injection/cheat_sheet.md)
+  - SSRF
+    - [notes](/Portswigger/SSRF/notes.md)
+    - [labs](/Portswigger/SSRF/labs.md)
+  - Web Cache Poisoning
+    - [notes](/Portswigger/Web_Cache_Poisoning/notes.md)
+    - [labs](/Portswigger/Web_Cache_Poisoning/labs.md)
+  - WebSockets
+    - [notes](/Portswigger/WebSockets/notes.md)
+    - [labs](/Portswigger/WebSockets/labs.md)
+  - XSS
+    - [notes](/Portswigger/XSS/notes.md)
+    - [labs](/Portswigger/XSS/labs.md)
+  - XXE Injection
+    - [notes](/Portswigger/XXE_Injection/notes.md)
+    - [labs](/Portswigger/XXE_Injection/labs.md)
