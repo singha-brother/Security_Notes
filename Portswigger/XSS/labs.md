@@ -177,7 +177,7 @@ In the exploit server Body,
 
 ## Lab - 9: Reflected DOM XSS
 
-> not understand well yet
+> not understand yet
 
 - source js file is at `resources/js/searchResults.js`.
 - Vulnerable JS script

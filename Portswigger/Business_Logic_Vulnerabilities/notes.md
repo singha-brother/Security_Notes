@@ -1,20 +1,64 @@
-## Excessive trust in client-side control
+## What are Business Logic Vulnerabilities?
 
-### 1. [Doesn't adequately validate user input](!https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls)
+- flaws in the design and implementation of an application that allow an attacker to elicit unintended behavior
+- enables attackers to manipulate legitimate functionality to achieve a malicious goal
+- not related to a business
+- **application logic vulnerabilities**, **logic flaws**
 
-eg - when buying an item, price calculation is only taken place at client side.
+- one of the main purposes of business logic is to enforce the rules and constraints that were defined when designing the application or functionality
+- prevent users from doing things that will have a negative impact on the business or that simply don't make sense
+- difficult to detect using automated vulnerability scanners
+- logic flaws are a great target for bug bounty hunters and manual testers in general
 
-In POST request, change this
-`productId=1&redir=PRODUCT&quantity=1&price=1334000` to
-`productId=1&redir=PRODUCT&quantity=10&price=1`
+## How do business logic vulnerabilities arise?
 
-### 2. [2FA broken logic](!https://portswigger.net/web-security/authentication/multi-factor/lab-2fa-broken-logic)
+- design and development teams make flawed assumptions about how users will interact with the application, and lead to inadequate validation of user input
+- common in overly complicated systems that even the development team themselves do not fully understand
 
-- In POST /login2, change `verify=carlos` and intruded the **mfa-code** from `0000 - 9999` and find the difference in GET request.
+## Impacts of business logic vulnerabilities
 
-- Then, in GET /login2, change the `verify=carlos` and fill the code from above.
+- broad category and highly variable
+- unintended behavior can potentially lead to high-severity attacks if the attacker is able to manipulate the application in the right way
+- depends on what functionality it is related to
+- can potentially exploit this for privilege escalation, bypass authentication entirely , gaining access to sensitive data and functionality
 
-## Failing to handle uncoventional input
+## Some examples
+
+- although individual instances of logic flaws differ hugely, they can share many common themes
+- they can be loosely grouped based on the initial mistakes that introduced the vulnerability in the first place
+
+### Excessive trust in client-side control
+
+- fundamentally flawed assumption is that the users will only interact with the application via the provided web interface
+- accepting data at face value, without performing proper integrity checks and server-side validation can allow an attacker to do all kinds of damage with relatively minimal effort
+
+### Failing to handle unconventional input
+
+- one aim of the application logic is to restrict user input to values that adhere to the business rules
+- the application may be designed to accept arbitary values of a certain data type, but the logic determines whether or not this value is acceptable from the perspective of the business
+- eg - numeric data type might accept negative values
+  - fund transfer between two bank accounts
+
+```php
+$transferAmount = $_POST['amount'];
+$currentBalance = $user->getBalance();
+
+if ($transferAmount <= $currentBalance) {
+    // complete the transfer
+} else {
+    // block : insufficient
+}
+```
+
+- an attacker send -$1000 to the victim's account, this might result in receiving $1000 from the victim instead
+
+- try submitting unconventional values
+- try input in ranges that legitimate users are unlikely to ever enter
+- eg - exceptionally high or low numeric inputs and abnormally long strings for text-based fields, or unexpected data types
+- by observing the application's reponse, try and see
+  - are there any limits that are imposed on the data?
+  - what happens when you reach those limits?
+  - is any transformation or normalization being performed on your input?
 
 ### 1. [High-level logic vulnerability](!https://portswigger.net/academy/labs/launch/8593e55b788d1c4403ccad45020972079a8e89c5669ecf6d9be2cd5c69c77877?referrer=%2fweb-security%2flogic-flaws%2fexamples%2flab-logic-flaws-high-level)
 
