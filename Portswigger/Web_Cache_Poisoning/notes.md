@@ -70,7 +70,7 @@ eg -
 GET /en?region=uk HTTP/1.1
 Host: innocent-website.com
 X-Forwarded-Host: innocent-website.co.uk
-
+======================================
 HTTP/1.1 200 OK
 Cache-Control: public
 <meta property="og:image" content="https://innocent-website.co.uk/cms/social.png" />
@@ -126,3 +126,63 @@ Connection: close
 - the information about which language version to serve is only contained in the cookie header
 - suppose that the cache key contains the request line and the Host header, not in the Cookie header
 - if the response to this request is cached, then all the subsequent users who tried to access this blog post would receive the Polish version
+
+#### Using multiple headers
+
+- sometimes need to craft a request that manipulates multiple unkeyed inputs
+- suppose website requires secure communication using HTTPS
+- if a request that uses another protocol is received (eg - HTTP), the website dynamically generates a redirect to itself that does use HTTPS:
+
+```
+GET /random HTTP/1.1
+Host: innocent-website.com
+X-Forwarded-Proto: http
+---------------------
+HTTP/1.1 301 moved permanently
+Location: https://innocent-site.com/random
+```
+
+- by combining this with above vulnerabilities in dynamically generated URLs, it can be exploited to generate a cacheable response that redirects users to a malicious URL
+
+#### Exploting responses that expose too much information
+
+- Cache-control directive
+
+  - sometimes responses explicitly reveal some of the information an attacker needs to successfully poison the cache
+  - eg - when responses contain information about how often the cache is purged or how old the currently cached response is
+
+  ```
+  HTTP/1.1 200 OK
+  Via: 1.1 varnish-v4
+  Age: 174
+  Cache-Control: public, max-age=1800
+  ```
+
+  - it gives an information when to send the payload to ensure it gets cached
+
+- Vary header
+  - specifies a list of additional headers that should be treated as part of the cache key even if they are normally unkeyed
+
+#### Exploit DOM-based vulnerabilities
+
+- if a script handles data from the server in an unsafe way, this can potentially lead to all kinds of DOM-based vulnerabilities
+- eg - an attacker can poison the cache with a response that import JSON file containing the following payload:
+
+```json
+{ "someProperty": "<svg onload=alert(1)>" }
+```
+
+- if the website passes the value of this property into a sink that supports dynamic code execution, the payload would be executed in the context of the victim's browser session
+- if you use the web cache poisoning to make a website load malicious JSON data from your server, you may need to grant the website access to the JSON using CORS:
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+{
+  "malicious json" : "malicious json"
+}
+```
+
+- web cache poisoning sometimes requires the attacker to chain together several of the techniques
+- by chaining together different vulnerabilities, it is often possible to expose additional layers of vulnerability that were initially unexploitable

