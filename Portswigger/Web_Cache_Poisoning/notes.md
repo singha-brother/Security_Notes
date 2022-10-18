@@ -186,3 +186,42 @@ Access-Control-Allow-Origin: *
 
 - web cache poisoning sometimes requires the attacker to chain together several of the techniques
 - by chaining together different vulnerabilities, it is often possible to expose additional layers of vulnerability that were initially unexploitable
+
+### Exploiting cache implementation flaws
+
+#### Cache key flaws
+
+- request line is usually part of the cache key and these inputs have traditionally not been considered suitable for cache poisoning
+- any payload injected via keyed inputs act as a cache buster; your poisoned cache entry would almost certainly never be served to any other users
+- many websites and CDNs perform various transformations on keyed components when they saved in the cache key
+  - excluding the query string
+  - filtering out specific query parameters
+  - normalizing input in key components
+
+#### Cache probing methadology
+
+- need a deeper understanding of the target cache and its behavior
+
+1. Identify a suitable cache oracle
+2. Probe key handling
+3. Identify an exploitable gadget
+
+4. Identify a suitable cache oracle
+
+- cache oracle - a page or endpoint that provides feedback about the cache's behavior
+- this needs to be cacheable and must indicate in some way whether you received a cached response or a response directly from the server
+- feedback can take various forms such as
+  - an HTTP header that explicitly tells you whether you got a cache hit
+  - Observable changes to dynamic content
+  - Distinct response times
+- ideally, the cache oracle will reflect the entire URL and at least one query parameter in the response
+- eg - Akami-based websites may support the header `Pragma: akami-x-get-cache-key` which can be used to display the cahe key in the response headers
+
+```
+GET /?param=1 HTTP/1.1
+Host: innocent-website.com
+Pragma: akami-x-get-cache-key
+
+HTTP/1.1 200 OK
+X-Cache-Key: inncoent-website.com/?param=1
+```

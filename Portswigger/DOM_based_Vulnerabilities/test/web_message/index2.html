@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Vulnerable Website</h1>
+    <script>
+      window.addEventListener(
+        "message",
+        function (e) {
+          var url = e.data;
+          console.log(url);
+          if (url.indexOf("http:") > -1 || url.indexOf("https:") > -1) {
+            location.href = url;
+            console.log(location.href);
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

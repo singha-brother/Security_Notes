@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <h1 style="color: blue">Vulnerable Website</h1>
+    <script>
+      window.addEventListener("message", function (e) {
+        eval(e.data);
+        console.log(e.data);
+      });
+    </script>
+  </body>
+</html>

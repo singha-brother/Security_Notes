@@ -1,4 +1,4 @@
-## Lab - 1: Basic password reset poisoning
+## Lab - 1: Basic password reset poisoning (A)
 
 - This lab is vulnerable to password reset poisoning. The user carlos will carelessly click on any links in emails that he receives. To solve the lab, log in to Carlos's account. You can log in to your own account using the following credentials: wiener:peter. Any emails sent to this account can be read via the email client on the exploit server.
 
@@ -66,7 +66,7 @@ https://0a2e00ee047f2fdbc0bd31ff00010045.web-security-academy.net/forgot-passwor
 
 ---
 
-## Lab - 2: Password reset poisoning via middleware
+## Lab - 2: Password reset poisoning via middleware (P)
 
 - This lab is vulnerable to password reset poisoning. The user carlos will carelessly click on any links in emails that he receives. To solve the lab, log in to Carlos's account. You can log in to your own account using the following credentials: wiener:peter. Any emails sent to this account can be read via the email client on the exploit server.
 
@@ -80,7 +80,7 @@ username=carlos
 
 ---
 
-## Lab - 3: Password reset poisoning via dangling markup
+## Lab - 3: Password reset poisoning via dangling markup (E)
 
 > plan after XSS
 

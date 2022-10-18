@@ -42,7 +42,7 @@ In the exploit server body,
 
 ---
 
-## Lab - 3: DOM XSS using web messages
+## Lab - 3: DOM XSS using web messages (P)
 
 - Vuln JS script that was found
 

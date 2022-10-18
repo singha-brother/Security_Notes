@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      window.addEventListener(
+        "message",
+        function (e) {
+          console.log(e);
+          var iframe = document.createElement("iframe"),
+            ACMEplayer = {
+              element: iframe,
+            },
+            d;
+          document.body.appendChild(iframe);
+          try {
+            d = JSON.parse(e.data);
+          } catch (e) {
+            return;
+          }
+          switch (d.type) {
+            case "page-load":
+              ACMEplayer.element.scrollIntoView();
+              break;
+            case "load-channel":
+              ACMEplayer.element.src = d.url;
+              break;
+            case "player-height-changed":
+              ACMEplayer.element.style.width = d.width + "px";
+              ACMEplayer.element.style.height = d.height + "px";
+              break;
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

@@ -1,17 +1,17 @@
-### What is DOM?
+## What is DOM?
 
 - Document Object Model - web browser's hierarchical representation of the elements on the page
 - Websites can use JS to manipulate the nodes and objects of the DOM, as well as their properties
 - DOM based vulnerabilities arise when a website contains JS that takes an attacker-controllable value known as a source, and passes it into a dangerous function known as a sink
 
-### Source
+## Source
 
 - a JS property that accepts data that is potentially attacker-controlled
 - eg - `location.search` property as it reads the input from the query string which is relatively simple for an attacker to control
 - any property that can be controlled by the attacker is a potential source
 - this includes the referring URL (exposed by the `document.referrer` string), the user's cookies (exposed by the `document.cookie` string) , and web messages
 
-### Sinks
+## Sinks
 
 - potentially dangerous JS function or DOM object that can cause undesirable effects if attacker-controlled data is passed to it
 - eg - `eval()` function as it processes the argument that is passed to it as JS
@@ -37,7 +37,7 @@ https://www.innocent-webiste.com/example#https://www.evil-website.com
 
 - When a victim visits this URL, the JS sets the value of the location property to `https://www.evil-website.com`, which automatically redirects the victim to the malicious site
 
-### Common sources
+## Common sources
 
 ```js
 document.URL;
@@ -56,7 +56,7 @@ IndexedDB;
 Database;
 ```
 
-### Common Sinks
+## Common Sinks
 
 | DOM-based vulnerability          | Example sink             |
 | -------------------------------- | ------------------------ |
@@ -77,7 +77,7 @@ Database;
 | DOM-data manipulation            | element.setAttribute()   |
 | Denial of service                | RegExp()                 |
 
-#### DOM-based Open redirection
+### DOM-based Open redirection
 
 - arise when a script writes attacker-controlled data into a sink that can trigger cross-domain navigation
 - eg - vulnerable due to the unsafe way it handles the `location.hash` property
@@ -115,19 +115,19 @@ jQuery.ajax()
 $.ajax()
 ```
 
-#### DOM-bsaed cookie manipulation
+### DOM-bsaed cookie manipulation
 
 - arises when a script writes attacker-controllable data into the value of a cookie
 - attacker has to construct a URL that if visited by another user, will set an arbitary value in the user's cookie
 - eg - JS writes data from a source into `document.cookie` without sanitizing it first, an attacker can manipulate the value of a single cookie to inject arbitary values
 
-```js
+```javascript
 document.cookie = "cookieName=" + location.hash.slice(1);
 ```
 
 > `document.cookie` sink can lead to DOM-based cookie-manipulation vulnerabilities
 
-#### Controlling Web Message source
+### Controlling Web Message source
 
 - consider the following code:
 
