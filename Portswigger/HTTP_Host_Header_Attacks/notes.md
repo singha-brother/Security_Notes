@@ -197,3 +197,21 @@ If the URL that is sent to the user is dynamically generated based on controllab
 ### Accessing restricted functionality
 
 - some websites' access control features make flawed assumptions that allow you to bypass these restrictions by making simple modifications to the Host header
+
+### Web cache poisoning via Host header
+
+- you may find that the Host Header is reflected in the response markup without HTML-encoding, even used directly in script imports
+
+### Accessing internal websites with virtual host brute-forcing
+
+- sometimes, companies have public and private websites on the same server
+
+```
+www.example.com: 12.34.56.78
+intranet.example.com: 10.0.0.132
+```
+
+### Routing based SSRF
+
+- sometimes it is possible to use the Host Header to launch routing based SSRF attacks
+-

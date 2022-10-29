@@ -131,3 +131,7 @@ O:14:"CustomTemplate":1:{s:14:"lock_file_path";s:23:"/home/carlos/morale.txt";}
 ```
 
 ---
+
+## Lab - 5: Exploiting Java deserialization with Apache Commons (P)
+
+- This lab uses a serialization-based session mechanism and loads the Apache Commons Collections library. Although you don't have source code access, you can still exploit this lab using pre-built gadget chains. To solve the lab, use a third-party tool to generate a malicious serialized object containing a remote code execution payload. Then, pass this object into the website to delete the morale.txt file from Carlos's home directory. You can log in to your own account using the following credentials: wiener:peter

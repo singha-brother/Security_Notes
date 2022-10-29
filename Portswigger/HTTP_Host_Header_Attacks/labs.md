@@ -88,7 +88,11 @@ username=carlos
 
 ## Lab - 4: Web cache poisoning via ambiguous requests
 
-> plan after web cache poisoning
+- This lab is vulnerable to web cache poisoning due to discrepancies in how the cache and the back-end application handle ambiguous requests. An unsuspecting user regularly visits the site's home page. To solve the lab, poison the cache so the home page executes alert(document.cookie) in the victim's browser.
+
+- add second Host header with exploit server and see where it is reflected
+- in exploit server File path: /resources/js/tracking.js
+- in exploit server Body : alert(document.cookie)
 
 ---
 
@@ -104,3 +108,7 @@ Host: localhost
 ```
 
 ---
+
+## Lab - 6: Routing-based SSRF (P)
+
+- This lab is vulnerable to routing-based SSRF via the Host header. You can exploit this to access an insecure intranet admin panel located on an internal IP address. To solve the lab, access the internal admin panel located in the 192.168.0.0/24 range, then delete Carlos.

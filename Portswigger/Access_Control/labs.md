@@ -1,4 +1,4 @@
-## Lab - 1: Unprotected admin functionality
+## Lab - 1: Unprotected admin functionality (A)
 
 - This lab has an unprotected admin panel. Solve the lab by deleting the user carlos.
 
@@ -6,7 +6,7 @@
 
 ---
 
-## Lab - 2: Unprotected admin functionality with unpredictable URL
+## Lab - 2: Unprotected admin functionality with unpredictable URL (A)
 
 - This lab has an unprotected admin panel. It's located at an unpredictable location, but the location is disclosed somewhere in the application.
 
@@ -32,7 +32,7 @@
 
 ---
 
-## Lab - 3: User role controlled by request parameter
+## Lab - 3: User role controlled by request parameter (A)
 
 - This lab has an admin panel at /admin, which identifies administrators using a forgeable cookie. Solve the lab by accessing the admin panel and using it to delete the user carlos. You can log in to your own account using the following credentials: wiener:peter
 
@@ -40,7 +40,7 @@
 
 ---
 
-## Lab - 4: User role can be modified in user profile
+## Lab - 4: User role can be modified in user profile (A)
 
 - This lab has an admin panel at /admin. It's only accessible to logged-in users with a roleid of 2. Solve the lab by accessing the admin panel and using it to delete the user carlos. You can log in to your own account using the following credentials: wiener:peter
 
@@ -60,7 +60,7 @@ Then admin panel will appear.
 
 ---
 
-## Lab - 5: URL-based access control can be circumvented
+## Lab - 5: URL-based access control can be circumvented (P)
 
 - This website has an unauthenticated admin panel at /admin, but a front-end system has been configured to block external access to that path. However, the back-end application is built on a framework that supports the X-Original-URL header.
 
@@ -68,15 +68,13 @@ Then admin panel will appear.
 GET /?username=carlos HTTP/1.1
 Host: 0a80006f04efe538c090448200ea0054.web-security-academy.net
 ...
-Referer: https://0a80006f04efe538c090448200ea0054.web-security-academy.net/
-Upgrade-Insecure-Requests: 1
 X-Original-URL: /admin/delete
 ...
 ```
 
 ---
 
-## Lab - 6: Method-based access control can be circumvented
+## Lab - 6: Method-based access control can be circumvented (P)
 
 - This lab implements access controls based partly on the HTTP method of requests. You can familiarize yourself with the admin panel by logging in using the credentials administrator:admin.
 
@@ -96,7 +94,7 @@ username=carlos&action=upgrade
 
 ---
 
-## Lab - 7: User ID controlled by request parameter
+## Lab - 7: User ID controlled by request parameter (A)
 
 - This lab has a horizontal privilege escalation vulnerability on the user account page. To solve the lab, obtain the API key for the user carlos and submit it as the solution. You can log in to your own account using the following credentials: wiener:peter
 
@@ -111,7 +109,7 @@ GET /my-account?id=wiener HTTP/1.1
 
 ---
 
-## Lab - 8: User ID controlled by request parameter, with unpredictable user IDs
+## Lab - 8: User ID controlled by request parameter, with unpredictable user IDs (A)
 
 - found on endpoint with id
 
@@ -128,14 +126,14 @@ GET /my-account?id=a45226c1-1fad-41bd-98f4-8452c62c643f HTTP/1.1
 
 ---
 
-## Lab - 9: User ID controlled by request parameter with data leakage in redirect
+## Lab - 9: User ID controlled by request parameter with data leakage in redirect (A)
 
 - use Burp repeater and use endpoint `/my-account?id=carlos`
 - though it is redirect, in Burp response, it contains API key.
 
 ---
 
-## Lab - 10: User ID controlled by request parameter with password disclosure
+## Lab - 10: User ID controlled by request parameter with password disclosure (A)
 
 - This lab has user account page that contains the current user's existing password, prefilled in a masked input. To solve the lab, retrieve the administrator's password, then use it to delete carlos. You can log in to your own account using the following credentials: wiener:peter
 
@@ -145,7 +143,7 @@ GET /my-account?id=a45226c1-1fad-41bd-98f4-8452c62c643f HTTP/1.1
 
 ---
 
-## Lab - 11: Insecure direct object references
+## Lab - 11: Insecure direct object references (A)
 
 - This lab stores user chat logs directly on the server's file system, and retrieves them using static URLs
 
@@ -155,7 +153,7 @@ GET /my-account?id=a45226c1-1fad-41bd-98f4-8452c62c643f HTTP/1.1
 
 ---
 
-## Lab - 12: Multi-step process with no access control on one step
+## Lab - 12: Multi-step process with no access control on one step (P)
 
 - This lab has an admin panel with a flawed multi-step process for changing a user's role. You can familiarize yourself with the admin panel by logging in using the credentials administrator:admin. To solve the lab, log in using the credentials wiener:peter and exploit the flawed access controls to promote yourself to become an administrator.
 
@@ -183,7 +181,7 @@ action=downgrade&confirmed=true&username=wiener
 
 ---
 
-## Lab - 13: Referer-based access control
+## Lab - 13: Referer-based access control (P)
 
 - This lab controls access to certain admin functionality based on the Referer header. You can familiarize yourself with the admin panel by logging in using the credentials administrator:admin. To solve the lab, log in using the credentials wiener:peter and exploit the flawed access controls to promote yourself to become an administrator.
 

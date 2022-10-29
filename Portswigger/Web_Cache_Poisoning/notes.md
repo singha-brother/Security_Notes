@@ -205,8 +205,9 @@ Access-Control-Allow-Origin: *
 1. Identify a suitable cache oracle
 2. Probe key handling
 3. Identify an exploitable gadget
-
 4. Identify a suitable cache oracle
+
+5. Identify a suitable cache oracle
 
 - cache oracle - a page or endpoint that provides feedback about the cache's behavior
 - this needs to be cacheable and must indicate in some way whether you received a cached response or a response directly from the server
@@ -225,3 +226,91 @@ Pragma: akami-x-get-cache-key
 HTTP/1.1 200 OK
 X-Cache-Key: inncoent-website.com/?param=1
 ```
+
+2. Probe key handling
+
+- next step is to investigate whether the cache performs any additional processing of your input when generating the cache key
+- look at any transformation that is taking place
+- is anything being excluded from a keyed component when it is added to the cache key?
+- eg -
+
+```
+GET / HTTP/1.1
+Host: vulnerable-website.com
+===========
+HTTP/1.1 302 Moved Permanently
+Location: https://vulnerable-website.com/en
+Cache-Status: miss
+```
+
+- to test whether the port is excluded from the cache key, request an arbitary port and make sure that we receive a fresh response from the server that reflects this input
+
+```
+GET / HTTP/1.1
+Host: vulnerable-website.com:1337
+
+HTTP/1.1 302 Moved Permanently
+Location: https://vulnerable-website.com:1337/en
+Cache-Status: miss
+```
+
+- then send another request, without a port
+
+```
+GET / HTTP/1.1
+Host: vulnerable-website.com
+
+HTTP/1.1 302 Moved Permanently
+Location: https://vulnerable-website.com:1337/en
+Cache-Status: hit
+```
+
+3. Identify an exploitable gadget
+
+- final step is to identify a suitable gadget that you can chain with this cache key flaw
+- often be classic client-side vulnerabilities such as reflected XSS and open redirects
+
+4. Exploiting cache key flaws
+
+**Unkeyed port**
+
+- Host header is often part of the cache key
+- can construct DOS attack by simply adding an arbitary port to the request
+- sometimes, allow to specify a non-numeric port and use this to inject an XSS payload
+
+**Unkeyed query string**
+
+- one of the most common cache-key transformations is to exclude the entire query string
+
+<u>Detecting an unkeyed query string </u>
+
+- to identify a dynamic page, you would normally observe how changing a parameter value has an effect on the response
+- if the query string is unkeyed, most of the time you would still get a cache hit, and an unchanged response, regardless of any parameters you add
+- alternative way of adding cache buster, such as adding it to a keyed header that doesn't interfere with the application's behavior
+
+```
+Accept-Encoding: gzip, deflate, cachebuster
+Accept: */*, text/cachebuster
+Cookie: cachebuster=1
+Origin: https://cachebuster.vulnerable-website.com
+```
+
+- in Param miner, "Add static/dynamic cache buster" > "Include cache busters in headers"
+
+- another approach is to see whether there are any discrepancies between how the cache and the back-end normalize the path of the request
+- eg -
+
+```
+Apache: GET //
+Nginx: GET /%2F
+PHP: GET /index.php/xyz
+.NET GET /(A(xyz)/
+```
+
+<u>Cache parameter cloaking</u>
+
+- eg `GET /?example=123?excluded_param=bad-stuff-here`
+- cache would identify two parameters and exclude the second one from the cache key but the server doesn't accept the second ? as a delimiter and sees as one parameter, `example` whose value is the entire rest of the query string, including the payload
+
+- exploiting parameter parsing quirks
+- `GET /?keyed_param=abc&excluded_param=123;keyed_param=bad-stuff-here`

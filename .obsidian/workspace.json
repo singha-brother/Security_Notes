@@ -1,0 +1,153 @@
+{
+  "main": {
+    "id": "8e88c1adff08ba21",
+    "type": "split",
+    "children": [
+      {
+        "id": "4645b6948b9f808f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d5b3d8a5cfbff79b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Tools/jwt_tool.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0b9a06d86b30cd90",
+    "type": "split",
+    "children": [
+      {
+        "id": "d44b3073e58d5427",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "98d179b88e980c64",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "cf1ff36cf381e84c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b15683411bc481b2",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "68cd69462ae5f92f",
+    "type": "split",
+    "children": [
+      {
+        "id": "e2fe2506794a753f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "627674661d87a979",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Tools/jwt_tool.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "7302861c1408ca94",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Tools/jwt_tool.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "94bc49a848df6903",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "c0470b8cd87975c3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Tools/jwt_tool.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "d5b3d8a5cfbff79b",
+  "lastOpenFiles": [
+    "finding.md",
+    "Tools/jwt_tool.md",
+    "2022-10-29.md",
+    "Portswigger/File_Upload_Vulnerabilities/notes.md",
+    "Tools/sqlmap.md",
+    "Portswigger/Access_Control/labs.md",
+    "Portswigger/Access_Control/notes.md",
+    "Portswigger/SSRF/notes.md",
+    "Portswigger/HTTP_Host_Header_Attacks/labs.md",
+    "README.md"
+  ]
+}
