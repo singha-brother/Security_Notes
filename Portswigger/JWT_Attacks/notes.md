@@ -167,3 +167,60 @@ hashcat -a 0 -m 16500 <jwt> <wordlist>
 - `x5c` (X.509 Certificate Chain) - can be used to inject self-signed certificates similar to the jwk header injection (CVE-2017-2800, CVE-2018-2633)
 
 ## JWT algorithm confusion
+
+- known as key confusion attacks 
+- occur when an attacker is able to force the server to verify the signature of a JSON web token using a different algorithm than is intended by the developers
+
+### Symmetric Vs Asymmetric
+
+- JWT can be signed using different algorithms
+- eg - HS256 (HMAC + SHA256) use a symmetric key means the server uses a single key to both sign and verify the token 
+
+![[Pasted image 20221101205841.jpg]]
+
+- other algorithms such as RS256 (RSA + SHA256) uses asymmetric key pairs which contains a private key which the server uses to sign the token and a mathematically related public key that can be used to verify the signature
+
+![[Pasted image 20221101210036.jpg]]
+
+### Performing algorithm confusion attack
+
+1. Obtain the server's public key
+2. Convert the public key to a suitable format
+3. Create a malicious JWT with a modified payload and the alg header set to `HS256`
+4. Sign the token with HS256, using the public key as the secret
+
+Step 1. Obtain the server's public key
+- servers sometimes expose their public keys as JSON Web Key (JWK) objects via endpoint such as `/jwks.json` or `/.well-known/jwks.json` and they may be stored in an array of JWKs called `keys` and known as `JWK Set`
+```json
+{
+	"keys": [
+		{
+			"kty": "RSA",
+			"e": "AQAB",
+			"kid": "...",
+			"n": "..."
+		},
+		{
+			"kty": "RSA",
+			"e": "AQAB",
+			"kid": "...",
+			"n": "..."
+		}
+	]
+}
+```
+
+Step 2 - Convert the public key to a suitable format
+- version of the key that you use to sign the JWT must be identical to the server's local copy and every signle byte must match including any non-printing characters
+- In Burp
+	1. In JWT Editor Keys tab, `New RSA` > paste the JWK that was obtained earlier
+	2. Select the `PEM` radio button and copy the resulting PEM key
+	3. in Decoder Tab, `Base64-encode` the PEM
+	4. in JWT Editor Keys, `New Symmetric Key` > `Generate`
+	5. replace the generated value for the `k` parameter with a Base64-encoded PEM key that was copied and save the key
+
+Step 3 - Modify your JWT
+- modify the JWT as you like and make sure the `alg` header to `HS256`
+
+Step 4 - Sign the JWT using the public key
+- Sign the token using the HS256 algorithm with the RSA public key as secret

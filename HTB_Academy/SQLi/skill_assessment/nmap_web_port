@@ -1,0 +1,15 @@
+# Nmap 7.80 scan initiated Sat Nov  5 19:00:34 2022 as: nmap -A -p 32554 -oN nmap_web_port -vv 134.122.106.163
+Nmap scan report for 134.122.106.163
+Host is up, received syn-ack (0.18s latency).
+Scanned at 2022-11-05 19:00:35 +0630 for 23s
+
+PORT      STATE SERVICE REASON  VERSION
+32554/tcp open  http    syn-ack Apache httpd 2.4.41 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+|_http-title: Employee Login
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Nov  5 19:00:58 2022 -- 1 IP address (1 host up) scanned in 23.92 seconds

@@ -52,7 +52,7 @@ if (query) {
 
 There are many ways to execute. In search box,
 
-```
+```html
 "><img src=x onerror=javascript:alert(1) />
 ```
 
