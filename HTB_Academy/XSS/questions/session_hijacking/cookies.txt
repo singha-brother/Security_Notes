@@ -1,0 +1,6 @@
+Victim IP: 10.129.160.134 | Cookie: cookie=c00k1355h0u1d8353cu23d
+Victim IP: 10.129.160.134 | Cookie: cookie=c00k1355h0u1d8353cu23d
+Victim IP: 10.129.160.134 | Cookie: cookie=c00k1355h0u1d8353cu23d
+Victim IP: 10.129.160.134 | Cookie: wordpress_test_cookie=WP Cookie check
+Victim IP: 10.129.160.134 | Cookie:  wp-settings-time-2=1668074835
+Victim IP: 10.129.160.134 | Cookie:  flag=HTB{cr055_5173_5cr1p71n6_n1nj4}

