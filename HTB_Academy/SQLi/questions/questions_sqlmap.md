@@ -56,3 +56,8 @@ sqlmap -r case4.txt -T flag4 --dump
 
 4. What's the contents of table flag5? (Case #5)
 
+```
+
+```
+
+5. 

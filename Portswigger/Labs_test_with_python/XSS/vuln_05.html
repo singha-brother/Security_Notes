@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM XSS in jQuery anchor href attribute sink using location.search source</title>
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+        <h1>Read the source code and exploit it!</h1>
+        <a id="backLink">Back</a>
+        <script>
+        $(function() {
+        $('#backLink').attr("href", (new URLSearchParams(window.location.search)).get('returnPath'));
+        });
+        </script>
+    </body>
+</html>

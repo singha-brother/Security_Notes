@@ -209,14 +209,15 @@ sqlmap -u "http://www.target.com/vuln.php?id=1" -v 6 --batch
 
 4. `--proxy` - redirect the whole traffic through a proxy
 
+---
 
-## Attack Tuning
+# Attack Tuning
 
 - In default, every payload sent to the target consists of
 	- vector (eg - `UNION ALL SELECT 1,2,VERSION()`): central part of the payload, carrying the useful SQL code to be executed at the target
 	- boundaries (eg - `<vector>-- -`): prefix and suffix formations, used for proper injection of the vector into the vulnerable SQL statement
 
-### Prefix/Suffix
+## Prefix/Suffix
 
 - in rare cases, there is a requirement for special prefix and suffix values
 - `--prefix` , `--suffix`
@@ -236,7 +237,7 @@ $result = mysqli_query($link, $query);
 SELECT id,name,surname FROM users WHERE id LIKE (('test%')) UNION ALL SELECT 1,2,VERSION()-- -')) LIMIT 0,1
 ```
 
-### Level/Risk
+## Level/Risk
 
 - `--level` - 1-5, default 1
 	- extends both vectors and boundaries being used, based on their expectancy of success (lower the expectancy, higher the level)

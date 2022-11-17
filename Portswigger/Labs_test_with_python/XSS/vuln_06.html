@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM XSS in jQuery selector sink using a hashchange event</title>
+    </head>
+    <body>
+            
+            <div id="academyLabHeader">
+    <section class='academyLabBanner'>
+        <div class=container>
+            <div class=logo></div>
+                <div class=title-container>
+                    <h2>DOM XSS in jQuery selector sink using a hashchange event</h2>
+                   
+                </div>
+    
+            </div>
+        </div>
+    </section>
+</div>
+        <div theme="blog">
+            <section class="maincontainer">
+                <div class="container is-page">
+                    <header class="navigation-header">
+                        <section class="top-links">
+                            <a href=/>Home</a><p>|</p>
+                        </section>
+                    </header>
+                    <header class="notification-header">
+                    </header>
+      
+                    <section class="blog-list">
+                        <div class="blog-post">
+                        
+                        <h2>Faking It! - InstaCam</h2>
+                        <p>People are going to extreme lengths to pull the wool over their friends' eyes on Social Media. If you've ever clicked your way through family photos and the perfect summer and winter getaway pics of your friends on Instagram then...</p>
+                       
+                        </div>
+                        <div class="blog-post">
+                       
+                        <h2>Stag Do's</h2>
+                        <p>Whenever a friend or relative announces their engagement, there is always one burning question that isn't really asked straight away out of politeness for the bride to be. While you're stood their feigning interest and enthusiasm for yet another wedding...</p>
+                       
+                        </div>
+                        <div class="blog-post">
+                       
+                        <h2>I'm A Photoshopped Girl Living In A Photoshopped World</h2>
+                        <p>I don't know what I look like anymore. I never use a mirror, I just look at selfies and use the mirror App on my cell. The mirror App is cool, I always look amazing, and I can change my...</p>
+                      
+                        </div>
+                        <div class="blog-post">
+                        
+                        <h2>Awkward Breakups</h2>
+                        <p>Tis better to have loved and lost than to never to have loved at all? A beautiful thought, but maybe Tennyson never had to go around his exe's house to collect his parchment and quills after an awkward break up....</p>
+                     
+                        </div>
+                        <div class="blog-post">
+                       
+                        <h2>Black Market Dealings</h2>
+                        <p>A strange phenomenon has been occurring on a High school campus in Ohio. It seems one young boy was given several boxes of reusable coffee cups to use for promotional purposes. The boy was fairly lazy in the task and...</p>
+                        
+                        </div>
+                    </section>
+                            <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+                    <script>
+                        $(window).on('hashchange', function(){
+                            var post = $('section.blog-list h2:contains(' + decodeURIComponent(window.location.hash.slice(1)) + ')');
+                            if (post) post.get(0).scrollIntoView();
+                        });
+                    </script>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
