@@ -73,6 +73,7 @@ Host: portswigger.net
 - eg - some websites will validate whether the Host header matches the SNI from the TLS handshake
 - try to understand how the website parses the Host header
 - eg - some parsing algorithms will omit the port from the Host header
+- inject through port
 
 ```
 GET /example HTTP/1.1
@@ -80,6 +81,7 @@ Host: vulnerable-website.com:bad-stuff-here
 ```
 
 - other websites try to apply matching logic to allow for arbitary subdomains and able to bypass the validation entirely by registering an arbitary domain name that ends with the same sequence of characters as a whitelisted one:
+- inject by adding `not` in front of valid domain
 
 ```
 GET /example HTTP/1.1
@@ -143,7 +145,7 @@ Host: vulnerable-website.com
 X-Forwarded-Host: bad-stuff-here
 ```
 
-Other headers - `X-Forwarded-Server`, `X-HTTP-Host-Override`, `Forwarded`
+Other headers - `X-Forwarded-Server`, `X-HTTP-Host-Override`, `Forwarded`, `X-Host`
 
 - Burp -> Param Miner extension's Guess headers function
 

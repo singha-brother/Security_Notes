@@ -77,7 +77,7 @@ Access-Control-Allow-Origin: https://normal-website.com
 
 - the browser will allow code running on normal-website.com to access the response as the origins match
 
-- The specification of `Access-Control-Allow-Origin` allows for multiple origins or the vaule `null`, or wildcard `*`.
+- The specification of `Access-Control-Allow-Origin` allows for multiple origins or the value `null`, or wildcard `*`.
 
 ## Access-Control-Allow-Credentials
 

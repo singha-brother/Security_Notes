@@ -71,3 +71,28 @@ eg - `{"user": "Peter", "content": "Hi There"}`
 - user-supplied input transmitted to the server might be processed in unsafe ways, leading to vulnerabilities such as SQL injection or XXE
 - some blind vulnerabilities reached via WebSockets might only be detectable using OAST techniques
 - if attacker-controlled data is transmitted via WebSockets to other application users, then it may lead to XSS or other client-side vulnerabilities
+
+### Manipulating WebSockets Message
+
+- majority of input-based vulnerabilities affecting WebSockets can be found and exploited by tempering with the contents of WebSocket messages
+- eg - chat message sent to server look looks like
+
+```json
+{ "message": "Hello!" }
+```
+
+- contents of the message are transmitted via WebSockets to another user, and rendered in the user's browser as
+
+```html
+<td>Hello!</td>
+```
+
+- in this situation, if there is no input processing or defenses, can perform XSS
+
+```json
+{ "message": "<img src=x onerror=alert(1)>" }
+```
+
+### Manipulating WebSockets Handshake
+
+- misplaced trust in HTTP headers to perform security decisions, such as the X-Forwarded-For header
