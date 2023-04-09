@@ -1,0 +1,22 @@
+---
+h1_report_id: 968082
+type: XSS
+tags: ["reflected xss"]
+title: "Cross-Site-Scripting on www.tiktok.com and m.tiktok.com leading to Data Exfiltration"
+cve-id: ""
+bug_paid: 3860
+severity: ""
+researcher: "milly"
+reported_data: November 20, 2020
+program: "tiktok"
+urls: []
+method: ""
+parameters: []
+payloads: []
+summary: |-
+  The researcher discovered a URL parameter reflecting its value without being properly sanitized and was able to achieve reflected XSS. In addition, researcher found an endpoint which was vulnerable to CSRF.
+  The endpoint allowed to set a new password on accounts which had used third-party apps to sign-up. Researcher combined both vulnerabilities to achieve a "one click account takeover".
+  While fuzzing, I discovered a URL parameter reflecting its value without being properly sanitized. Thus, I was able to achieve reflected XSS. In addition, I found an endpoint which was vulnerable to CSRF.
+  The endpoint enabled me to set a new password on accounts which had used third-party apps to sign-up. I combined both vulnerabilities by crafting a simple JavaScript payload - triggering the CSRF - which I injected into the vulnerable URL parameter from earlier, to archive a "one click account takeover".
+poc: |-
+impact: |-

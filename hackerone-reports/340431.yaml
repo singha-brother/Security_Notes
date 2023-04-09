@@ -1,0 +1,21 @@
+---
+h1_report_id: 340431
+type: XSS
+tags: ["reflected xss"]
+title: "Reflected XSS and sensitive data exposure, including payment details, on lioncityrentals.com.sg"
+cve-id: ""
+bug_paid: 4000
+severity: "high"
+researcher: "healdb"
+reported_data: April 19, 2018
+program: "uber"
+urls: []
+method: ""
+parameters: []
+payloads: []
+summary: |-
+  lioncityrentals.com.sg employed a Wordpress installation that possessed a vulnerable plugin, Formidable Forms, which was vulnerable to reflected XSS, and exposed sensitive form data.
+
+poc: |-
+  - https://klikki.fi/formidable-forms-vulnerabilities/
+impact: |-

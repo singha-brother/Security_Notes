@@ -1,0 +1,37 @@
+---
+h1_report_id: 1010466
+type: XSS
+tags: ["stored xss", "blind xss", "csrf"]
+title: "Blind XSS on image upload"
+cve-id: ""
+bug_paid: 1000
+severity: "critical"
+researcher: "gatolouco"
+reported_data: October 17, 2020
+program: "cs money"
+urls: []
+method: "POST"
+parameters: ["filename"]
+payloads: ['" onerror = "alert(123)" "']
+summary: |-
+  I found a XSS when I send a image in the support chat and change the image name to some script.
+  The CSRF part you can ignore, since the hacker can inject XSS in the support, then send a message (as support) with the XSS image to every user.
+  Yeah, it is a massive XSS, tons of users would be affected.
+  The CSRF vulnerability make a request for support.cs.money/upload_file; This upload_file does not have csrf token/ origin/ reference verification!
+  The XSS allows to execute JS. The payload of the XSS stay in the param 'filename' of the CSRF request.
+poc: |-
+  XSS
+  - Start a chat with support;
+  - Configure a proxy as a burp suite in your browser;
+  - Send a valid image and change the filename to \" onerror = \"alert(123)\" \" ;
+  - You will be redirected to cs.money, click on the support chat.
+  - You will see an alert(123), the support agent will also see this when accessing your chat!
+  CSRF
+  - Host the file where I explained the CSRF to a server, such as 000webhost, with the name of ʻindex.php`
+  - Take the link to your file and shorten it, (bit.ly) with a more friendly link; or use a domain like csmoney.shop
+  - Now the hacker can send the link to users who have active chat via discord or another means.
+impact: |-
+  - I could create and send a payload to the support agent, and the payload would respond as support agent to all users who have already contacted him with another payload.
+  - Users would receive a notification and click, running XSS.
+  - The XSS will run on cs.money (main domain), so it is possible to steal personal data, make requests, have total control over the user!
+  - The content of the page can be altered by a malicious one, such as a message to download a new update of the extension of cs money, which is actually something that can steal the password of the account of steam and other websites.

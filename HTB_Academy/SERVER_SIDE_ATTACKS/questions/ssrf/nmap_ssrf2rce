@@ -1,0 +1,25 @@
+# Nmap 7.80 scan initiated Sun Dec 18 11:41:14 2022 as: nmap -sC -sV -T5 -oN nmap_ssrf2rce -v 10.129.201.238
+Increasing send delay for 10.129.201.238 from 0 to 5 due to 40 out of 99 dropped probes since last increase.
+Nmap scan report for 10.129.201.238
+Host is up (0.29s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+80/tcp   open  http    Werkzeug httpd 2.0.2 (Python 3.8.12)
+|_http-favicon: Unknown favicon MD5: E8F0CDDEC1297E56FC9E575476762E48
+| http-methods: 
+|_  Supported Methods: OPTIONS HEAD GET
+|_http-server-header: Werkzeug/2.0.2 Python/3.8.12
+| http-title: Site doesn't have a title (text/html; charset=utf-8).
+|_Requested resource was http://10.129.201.238/load?q=index.html
+|_http-trane-info: Problem with XML parsing of /evox/about
+8080/tcp open  http    Werkzeug httpd 2.0.2 (Python 3.8.12)
+| http-methods: 
+|_  Supported Methods: HEAD POST OPTIONS GET
+|_http-server-header: Werkzeug/2.0.2 Python/3.8.12
+|_http-title: Upload new File
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Dec 18 11:41:59 2022 -- 1 IP address (1 host up) scanned in 44.59 seconds

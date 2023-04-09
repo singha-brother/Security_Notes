@@ -1,0 +1,19 @@
+---
+h1_report_id: 484434
+type: XSS
+tags: ["stored xss"]
+title: "Stored XSS on imgur profile"
+cve-id: ""
+bug_paid: 650
+severity: "medium"
+researcher: "giddsec"
+reported_data: January 23, 2019
+program: "imgur"
+urls: ["https://gidsumaya.imgur.com/"]
+method: "POST"
+parameters: []
+payloads: ["”/>&lt;script>alert(1)&lt;/script>”/>"]
+summary: |-
+poc: |-
+impact: |-
+  XSS can use to steal cookies, password or to run arbitrary code on victim's browser

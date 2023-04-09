@@ -1,0 +1,19 @@
+---
+h1_report_id: 697099
+type: XSS
+tags: ["reflected xss"]
+title: "Reflected XSS in OAUTH2 login flow"
+cve-id: ""
+bug_paid: 1990
+severity: "medium"
+researcher: "derision"
+reported_data: September 18, 2019
+program: "line"
+urls: []
+method: ""
+parameters: []
+payloads: []
+summary: |-
+  The reporter found a reflected XSS in the OAUTH2 login flow which could have allowed potential attackers to steal credentials or hijack accounts by sending a message to the victim containing a malicious URL
+poc: |-
+impact: |-

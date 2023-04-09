@@ -216,4 +216,6 @@ intranet.example.com: 10.0.0.132
 ### Routing based SSRF
 
 - sometimes it is possible to use the Host Header to launch routing based SSRF attacks
--
+- can use Burp Collaborator to identify these vulnerabiliites
+- supply domain of Collaborator server in the Host Header and if receive the DNS lookup from the target server or another inpath system, and indicates that it may be able to route requests to arbitary domain
+- then try to identify private IP addess that are in use on the target's internal network such as 192.168.0.0/16, 10.0.0.0/8

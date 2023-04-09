@@ -1,0 +1,18 @@
+---
+h1_report_id: 1
+type: XSS
+tags: []
+title: ""
+cve-id: ""
+bug_paid: 500
+severity: ""
+researcher: ""
+reported_data: April 6, 2020
+program: ""
+urls: []
+method: ""
+parameters: []
+payloads: []
+summary: |-
+poc: |-
+impact: |-

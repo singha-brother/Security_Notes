@@ -1,0 +1,42 @@
+---
+h1_report_id: 733248
+type: XSS
+tags: ["stored xss"]
+title: "Stored XSS in wordpress.com"
+cve-id: ""
+bug_paid: 500
+severity: "high"
+researcher: "adhamsadapah"
+reported_data: November 10, 2019
+program: "wordpress"
+urls:
+  [
+    "https://wordpress.com/read/feeds/{blog_id}/posts/{post_id}",
+    "https://yoursubdomain.wordpress.com",
+  ]
+method: "POST"
+parameters: []
+payloads:
+  [
+    "<iframe <><a href=javascript&colon;alert(document.cookie)>Click Here</a>=&gt;&lt;/iframe&gt;",
+  ]
+summary: |-
+  Stored XSS as a comment or as a post (body or title) at
+  https://wordpress.com/read/feeds/{blog_id}/posts/{post_id}
+  https://yoursubdomain.wordpress.com
+poc: |-
+  Steps To Reproduce:
+  - Log in to wordpress.com
+  - Choose a post from the feeds
+  - Add a comment with the payload: <iframe <><a href=javascript&colon;alert(document.cookie)>Click Here</a>=&gt;&lt;/iframe&gt;
+  - By clicking on Click Here, an alert will fire with cookies of the domain wordpress.com
+  - As a post
+  - Log in to wordpress.com
+  - Create a new post or site.
+  - Add the payload <iframe <><a href=javascript&colon;alert(document.cookie)>Click Here</a>=&gt;&lt;/iframe&gt; to the body or the title of the blog post
+  - preview or publish your new blog post
+  - By clicking on Click Here, an alert will fire with cookies of the domain yoursubdomain.wordpress.com or wordpress.com if the post is previewed from the WordPress feed.
+  - If you add comments to your blog post and using the payload mentioned above as a comment an Stored XSS alert will fire when you click on the link.
+impact: |-
+  - Perform arbitrary requests on the behalf of other users with security context of wordpress.com or blogsubdomain.wordpress.com
+  - Read any data the attacked user has access to.
